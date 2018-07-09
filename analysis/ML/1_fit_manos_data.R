@@ -11,15 +11,14 @@ dat=readRDS(file="../../data/data_delay_lba2018.rds")
 dat$m_a = dat$amount
 dat$d_a = dat$delay
 dat$m_b = 100
-dat$d_b = 0
+dat$d_b = 0    #note: b is sooner option
 dat$choose_a = dat$Choice
-dat$k = NA
-dat$sigma = NA
+Nsubj = length(unique(dat$subject))
 
 #fit hyperbolic
 source("../../models/hyperbolic.R")
-
-Nsubj = length(unique(dat$subject))
+dat$k = NA
+dat$sigma = NA
 
 for(i in 1:Nsubj){
   output=DEoptim(fn=hyperbolic_wrapper,
