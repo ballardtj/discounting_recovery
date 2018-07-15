@@ -10,14 +10,14 @@ tradeoff_likelihood=function(m_a,   #magnitude of option a
                              eps     #noise ( -> 0 = no noise)
                               ){
   #subjective magnitudes
-  sm_a = (1/gamma)*log(1+gamma*m_a)
-  sm_b = (1/gamma)*log(1+gamma*m_b)
+  sm_a = (1/gamma)*log1p(gamma*m_a)
+  sm_b = (1/gamma)*log1p(gamma*m_b)
   Qm = sm_a - sm_b
   
   #subjective delays
-  sd_a = (1/tau)*log(1+tau+d_a)
-  sd_b = (1/tau)*log(1+tau+d_b)
-  Qd = (kappa/alpha * log(1+alpha*((sd_a-sd_b)/theta)^theta))
+  sd_a = (1/tau)*log1p(tau+d_a)
+  sd_b = (1/tau)*log1p(tau+d_b)
+  Qd = (kappa/alpha * log1p(alpha*((sd_a-sd_b)/theta)^theta))
   
   #choice probability
   p_a = Qm^(1/eps) / (Qm^(1/eps) + Qd^(1/eps))
