@@ -125,8 +125,8 @@ dat_tmp$delta = NA
 dat_tmp$sigma = NA
 
 for(i in 1:Nsubj){
-  lower=c(0,0)
-  upper=c(100,1000)
+  lower=c(-1,0)
+  upper=c(1,100)
   
   output=DEoptim(fn=prop_diff_wrapper,
                  dat=dat_tmp[dat_tmp$subject==i,],
@@ -204,8 +204,8 @@ dat_tmp$BtA = NA
 dat_tmp$BtR = NA
 
 for(i in 1:Nsubj){
-  lower=c(-50,-50,-50,-50,-50,-50)
-  upper=c(50,50,50,50,50,50)
+  lower=c(-50,0,0,-50,-50)
+  upper=c(50,50,50,0,0)
   
   output=DEoptim(fn=ITCH_wrapper,
                  dat=dat_tmp[dat_tmp$subject==i,],
