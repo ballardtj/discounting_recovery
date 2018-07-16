@@ -4,6 +4,8 @@
 
 Tim to do: Implement all seven models in Regenwetter, Cavagnaro, Popova (2018) paper
 
-Tim to do: Plot posterior predictives, calculate BIC
+Tim to do: Plot posterior predictives, calculate BIC and AIC
 
 Tim to do: Implement as Bayes, get priors from distributions of parameters in original papers (start with simpler ones)
+
+Tim to do: Set up overleaf
