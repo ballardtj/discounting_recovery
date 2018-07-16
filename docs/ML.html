@@ -324,7 +324,8 @@ div.section {
 <ul>
 <li>
 <details>
-<p><summary> <strong style="color:red;">✖</strong> <strong>R Markdown file:</strong> uncommitted changes </summary> The R Markdown is untracked by Git. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
+<p><summary> <strong style="color:blue;">✔</strong> <strong>R Markdown file:</strong> up-to-date </summary></p>
+<p>Great! Since the R Markdown file has been committed to the Git repository, you know the exact version of the code that produced these results.</p>
 </details>
 </li>
 <li>
@@ -347,7 +348,7 @@ div.section {
 </li>
 <li>
 <details>
-<p><summary> <strong style="color:blue;">✔</strong> <strong>Repository version:</strong> <a href="https://github.com/ballardtj/discounting_recovery/tree/fa110c8194e37b62ef982b58c8f6da97b32e60ca" target="_blank">fa110c8</a> </summary></p>
+<p><summary> <strong style="color:blue;">✔</strong> <strong>Repository version:</strong> <a href="https://github.com/ballardtj/discounting_recovery/tree/020b0307eee9b0178fe7204410b9f27bfec1d1c9" target="_blank">020b030</a> </summary></p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility. The version displayed above was the version of the Git repository at the time these results were generated. <br><br> Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
 <pre><code>
 Ignored files:
@@ -365,22 +366,76 @@ Ignored files:
     Ignored:    analysis/ML/.Rproj.user/
     Ignored:    data/.DS_Store
 
-Untracked files:
-    Untracked:  analysis/ML.Rmd
-    Untracked:  analysis/ML2.Rmd
-    Untracked:  data/derived/
-    Untracked:  docs/figure/
-    Untracked:  models/hyperbolic_gm.R
-
 Unstaged changes:
-    Modified:   analysis/ML/1_fit_manos_data.R
-    Deleted:    models/hyperbolic_MG.R
+    Modified:   analysis/index.Rmd
 
 </code></pre>
 Note that any generated files, e.g. HTML, png, CSS, etc., are not included in this status report because it is ok for generated content to have uncommitted changes.
 </details>
 </li>
 </ul>
+<details>
+<summary> <small><strong>Expand here to see past versions:</strong></small> </summary>
+<ul>
+<table style="border-collapse:separate; border-spacing:5px;">
+<thead>
+<tr>
+<th style="text-align:left;">
+File
+</th>
+<th style="text-align:left;">
+Version
+</th>
+<th style="text-align:left;">
+Author
+</th>
+<th style="text-align:left;">
+Date
+</th>
+<th style="text-align:left;">
+Message
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Rmd
+</td>
+<td style="text-align:left;">
+<a href="https://github.com/ballardtj/discounting_recovery/blob/8c023050b6c1476f496e9c57fdfbdc6ba60f0d68/analysis/ML.Rmd" target="_blank">8c02305</a>
+</td>
+<td style="text-align:left;">
+ballardtj
+</td>
+<td style="text-align:left;">
+2018-07-16
+</td>
+<td style="text-align:left;">
+get md working
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+html
+</td>
+<td style="text-align:left;">
+<a href="https://cdn.rawgit.com/ballardtj/discounting_recovery/8c023050b6c1476f496e9c57fdfbdc6ba60f0d68/docs/ML.html" target="_blank">8c02305</a>
+</td>
+<td style="text-align:left;">
+ballardtj
+</td>
+<td style="text-align:left;">
+2018-07-16
+</td>
+<td style="text-align:left;">
+get md working
+</td>
+</tr>
+</tbody>
+</table>
+</ul>
+</details>
 <hr />
 <div id="hyperbolic-model" class="section level1">
 <h1>Hyperbolic model</h1>
@@ -393,6 +448,37 @@ library(GGally)</code></pre>
 load(&quot;data/derived/fit_ML_hyperbolic.RData&quot;)
 ggpairs(dat_tmp[dat_tmp$trial==1,names(dat_tmp) %in% c(&quot;k&quot;,&quot;sigma&quot;)])</code></pre>
 <p><img src="figure/ML.Rmd/unnamed-chunk-1-1.png" width="672" style="display: block; margin: auto;" /></p>
+<details>
+<summary><em>Expand here to see past versions of unnamed-chunk-1-1.png:</em></summary>
+<table style = "border-collapse:separate; border-spacing:5px;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Version
+</th>
+<th style="text-align:left;">
+Author
+</th>
+<th style="text-align:left;">
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+<a href="https://github.com/ballardtj/discounting_recovery/blob/8c023050b6c1476f496e9c57fdfbdc6ba60f0d68/docs/figure/ML.Rmd/unnamed-chunk-1-1.png" target="_blank">8c02305</a>
+</td>
+<td style="text-align:left;">
+ballardtj
+</td>
+<td style="text-align:left;">
+2018-07-16
+</td>
+</tr>
+</tbody>
+</table>
+</details>
 </div>
 <div id="exponential-model" class="section level1">
 <h1>Exponential model</h1>
@@ -402,6 +488,37 @@ library(GGally)
 load(&quot;data/derived/fit_ML_exponential.RData&quot;)
 ggpairs(dat_tmp[dat_tmp$trial==1,names(dat_tmp) %in% c(&quot;k&quot;,&quot;sigma&quot;)])</code></pre>
 <p><img src="figure/ML.Rmd/unnamed-chunk-2-1.png" width="672" style="display: block; margin: auto;" /></p>
+<details>
+<summary><em>Expand here to see past versions of unnamed-chunk-2-1.png:</em></summary>
+<table style = "border-collapse:separate; border-spacing:5px;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Version
+</th>
+<th style="text-align:left;">
+Author
+</th>
+<th style="text-align:left;">
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+<a href="https://github.com/ballardtj/discounting_recovery/blob/8c023050b6c1476f496e9c57fdfbdc6ba60f0d68/docs/figure/ML.Rmd/unnamed-chunk-2-1.png" target="_blank">8c02305</a>
+</td>
+<td style="text-align:left;">
+ballardtj
+</td>
+<td style="text-align:left;">
+2018-07-16
+</td>
+</tr>
+</tbody>
+</table>
+</details>
 </div>
 <div id="hyperbolic-model-green-myerson-version" class="section level1">
 <h1>Hyperbolic model (Green &amp; Myerson version)</h1>
@@ -411,6 +528,37 @@ library(GGally)
 load(&quot;data/derived/fit_ML_hyperbolic_gm.RData&quot;)
 ggpairs(dat_tmp[dat_tmp$trial==1,names(dat_tmp) %in% c(&quot;k&quot;,&quot;s&quot;,&quot;sigma&quot;)])</code></pre>
 <p><img src="figure/ML.Rmd/unnamed-chunk-3-1.png" width="672" style="display: block; margin: auto;" /></p>
+<details>
+<summary><em>Expand here to see past versions of unnamed-chunk-3-1.png:</em></summary>
+<table style = "border-collapse:separate; border-spacing:5px;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Version
+</th>
+<th style="text-align:left;">
+Author
+</th>
+<th style="text-align:left;">
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+<a href="https://github.com/ballardtj/discounting_recovery/blob/8c023050b6c1476f496e9c57fdfbdc6ba60f0d68/docs/figure/ML.Rmd/unnamed-chunk-3-1.png" target="_blank">8c02305</a>
+</td>
+<td style="text-align:left;">
+ballardtj
+</td>
+<td style="text-align:left;">
+2018-07-16
+</td>
+</tr>
+</tbody>
+</table>
+</details>
 </div>
 <div id="proportional-difference-model" class="section level1">
 <h1>Proportional difference model</h1>
@@ -420,6 +568,37 @@ library(GGally)
 load(&quot;data/derived/fit_ML_prop_diff.RData&quot;)
 ggpairs(dat_tmp[dat_tmp$trial==1,names(dat_tmp) %in% c(&quot;delta&quot;,&quot;sigma&quot;)])</code></pre>
 <p><img src="figure/ML.Rmd/unnamed-chunk-4-1.png" width="672" style="display: block; margin: auto;" /></p>
+<details>
+<summary><em>Expand here to see past versions of unnamed-chunk-4-1.png:</em></summary>
+<table style = "border-collapse:separate; border-spacing:5px;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Version
+</th>
+<th style="text-align:left;">
+Author
+</th>
+<th style="text-align:left;">
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+<a href="https://github.com/ballardtj/discounting_recovery/blob/8c023050b6c1476f496e9c57fdfbdc6ba60f0d68/docs/figure/ML.Rmd/unnamed-chunk-4-1.png" target="_blank">8c02305</a>
+</td>
+<td style="text-align:left;">
+ballardtj
+</td>
+<td style="text-align:left;">
+2018-07-16
+</td>
+</tr>
+</tbody>
+</table>
+</details>
 </div>
 <div id="tradeoff-model" class="section level1">
 <h1>Tradeoff model</h1>
@@ -429,6 +608,37 @@ library(GGally)
 load(&quot;data/derived/fit_ML_tradeoff.RData&quot;)
 ggpairs(dat_tmp[dat_tmp$trial==1,names(dat_tmp) %in% c(&quot;gamma&quot;,&quot;tau&quot;,&quot;theta&quot;,&quot;kappa&quot;,&quot;alpha&quot;,&quot;sigma&quot;)])</code></pre>
 <p><img src="figure/ML.Rmd/unnamed-chunk-5-1.png" width="672" style="display: block; margin: auto;" /></p>
+<details>
+<summary><em>Expand here to see past versions of unnamed-chunk-5-1.png:</em></summary>
+<table style = "border-collapse:separate; border-spacing:5px;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Version
+</th>
+<th style="text-align:left;">
+Author
+</th>
+<th style="text-align:left;">
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+<a href="https://github.com/ballardtj/discounting_recovery/blob/8c023050b6c1476f496e9c57fdfbdc6ba60f0d68/docs/figure/ML.Rmd/unnamed-chunk-5-1.png" target="_blank">8c02305</a>
+</td>
+<td style="text-align:left;">
+ballardtj
+</td>
+<td style="text-align:left;">
+2018-07-16
+</td>
+</tr>
+</tbody>
+</table>
+</details>
 </div>
 <div id="itch-model" class="section level1">
 <h1>ITCH model</h1>
@@ -438,6 +648,37 @@ library(GGally)
 load(&quot;data/derived/fit_ML_ITCH.RData&quot;)
 ggpairs(dat_tmp[dat_tmp$trial==1,names(dat_tmp) %in% c(&quot;B1&quot;,&quot;BxA&quot;,&quot;BxR&quot;,&quot;BtA&quot;,&quot;BtR&quot;)])</code></pre>
 <p><img src="figure/ML.Rmd/unnamed-chunk-6-1.png" width="672" style="display: block; margin: auto;" /></p>
+<details>
+<summary><em>Expand here to see past versions of unnamed-chunk-6-1.png:</em></summary>
+<table style = "border-collapse:separate; border-spacing:5px;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Version
+</th>
+<th style="text-align:left;">
+Author
+</th>
+<th style="text-align:left;">
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+<a href="https://github.com/ballardtj/discounting_recovery/blob/8c023050b6c1476f496e9c57fdfbdc6ba60f0d68/docs/figure/ML.Rmd/unnamed-chunk-6-1.png" target="_blank">8c02305</a>
+</td>
+<td style="text-align:left;">
+ballardtj
+</td>
+<td style="text-align:left;">
+2018-07-16
+</td>
+</tr>
+</tbody>
+</table>
+</details>
 <div id="session-information" class="section level2">
 <h2>Session information</h2>
 <pre class="r"><code>sessionInfo()</code></pre>
