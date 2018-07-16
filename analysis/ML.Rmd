@@ -1,0 +1,66 @@
+---
+title: "Results of maximum likelihood modeling of Manos' delay discounting data"
+output:
+  html_document:
+    df_print: paged
+---
+
+# Hyperbolic model
+
+```{r}
+#load ggpairs
+library(GGally)
+#load data
+load("data/derived/fit_ML_hyperbolic.RData")
+ggpairs(dat_tmp[dat_tmp$trial==1,names(dat_tmp) %in% c("k","sigma")])
+```
+
+# Exponential model
+
+```{r}
+#load ggpairs
+library(GGally)
+#load data
+load("data/derived/fit_ML_exponential.RData")
+ggpairs(dat_tmp[dat_tmp$trial==1,names(dat_tmp) %in% c("k","sigma")])
+```
+
+# Hyperbolic model (Green & Myerson version)
+
+```{r}
+#load ggpairs
+library(GGally)
+#load data
+load("data/derived/fit_ML_hyperbolic_gm.RData")
+ggpairs(dat_tmp[dat_tmp$trial==1,names(dat_tmp) %in% c("k","s","sigma")])
+```
+
+# Proportional difference model
+
+```{r}
+#load ggpairs
+library(GGally)
+#load data
+load("data/derived/fit_ML_prop_diff.RData")
+ggpairs(dat_tmp[dat_tmp$trial==1,names(dat_tmp) %in% c("delta","sigma")])
+```
+
+# Tradeoff model
+
+```{r}
+#load ggpairs
+library(GGally)
+#load data
+load("data/derived/fit_ML_tradeoff.RData")
+ggpairs(dat_tmp[dat_tmp$trial==1,names(dat_tmp) %in% c("gamma","tau","theta","kappa","alpha","sigma")])
+```
+
+# ITCH model
+
+```{r}
+#load ggpairs
+library(GGally)
+#load data
+load("data/derived/fit_ML_ITCH.RData")
+ggpairs(dat_tmp[dat_tmp$trial==1,names(dat_tmp) %in% c("B1","BxA","BxR","BtA","BtR")])
+```
