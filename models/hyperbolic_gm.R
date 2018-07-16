@@ -1,4 +1,4 @@
-hyperbolic_mg_likelihood=function(m_a,    #magnitude of option a
+hyperbolic_gm_likelihood=function(m_a,    #magnitude of option a
                                d_a,    #delay associated with option a
                                m_b,    #magnitude of option b
                                d_b,    #delay associated with option b
@@ -12,13 +12,13 @@ hyperbolic_mg_likelihood=function(m_a,    #magnitude of option a
   return(p_a)
 }
 
-hyperbolic_mg_wrapper=function(pars,dat){
+hyperbolic_gm_wrapper=function(pars,dat){
   #extract pars
   k=pars[1]
   s=pars[2]
   sigma=pars[3]
 
-  p_a = hyperbolic_mg_likelihood(dat$m_a,dat$d_a,dat$m_b,dat$d_b,
+  p_a = hyperbolic_gm_likelihood(dat$m_a,dat$d_a,dat$m_b,dat$d_b,
                              k,s,sigma)
   p_a = pmin(pmax(p_a,0.001),0.999)  
   neglnLs = -log(dat$choose_a*p_a + (1-dat$choose_a)*(1-p_a)) 
