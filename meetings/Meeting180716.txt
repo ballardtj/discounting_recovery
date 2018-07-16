@@ -2,45 +2,8 @@
 
 ### REVIEW OF RESULTS FROM MODEL FITS ###
 
-Tim to do: 
+Tim to do: Implement all seven models in Regenwetter, Cavagnaro, Popova (2018) paper
 
 Tim to do: Plot posterior predictives, calculate BIC
 
-Tim to do: Implement as Bayes, get priors from distributions of parameters in original papers
-
-
-### Datasets ###
-
-1) Manos' dataset where people choose between delayed and immediate alternative
-
-2) Junyi's dataset where people choose between two delayed alternatives (also has built in effects)
-
-### Authorship ###
-
-Tim potentially to take lead as first author
-
-### Models ###
-
-TIM TO DO: fit models in ML based on Manos dataset
-
-Need to think about bounds for DE algorithm. 
-
-#Utility-based
-
-    exponential discounting
-    hyberbolic discounting (classic version)
-    hyberbolic discounting (2-parameter myseron & green version) On slack - a comparison of four models of delay discounting in humans.  1/(1+K*D)^theta
-
-#Attribute-wise models
-
-    proportional difference (Cheng & Goncalez)
-    trade-off (sholten et al., 2014)
-    ITCH (Ericsson)
-    DRIFT (Read et al) JEP:LMC (on slack) - DRIFT - an analysis of outcome framing in inter temporal choice
-
-
-#TIM TO DO: have a think about structure of the paper
-
-
-
-
+Tim to do: Implement as Bayes, get priors from distributions of parameters in original papers (start with simpler ones)

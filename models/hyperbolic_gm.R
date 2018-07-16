@@ -6,8 +6,8 @@ hyperbolic_gm_likelihood=function(m_a,    #magnitude of option a
                                s,      #discount exponent
                                sigma   #scale parameter
                               ){
-  u_a = m_a/(1+k*d_a^s) #utility of option a
-  u_b = m_b/(1+k*d_b^s) #utility of option b
+  u_a = m_a/(1+k*d_a)^s #utility of option a
+  u_b = m_b/(1+k*d_b)^s #utility of option b
   p_a = pnorm((u_a-u_b)/sigma) #probability of selecting option a
   return(p_a)
 }
