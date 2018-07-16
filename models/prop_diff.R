@@ -24,7 +24,7 @@ prop_diff_wrapper=function(pars,dat){
   
   p_a = prop_diff_likelihood(dat$m_a,dat$d_a,dat$m_b,dat$d_b,
                                delta,sigma)
-  p_a = pmin(pmax(p_as,0.001),0.999)  
+  p_a = pmin(pmax(p_a,0.001),0.999)  
   neglnLs = -log(dat$chooseLL*p_a + (1-dat$chooseLL)*(1-p_a)) 
   return(sum(neglnLs))
 }

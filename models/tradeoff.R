@@ -27,14 +27,14 @@ tradeoff_likelihood=function(m_a,   #magnitude of option a
 tradeoff_wrapper=function(pars,dat){
   #extract pars
   gamma=pars[1]
-  eps=pars[2]
-  tau=pars[3]
-  theta=pars[4]
-  kappa=pars[5]
-  alpha=pars[6]
+  tau=pars[2]
+  theta=pars[3]
+  kappa=pars[4]
+  alpha=pars[5]
+  eps=pars[6]
   
   p_a = tradeoff_likelihood(dat$m_a,dat$d_a,dat$m_b,dat$d_b,
-                             gamma,eps,tau,theta,kappa,alpha)
+                             gamma,tau,theta,kappa,alpha,eps)
   p_a = pmin(pmax(p_a,0.001),0.999)  
   neglnLs = -log(dat$chooseLL*p_a + (1-dat$choose_a)*(1-p_a)) 
   return(sum(neglnLs))
