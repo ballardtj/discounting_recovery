@@ -348,7 +348,7 @@ div.section {
 </li>
 <li>
 <details>
-<p><summary> <strong style="color:blue;">✔</strong> <strong>Repository version:</strong> <a href="https://github.com/ballardtj/discounting_recovery/tree/020b0307eee9b0178fe7204410b9f27bfec1d1c9" target="_blank">020b030</a> </summary></p>
+<p><summary> <strong style="color:blue;">✔</strong> <strong>Repository version:</strong> <a href="https://github.com/ballardtj/discounting_recovery/tree/e599bdc8bde35a2549d4007bc12d8a5b51fd61b3" target="_blank">e599bdc</a> </summary></p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility. The version displayed above was the version of the Git repository at the time these results were generated. <br><br> Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
 <pre><code>
 Ignored files:
@@ -365,9 +365,6 @@ Ignored files:
     Ignored:    analysis/ML/.DS_Store
     Ignored:    analysis/ML/.Rproj.user/
     Ignored:    data/.DS_Store
-
-Unstaged changes:
-    Modified:   analysis/index.Rmd
 
 </code></pre>
 Note that any generated files, e.g. HTML, png, CSS, etc., are not included in this status report because it is ok for generated content to have uncommitted changes.
@@ -398,6 +395,23 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td style="text-align:left;">
+html
+</td>
+<td style="text-align:left;">
+<a href="https://cdn.rawgit.com/ballardtj/discounting_recovery/e599bdc8bde35a2549d4007bc12d8a5b51fd61b3/docs/ML.html" target="_blank">e599bdc</a>
+</td>
+<td style="text-align:left;">
+ballardtj
+</td>
+<td style="text-align:left;">
+2018-07-16
+</td>
+<td style="text-align:left;">
+manual commit in console
+</td>
+</tr>
 <tr>
 <td style="text-align:left;">
 Rmd
@@ -441,9 +455,7 @@ get md working
 <h1>Hyperbolic model</h1>
 <pre class="r"><code>#load ggpairs
 library(GGally)</code></pre>
-<pre><code>Warning: package &#39;GGally&#39; was built under R version 3.4.4</code></pre>
 <pre><code>Loading required package: ggplot2</code></pre>
-<pre><code>Warning: package &#39;ggplot2&#39; was built under R version 3.4.4</code></pre>
 <pre class="r"><code>#load data
 load(&quot;data/derived/fit_ML_hyperbolic.RData&quot;)
 ggpairs(dat_tmp[dat_tmp$trial==1,names(dat_tmp) %in% c(&quot;k&quot;,&quot;sigma&quot;)])</code></pre>
@@ -682,13 +694,13 @@ ballardtj
 <div id="session-information" class="section level2">
 <h2>Session information</h2>
 <pre class="r"><code>sessionInfo()</code></pre>
-<pre><code>R version 3.4.3 (2017-11-30)
+<pre><code>R version 3.5.1 (2018-07-02)
 Platform: x86_64-apple-darwin15.6.0 (64-bit)
 Running under: macOS High Sierra 10.13.3
 
 Matrix products: default
-BLAS: /Library/Frameworks/R.framework/Versions/3.4/Resources/lib/libRblas.0.dylib
-LAPACK: /Library/Frameworks/R.framework/Versions/3.4/Resources/lib/libRlapack.dylib
+BLAS: /Library/Frameworks/R.framework/Versions/3.5/Resources/lib/libRblas.0.dylib
+LAPACK: /Library/Frameworks/R.framework/Versions/3.5/Resources/lib/libRlapack.dylib
 
 locale:
 [1] en_AU.UTF-8/en_AU.UTF-8/en_AU.UTF-8/C/en_AU.UTF-8/en_AU.UTF-8
@@ -700,21 +712,21 @@ other attached packages:
 [1] GGally_1.4.0  ggplot2_3.0.0
 
 loaded via a namespace (and not attached):
- [1] Rcpp_0.12.17       RColorBrewer_1.1-2 compiler_3.4.3    
- [4] pillar_1.2.3       git2r_0.21.0       plyr_1.8.4        
+ [1] Rcpp_0.12.17       RColorBrewer_1.1-2 compiler_3.5.1    
+ [4] pillar_1.3.0       git2r_0.22.1       plyr_1.8.4        
  [7] workflowr_1.1.1    bindr_0.1.1        R.methodsS3_1.7.1 
-[10] R.utils_2.6.0      tools_3.4.3        digest_0.6.15     
+[10] R.utils_2.6.0      tools_3.5.1        digest_0.6.15     
 [13] evaluate_0.10.1    tibble_1.4.2       gtable_0.2.0      
 [16] pkgconfig_2.0.1    rlang_0.2.1        yaml_2.1.19       
 [19] bindrcpp_0.2.2     withr_2.1.2        stringr_1.3.1     
 [22] dplyr_0.7.6        knitr_1.20         rprojroot_1.3-2   
-[25] grid_3.4.3         tidyselect_0.2.4   reshape_0.8.7     
+[25] grid_3.5.1         tidyselect_0.2.4   reshape_0.8.7     
 [28] glue_1.2.0         R6_2.2.2           rmarkdown_1.10    
 [31] reshape2_1.4.3     purrr_0.2.5        magrittr_1.5      
-[34] whisker_0.3-2      backports_1.1.2    scales_0.5.0.9000 
+[34] whisker_0.3-2      backports_1.1.2    scales_0.5.0      
 [37] htmltools_0.3.6    assertthat_0.2.0   colorspace_1.3-2  
 [40] labeling_0.3       stringi_1.2.3      lazyeval_0.2.1    
-[43] munsell_0.5.0      R.oo_1.22.0       </code></pre>
+[43] munsell_0.5.0      crayon_1.3.4       R.oo_1.22.0       </code></pre>
 </div>
 </div>
 

@@ -5,7 +5,7 @@ output:
     df_print: paged
 ---
 
-# Hyperbolic model
+# Hyperbolic model blha blah blah
 
 ```{r}
 #load ggpairs
