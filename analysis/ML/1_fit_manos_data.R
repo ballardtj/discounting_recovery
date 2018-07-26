@@ -236,6 +236,208 @@ for(i in 1:Nsubj){
 save(dat_tmp,file="data/derived/fit_ML_ITCH.RData")
 
 
+#----------------------------------------------------
+#fit constant sensitivity model
+
+source("models/const_sens.R")
+dat_tmp=dat
+dat_tmp$alpha = NA
+dat_tmp$beta = NA
+dat_tmp$sigma = NA
+
+for(i in 1:Nsubj){
+  lower=c(0,0,0)
+  upper=c(100,100,100)
+  
+  output=DEoptim(fn=const_sens_wrapper,
+                 dat=dat_tmp[dat_tmp$subject==i,],
+                 lower=lower,
+                 upper=upper,
+                 control=list(trace=0))
+  
+  output2 = optim(par=output$optim$bestmem,
+                  fn=const_sens_wrapper,
+                  dat=dat_tmp[dat_tmp$subject==i,],
+                  method="L-BFGS-B",
+                  lower=lower,
+                  upper=upper)
+  
+  
+  dat_tmp$alpha[dat_tmp$subject==i] = output2$par[1]
+  dat_tmp$beta[dat_tmp$subject==i] = output2$par[2]
+  dat_tmp$sigma[dat_tmp$subject==i] = output2$par[3]
+
+  
+  dat_tmp$p_a[dat_tmp$subject==i] = const_sens_likelihood(dat_tmp$m_a[dat_tmp$subject==i],dat_tmp$d_a[dat_tmp$subject==i],dat_tmp$m_b[dat_tmp$subject==i],dat_tmp$d_b[dat_tmp$subject==i],  
+                                                    output2$par[1],output2$par[2],output2$par[3])
+  
+}
+
+save(dat_tmp,file="data/derived/fit_ML_const_sens.RData")
+
+
+#----------------------------------------------------
+#fit hyperbaloid model (mazur 1987)
+
+source("models/mazur1987.R")
+dat_tmp=dat
+dat_tmp$k = NA
+dat_tmp$s = NA
+dat_tmp$sigma = NA
+
+for(i in 1:Nsubj){
+  lower=c(0,0,0)
+  upper=c(10,10,100)
+  
+  output=DEoptim(fn=mazur_wrapper,
+                 dat=dat_tmp[dat_tmp$subject==i,],
+                 lower=lower,
+                 upper=upper,
+                 control=list(trace=0))
+  
+  output2 = optim(par=output$optim$bestmem,
+                  fn=mazur_wrapper,
+                  dat=dat_tmp[dat_tmp$subject==i,],
+                  method="L-BFGS-B",
+                  lower=lower,
+                  upper=upper)
+  
+  dat_tmp$k[dat_tmp$subject==i] = output2$par[1]
+  dat_tmp$s[dat_tmp$subject==i] = output2$par[2]
+  dat_tmp$sigma[dat_tmp$subject==i] = output2$par[3]
+  
+  
+  dat_tmp$p_a[dat_tmp$subject==i] = mazur_likelihood(dat_tmp$m_a[dat_tmp$subject==i],dat_tmp$d_a[dat_tmp$subject==i],dat_tmp$m_b[dat_tmp$subject==i],dat_tmp$d_b[dat_tmp$subject==i],  
+                                                          output2$par[1],output2$par[2],output2$par[3])
+  
+}
+
+save(dat_tmp,file="data/derived/fit_ML_mazur1987.RData")
+
+
+
+#----------------------------------------------------
+#fit Loewenstein 1992 model
+
+source("models/loewenstein1992.R")
+dat_tmp=dat
+dat_tmp$alpha = NA
+dat_tmp$beta = NA
+dat_tmp$sigma = NA
+
+for(i in 1:Nsubj){
+  lower=c(0,0,0)
+  upper=c(1000,1000,1000)
+  
+  output=DEoptim(fn=leow_wrapper,
+                 dat=dat_tmp[dat_tmp$subject==i,],
+                 lower=lower,
+                 upper=upper,
+                 control=list(trace=0))
+  
+  output2 = optim(par=output$optim$bestmem,
+                  fn=leow_wrapper,
+                  dat=dat_tmp[dat_tmp$subject==i,],
+                  method="L-BFGS-B",
+                  lower=lower,
+                  upper=upper)
+  
+  
+  dat_tmp$alpha[dat_tmp$subject==i] = output2$par[1]
+  dat_tmp$beta[dat_tmp$subject==i] = output2$par[2]
+  dat_tmp$sigma[dat_tmp$subject==i] = output2$par[3]
+  
+  
+  dat_tmp$p_a[dat_tmp$subject==i] = leow_likelihood(dat_tmp$m_a[dat_tmp$subject==i],dat_tmp$d_a[dat_tmp$subject==i],dat_tmp$m_b[dat_tmp$subject==i],dat_tmp$d_b[dat_tmp$subject==i],  
+                                                          output2$par[1],output2$par[2],output2$par[3])
+  
+}
+
+save(dat_tmp,file="data/derived/fit_ML_leowenstein1992.RData")
+
+
+
+#----------------------------------------------------
+#fit McClure 2007 double exponential model
+
+source("models/mcclure2007.R")
+dat_tmp=dat
+dat_tmp$omega = NA
+dat_tmp$delta = NA
+dat_tmp$beta = NA
+dat_tmp$sigma = NA
+
+for(i in 1:Nsubj){
+  lower=c(0,0,0,0)
+  upper=c(1,10,10,100)
+  
+  output=DEoptim(fn=double_exp_wrapper,
+                 dat=dat_tmp[dat_tmp$subject==i,],
+                 lower=lower,
+                 upper=upper,
+                 control=list(trace=0))
+  
+  output2 = optim(par=output$optim$bestmem,
+                  fn=double_exp_wrapper,
+                  dat=dat_tmp[dat_tmp$subject==i,],
+                  method="L-BFGS-B",
+                  lower=lower,
+                  upper=upper)
+  
+  dat_tmp$omega[dat_tmp$subject==i] = output2$par[1]
+  dat_tmp$delta[dat_tmp$subject==i] = output2$par[2]
+  dat_tmp$beta[dat_tmp$subject==i] = output2$par[3]
+  dat_tmp$sigma[dat_tmp$subject==i] = output2$par[4]
+  
+  
+  dat_tmp$p_a[dat_tmp$subject==i] = double_exp_likelihood(dat_tmp$m_a[dat_tmp$subject==i],dat_tmp$d_a[dat_tmp$subject==i],dat_tmp$m_b[dat_tmp$subject==i],dat_tmp$d_b[dat_tmp$subject==i],  
+                                                    output2$par[1],output2$par[2],output2$par[3],output2$par[4])
+  
+}
+
+save(dat_tmp,file="data/derived/fit_ML_mcclure2007.RData")
+
+
+#----------------------------------------------------
+#fit Killeen 2009 model
+
+source("models/killeen2009.R")
+dat_tmp=dat
+dat_tmp$beta = NA
+dat_tmp$lambda = NA
+dat_tmp$sigma = NA
+
+for(i in 1:Nsubj){
+  lower=c(0,0,0)
+  upper=c(10,1000,1000)
+  
+  output=DEoptim(fn=killeen_wrapper,
+                 dat=dat_tmp[dat_tmp$subject==i,],
+                 lower=lower,
+                 upper=upper,
+                 control=list(trace=0))
+  
+  output2 = optim(par=output$optim$bestmem,
+                  fn=killeen_wrapper,
+                  dat=dat_tmp[dat_tmp$subject==i,],
+                  method="L-BFGS-B",
+                  lower=lower,
+                  upper=upper)
+  
+  dat_tmp$beta[dat_tmp$subject==i] = output2$par[1]
+  dat_tmp$lambda[dat_tmp$subject==i] = output2$par[2]
+  dat_tmp$sigma[dat_tmp$subject==i] = output2$par[3]
+  
+  
+  dat_tmp$p_a[dat_tmp$subject==i] = killeen_likelihood(dat_tmp$m_a[dat_tmp$subject==i],dat_tmp$d_a[dat_tmp$subject==i],dat_tmp$m_b[dat_tmp$subject==i],dat_tmp$d_b[dat_tmp$subject==i],  
+                                                    output2$par[1],output2$par[2],output2$par[3])
+  
+}
+
+save(dat_tmp,file="data/derived/fit_ML_killeen2009.RData")
+
+
+
 # 
 # 
 # parms = dat %>% group_by(subject) %>%

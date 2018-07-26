@@ -2,10 +2,30 @@
 
 ### REVIEW OF RESULTS FROM MODEL FITS ###
 
-Tim to do: Implement all seven models in Regenwetter, Cavagnaro, Popova (2018) paper
+1) Tim to do: Implement all seven models in Regenwetter, Cavagnaro, Popova (2018) paper
 
-Tim to do: Plot posterior predictives, calculate BIC and AIC
+2) Tim to do: Plot posterior predictives, calculate BIC and AIC
 
-Tim to do: Implement as Bayes, get priors from distributions of parameters in original papers (start with simpler ones)
+3) Tim to do: Implement as Bayes, get priors from distributions of parameters in original papers (start with simpler ones)
 
-Tim to do: Set up overleaf
+4) Tim to do: Set up overleaf
+
+###########################################
+
+1. Regenwetter et al models
+
+Instantiating models that have delay functions consistent with Eq 4. Assumed linear value function, because it puts the models on a fair playing field. Unless stated in the paper, assumed value and delay functions combine multiplicatively.
+
+Samualson 1937 - doesn't actually make sense. Utility increases with delta^t. Looking at Samuelson paper, his model actually resembles an exponential model (Eq 3 in Sam 1937)
+
+Kileen 2009 - makes sense as long as exponent is negative. Also used Killeen's value function, as it would be weird to only use the delay part of his model.
+
+Mazur 1984 - classic hyperbolic model
+
+Mazur 1987 - couldn't access, but implemented the discount function in Regenwetter paper.
+
+Loewenstein 1992 - didn't explicitly specify value function - just discount function. Text implies power value function so implemented that.
+
+Ebert (2007) constant sensitivity model - no value or utility function specified.
+
+Mcclure (2007) - no value or utility function specified.
