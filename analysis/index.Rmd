@@ -6,4 +6,11 @@ output:
     toc: false
 ---
 
-Click on this [link](ML.html) to see my results.
+### Maximum likelihood results
+
+* [Model fits](ML-fits.html)
+* [Model parameters](ML-parameters.html)
+
+### Bayesian results
+
+in progress!
