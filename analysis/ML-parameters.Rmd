@@ -7,7 +7,7 @@ output:
 
 # Hyperbolic model
 
-```{r}
+```{r echo=FALSE}
 #load ggpairs
 library(GGally)
 #load data
@@ -17,7 +17,7 @@ ggpairs(dat_tmp[dat_tmp$trial==1,names(dat_tmp) %in% c("k","sigma")])
 
 # Exponential model
 
-```{r}
+```{r echo=FALSE}
 #load ggpairs
 library(GGally)
 #load data
@@ -27,7 +27,7 @@ ggpairs(dat_tmp[dat_tmp$trial==1,names(dat_tmp) %in% c("k","sigma")])
 
 # Hyperbolic model (Green & Myerson version)
 
-```{r}
+```{r echo=FALSE}
 #load ggpairs
 library(GGally)
 #load data
@@ -37,7 +37,7 @@ ggpairs(dat_tmp[dat_tmp$trial==1,names(dat_tmp) %in% c("k","s","sigma")])
 
 # Proportional difference model
 
-```{r}
+```{r echo=FALSE}
 #load ggpairs
 library(GGally)
 #load data
@@ -47,7 +47,7 @@ ggpairs(dat_tmp[dat_tmp$trial==1,names(dat_tmp) %in% c("delta","sigma")])
 
 # Tradeoff model
 
-```{r}
+```{r echo=FALSE}
 #load ggpairs
 library(GGally)
 #load data
@@ -57,7 +57,7 @@ ggpairs(dat_tmp[dat_tmp$trial==1,names(dat_tmp) %in% c("gamma","tau","theta","ka
 
 # ITCH model
 
-```{r}
+```{r echo=FALSE}
 #load ggpairs
 library(GGally)
 #load data

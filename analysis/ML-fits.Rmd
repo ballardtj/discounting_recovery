@@ -7,6 +7,9 @@ output:
 
 ```{r setup}
 #knitr::opts_knit$set(root.dir = normalizePath(".."))
+```
+
+```{r include=FALSE}
 library(tidyverse)
 
 plot_pp = function(dat_tmp){
