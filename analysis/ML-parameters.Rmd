@@ -1,0 +1,101 @@
+---
+title: "Results of maximum likelihood modeling of Manos' delay discounting data"
+output:
+  html_document:
+    df_print: paged
+---
+
+# Hyperbolic model
+
+```{r}
+#load ggpairs
+library(GGally)
+#load data
+load("data/derived/fit_ML_hyperbolic.RData")
+ggpairs(dat_tmp[dat_tmp$trial==1,names(dat_tmp) %in% c("k","sigma")])
+```
+
+# Exponential model
+
+```{r}
+#load ggpairs
+library(GGally)
+#load data
+load("data/derived/fit_ML_exponential.RData")
+ggpairs(dat_tmp[dat_tmp$trial==1,names(dat_tmp) %in% c("k","sigma")])
+```
+
+# Hyperbolic model (Green & Myerson version)
+
+```{r}
+#load ggpairs
+library(GGally)
+#load data
+load("data/derived/fit_ML_hyperbolic_gm.RData")
+ggpairs(dat_tmp[dat_tmp$trial==1,names(dat_tmp) %in% c("k","s","sigma")])
+```
+
+# Proportional difference model
+
+```{r}
+#load ggpairs
+library(GGally)
+#load data
+load("data/derived/fit_ML_prop_diff.RData")
+ggpairs(dat_tmp[dat_tmp$trial==1,names(dat_tmp) %in% c("delta","sigma")])
+```
+
+# Tradeoff model
+
+```{r}
+#load ggpairs
+library(GGally)
+#load data
+load("data/derived/fit_ML_tradeoff.RData")
+ggpairs(dat_tmp[dat_tmp$trial==1,names(dat_tmp) %in% c("gamma","tau","theta","kappa","alpha","sigma")])
+```
+
+# ITCH model
+
+```{r}
+#load ggpairs
+library(GGally)
+#load data
+load("data/derived/fit_ML_ITCH.RData")
+ggpairs(dat_tmp[dat_tmp$trial==1,names(dat_tmp) %in% c("B1","BxA","BxR","BtA","BtR")])
+```
+
+# Constant Sensitivity Model (Ebert & Prelec, 2007)
+
+```{r echo=FALSE}
+load(file="data/derived/fit_ML_const_sens.RData")
+ggpairs(dat_tmp[dat_tmp$trial==1,names(dat_tmp) %in% c("alpha","beta","sigma")])
+```
+
+# Hyperboloid Model (Mazur, 1987)
+
+```{r echo=FALSE}
+load(file="data/derived/fit_ML_mazur1987.RData")
+ggpairs(dat_tmp[dat_tmp$trial==1,names(dat_tmp) %in% c("k","s","sigma")])
+```
+
+# Loewenstein & Prelec's (1992) Model
+
+```{r echo=FALSE}
+load(file="data/derived/fit_ML_leowenstein1992.RData")
+ggpairs(dat_tmp[dat_tmp$trial==1,names(dat_tmp) %in% c("alpha","beta","sigma")])
+```
+
+# Double Exponential Model (McClure et al., 2007)
+
+```{r echo=FALSE}
+load(file="data/derived/fit_ML_mcclure2007.RData")
+ggpairs(dat_tmp[dat_tmp$trial==1,names(dat_tmp) %in% c("omega","beta","delta","sigma")])
+```
+
+# Additive Utility Model (Killeen, 2009)
+
+```{r echo=FALSE}
+load(file="data/derived/fit_ML_killeen2009.RData")
+ggpairs(dat_tmp[dat_tmp$trial==1,names(dat_tmp) %in% c("beta","lambda","sigma")])
+```
