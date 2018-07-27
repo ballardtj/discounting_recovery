@@ -10,7 +10,7 @@ prop_diff_likelihood=function(m_a,   #magnitude of option a
   alpha_d = pmax(abs(d_a),abs(d_b),1e-10)
   
   pi_m = (pmax(abs(m_a),abs(m_b)) - pmin(abs(m_a),abs(m_b))) / alpha_m #max minus min of each pair divided by max of all options
-  pi_d = (pmax(abs(d_a),abs(d_b)) - pmin(abs(d_b),abs(d_b))) / alpha_d
+  pi_d = (pmax(abs(d_a),abs(d_b)) - pmin(abs(d_a),abs(d_b))) / alpha_d
   
   d = pi_m-pi_d
   p_a = pnorm((d-delta) / sigma)
