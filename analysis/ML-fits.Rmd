@@ -6,7 +6,8 @@ output:
 ---
 
 ```{r setup}
-#knitr::opts_knit$set(root.dir = normalizePath(".."))
+knitr::opts_chunk$set(eval = FALSE, include = FALSE)
+knitr::opts_knit$set(root.dir = normalizePath(".."))
 ```
 
 ```{r include=FALSE}
