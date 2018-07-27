@@ -5,6 +5,10 @@ navbar:
   left:
     - text: "Home"
       href: index.html
+    - text: "ML Parameters"
+      href: ML-paramaters.html
+    - text: "ML Fits"
+      href: ML-fits.html
     - text: "About"
       href: about.html
     - text: "License"

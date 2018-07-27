@@ -1,3 +1,7 @@
+
+#Leowenstein, G. F. & Prelec, D (1992) Anomolies in intertemporal choice: evidence and interpretation. Quarterly Journal of Economics
+
+
 leow_likelihood=function(m_a,    #magnitude of option a
                                d_a,    #delay associated with option a
                                m_b,    #magnitude of option b
