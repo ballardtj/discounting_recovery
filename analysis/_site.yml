@@ -6,7 +6,7 @@ navbar:
     - text: "Home"
       href: index.html
     - text: "ML Parameters"
-      href: ML-paramaters.html
+      href: ML-parameters.html
     - text: "ML Fits"
       href: ML-fits.html
     - text: "About"
