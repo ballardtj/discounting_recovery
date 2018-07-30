@@ -15,8 +15,8 @@ tradeoff_likelihood=function(m_a,   #magnitude of option a
   Qm = sm_a - sm_b
   
   #subjective delays
-  sd_a = (1/tau)*log1p(tau+d_a)
-  sd_b = (1/tau)*log1p(tau+d_b)
+  sd_a = (1/tau)*log1p(tau*d_a)
+  sd_b = (1/tau)*log1p(tau*d_b)
   Qd = (kappa/alpha * log1p(alpha*((sd_a-sd_b)/theta)^theta))
   
   #choice probability

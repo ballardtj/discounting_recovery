@@ -2,7 +2,6 @@ rm(list=ls())
 library(rstan)
 library(dplyr)
 library(shinystan)
-setwd(paste0(Sys.getenv('HOME'),'/Dropbox/Research/Projects/Methods-Discounting/'))
 
 #Simulate Model
 
