@@ -17,7 +17,7 @@ tradeoff_likelihood=function(m_a,   #magnitude of option a
   #subjective delays
   sd_a = (1/tau)*log1p(tau*d_a)
   sd_b = (1/tau)*log1p(tau*d_b)
-  Qd = (kappa/alpha * log1p(alpha*((sd_a-sd_b)/theta)^theta))
+  Qd = kappa/alpha * log1p( alpha*((sd_a-sd_b)/theta)^theta ) #log(1+x)
   
   #choice probability
   p_a = Qm^(1/eps) / (Qm^(1/eps) + Qd^(1/eps))
@@ -36,6 +36,6 @@ tradeoff_wrapper=function(pars,dat){
   p_a = tradeoff_likelihood(dat$m_a,dat$d_a,dat$m_b,dat$d_b,
                              gamma,tau,theta,kappa,alpha,eps)
   p_a = pmin(pmax(p_a,0.001),0.999)  
-  neglnLs = -log(dat$chooseLL*p_a + (1-dat$choose_a)*(1-p_a)) 
+  neglnLs = -log(dat$choose_a*p_a + (1-dat$choose_a)*(1-p_a)) 
   return(sum(neglnLs))
 }

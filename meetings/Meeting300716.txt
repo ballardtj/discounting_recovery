@@ -1,0 +1,7 @@
+
+
+### REVIEW OF RESULTS FROM MODEL FITS ###
+
+1) Tim to do: Implement as Bayes, plot parameters and convergence, send email through when ready.
+
+2) Tim to do: Set up overleaf

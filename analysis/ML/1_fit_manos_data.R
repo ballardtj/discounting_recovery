@@ -162,8 +162,8 @@ dat_tmp$alpha = NA
 dat_tmp$eps = NA
 
 for(i in 1:Nsubj){
-  lower=c(0,0,0,0,0,0)
-  upper=c(50,50,50,50,50,50)
+  lower=c(0,0,1,0,0,0)
+  upper=c(10,10,10,10,10,10)
   
   output=DEoptim(fn=tradeoff_wrapper,
                  dat=dat_tmp[dat_tmp$subject==i,],

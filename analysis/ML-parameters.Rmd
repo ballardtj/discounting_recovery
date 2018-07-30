@@ -52,7 +52,7 @@ ggpairs(dat_tmp[dat_tmp$trial==1,names(dat_tmp) %in% c("delta","sigma")])
 library(GGally)
 #load data
 load("data/derived/fit_ML_tradeoff.RData")
-ggpairs(dat_tmp[dat_tmp$trial==1,names(dat_tmp) %in% c("gamma","tau","theta","kappa","alpha","sigma")])
+ggpairs(dat_tmp[dat_tmp$trial==1,names(dat_tmp) %in% c("gamma","tau","theta","kappa","alpha","eps")])
 ```
 
 # ITCH model
