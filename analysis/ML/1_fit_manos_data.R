@@ -162,14 +162,14 @@ dat_tmp$alpha = NA
 dat_tmp$eps = NA
 
 for(i in 1:Nsubj){
-  lower=c(0,0,1,0,0,0)
-  upper=c(10,10,10,10,10,10)
+  lower=c(1e-10,1e-10,1,1e-10,1e-10,1e-2)
+  upper=c(1,1,10,1,1,1)
   
   output=DEoptim(fn=tradeoff_wrapper,
                  dat=dat_tmp[dat_tmp$subject==i,],
                  lower=lower,
                  upper=upper,
-                 control=list(trace=0))
+                 control=list(trace=F))
   
   output2 = optim(par=output$optim$bestmem,
                   fn=tradeoff_wrapper,
