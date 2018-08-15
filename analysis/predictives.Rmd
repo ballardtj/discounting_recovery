@@ -1,0 +1,367 @@
+---
+title: "R Notebook"
+output:
+  html_document:
+    df_print: paged
+---
+
+
+
+```{r,echo=FALSE,include=FALSE}
+library(rstan)
+library(coda)
+
+dat=readRDS(file="data/raw/data_delay_lba2018.rds")
+
+#format data for model fitting
+dat$m_a = dat$amount
+dat$d_a = dat$delay
+dat$m_b = 100
+dat$d_b = 0    #note: b is smaller, sooner option
+dat$choose_a = dat$Choice
+Nsubj = length(unique(dat$subject))
+
+#prep data
+data_list = list(Ntotal = dim(dat)[1],
+                 Nsubj = Nsubj,
+                 subj = dat$subject,
+                 y=dat$choose_a,
+                 d_a = dat$d_a,
+                 d_b = dat$d_b,
+                 m_a = dat$m_a,
+                 m_b = dat$m_b)
+
+```
+
+# Hyperbolic model
+
+```{r,echo=FALSE,include=FALSE}
+
+#load fit object
+load("data/derived/fit_Bayes_hyperbolic.RData")
+
+#load likelihood
+source("models/hyperbolic.R")
+
+posts=rstan::extract(fit)
+Npost=dim(posts[[1]])[1]
+samples=sample(x=1:Npost,size=Nsamp)
+
+pp_data <- foreach(i = 1:Nsamp,.combine='rbind') %dopar% {
+    pp_list=list()
+    ctr=0
+    
+    hyperbolic_likelihood(dat$m_a,dat$d_a,dat$m_b,dat$d_b,
+                          posts$k_raw[samples[i],dat$subject]*posts$k_sd[samples[i]] + posts$k_mean[samples[i]],
+                          posts$sigma_raw[samples[i],dat$subject]*posts$sigma_sd[samples[i]] + posts$sigma_mean[samples[i]])
+    
+    
+    for(subj in 1:dataList$Nsubj){
+      ctr=ctr+1
+      
+      if(source=="obs"){
+      #observed model run on observed decision points
+      p_a_logit=goal_sub_obs(posts$w1_mean[samples[i]],
+                         posts$w1_sd[samples[i]],
+                         posts$w1[samples[i],], 
+                         posts$w2_mean[samples[i]],
+                         posts$w2_sd[samples[i]],
+                         posts$w2[samples[i],], 
+                         posts$w3_mean[samples[i]],
+                         posts$w3_sd[samples[i]],
+                         posts$w3[samples[i],], 
+                         posts$delta[samples[i],],
+                         posts$tau[samples[i],] , 
+                         posts$alpha[samples[i],],
+                         dataList$Nobs,
+                         subj,
+                         dataList$expt,
+                         dataList$s1,
+                         dataList$s2,
+                         dataList$a_logd,
+                         dataList$b_logd,
+                         dataList$a_logt,
+                         dataList$b_logt,
+                         dataList$a_dot,
+                         dataList$b_dot,
+                         dataList$a_tod,
+                         dataList$b_tod)
+      }
+      
+       if(source=="opt"){
+      #observed model run on observed decision points
+      p_a_logit=goal_sub_opt(posts$w1[samples[i],], 
+                         posts$w2[samples[i],], 
+                         posts$w3[samples[i],], 
+                         posts$delta[samples[i],],
+                         posts$tau[samples[i],] , 
+                         posts$alpha[samples[i],],
+                         dataList$Nobs,
+                         subj,
+                         dataList$expt,
+                         dataList$s1,
+                         dataList$s2,
+                         dataList$a_logd,
+                         dataList$b_logd,
+                         dataList$a_logt,
+                         dataList$b_logt,
+                         dataList$a_dot,
+                         dataList$b_dot,
+                         dataList$a_tod,
+                         dataList$b_tod)
+      }
+      
+      pp_data_tmp = data.frame(y_pred=rep(NA,dataList$Nobs[subj]),
+                               y_obs=NA,
+                               a_d0=NA,
+                               b_d0=NA,
+                               a_t0=NA,
+                               b_t0=NA,
+                               s = subj,
+                               expt = dataList$expt[subj],
+                               sample=samples[i])
+      
+      pp_data_tmp$y_pred = as.vector(1/(1+exp(-p_a_logit)))
+      pp_data_tmp$y_obs = dataList$y[1:dataList$Nobs[subj],subj]
+      pp_data_tmp$a_d0 = dataList$a_d0[1:dataList$Nobs[subj],subj]
+      pp_data_tmp$b_d0 = dataList$b_d0[1:dataList$Nobs[subj],subj]
+      pp_data_tmp$a_t0 = dataList$a_t0[1:dataList$Nobs[subj],subj]
+      pp_data_tmp$b_t0 = dataList$b_t0[1:dataList$Nobs[subj],subj]
+      
+      pp_list[[ctr]]=pp_data_tmp
+      #setTxtProgressBar(pb, ctr)
+    }
+    pp_data=bind_rows(pp_list)
+  }
+  
+  return(pp_data)
+}
+
+
+
+```
+
+
+
+```{r include=FALSE, r,echo=FALSE}
+#setwd("..")
+library(rstan)
+library(tidyverse)
+library(gridExtra)
+library(foreach)
+library(doMC)
+registerDoMC(cores=7)
+
+#load stan function for generating predictions
+expose_stan_functions("model/goal_hier.stan")
+goal_sub_obs = goal_sub
+
+expose_stan_functions("model/goal.stan")
+goal_sub_opt = goal_sub
+
+#function to generate posterior predictives
+generate_pp=function(fit,dataList,Nsamp,source){
+  
+  #get indicies of samples
+  posts=rstan::extract(fit)
+  #posts_obs=rstan:extract(fit_opt)
+  Npost=dim(posts$w1)[1]
+  samples=sample(x=1:Npost,size=Nsamp)
+  
+  pp_data <- foreach(i = 1:Nsamp,.combine='rbind') %dopar% {
+    pp_list=list()
+    ctr=0
+    for(subj in 1:dataList$Nsubj){
+      ctr=ctr+1
+      
+      if(source=="obs"){
+      #observed model run on observed decision points
+      p_a_logit=goal_sub_obs(posts$w1_mean[samples[i]],
+                         posts$w1_sd[samples[i]],
+                         posts$w1[samples[i],], 
+                         posts$w2_mean[samples[i]],
+                         posts$w2_sd[samples[i]],
+                         posts$w2[samples[i],], 
+                         posts$w3_mean[samples[i]],
+                         posts$w3_sd[samples[i]],
+                         posts$w3[samples[i],], 
+                         posts$delta[samples[i],],
+                         posts$tau[samples[i],] , 
+                         posts$alpha[samples[i],],
+                         dataList$Nobs,
+                         subj,
+                         dataList$expt,
+                         dataList$s1,
+                         dataList$s2,
+                         dataList$a_logd,
+                         dataList$b_logd,
+                         dataList$a_logt,
+                         dataList$b_logt,
+                         dataList$a_dot,
+                         dataList$b_dot,
+                         dataList$a_tod,
+                         dataList$b_tod)
+      }
+      
+       if(source=="opt"){
+      #observed model run on observed decision points
+      p_a_logit=goal_sub_opt(posts$w1[samples[i],], 
+                         posts$w2[samples[i],], 
+                         posts$w3[samples[i],], 
+                         posts$delta[samples[i],],
+                         posts$tau[samples[i],] , 
+                         posts$alpha[samples[i],],
+                         dataList$Nobs,
+                         subj,
+                         dataList$expt,
+                         dataList$s1,
+                         dataList$s2,
+                         dataList$a_logd,
+                         dataList$b_logd,
+                         dataList$a_logt,
+                         dataList$b_logt,
+                         dataList$a_dot,
+                         dataList$b_dot,
+                         dataList$a_tod,
+                         dataList$b_tod)
+      }
+      
+      pp_data_tmp = data.frame(y_pred=rep(NA,dataList$Nobs[subj]),
+                               y_obs=NA,
+                               a_d0=NA,
+                               b_d0=NA,
+                               a_t0=NA,
+                               b_t0=NA,
+                               s = subj,
+                               expt = dataList$expt[subj],
+                               sample=samples[i])
+      
+      pp_data_tmp$y_pred = as.vector(1/(1+exp(-p_a_logit)))
+      pp_data_tmp$y_obs = dataList$y[1:dataList$Nobs[subj],subj]
+      pp_data_tmp$a_d0 = dataList$a_d0[1:dataList$Nobs[subj],subj]
+      pp_data_tmp$b_d0 = dataList$b_d0[1:dataList$Nobs[subj],subj]
+      pp_data_tmp$a_t0 = dataList$a_t0[1:dataList$Nobs[subj],subj]
+      pp_data_tmp$b_t0 = dataList$b_t0[1:dataList$Nobs[subj],subj]
+      
+      pp_list[[ctr]]=pp_data_tmp
+      #setTxtProgressBar(pb, ctr)
+    }
+    pp_data=bind_rows(pp_list)
+  }
+  
+  return(pp_data)
+}
+
+generate_pp_plot=function(pp_data){
+  
+  pp_plot_data = pp_data %>%
+    #Get proportion for each trial
+    group_by(s,expt,a_d0,b_d0,a_t0,b_t0,sample) %>%
+    summarise(y_pred_tr = mean(y_pred),
+              y_obs_tr = mean(y_obs)) %>%
+    #Get proportion for each condition
+    group_by(expt,a_d0,b_d0,a_t0,b_t0,sample) %>%
+    summarise(y_pred_con = mean(y_pred_tr),
+              y_obs_con = mean(y_obs_tr),
+              y_obs_con_se = sd(y_obs_tr)/sqrt(length(y_obs_tr))) %>% 
+    #Get posterior
+    group_by(expt,a_d0,b_d0,a_t0,b_t0) %>%
+    summarise(y_pred_mean = mean(y_pred_con),
+              y_pred_hi = quantile(y_pred_con,0.975),
+              y_pred_lo = quantile(y_pred_con,0.025),
+              y_obs_mean = mean(y_obs_con),
+              y_obs_hi = y_obs_mean + mean(y_obs_con_se),
+              y_obs_lo = y_obs_mean - mean(y_obs_con_se))
+  
+   
+    ds_pp = ggplot(data=subset(pp_plot_data,expt==1),aes(x=factor(a_d0),group=1)) +
+    geom_ribbon(aes(ymin=y_pred_lo,ymax=y_pred_hi),fill="skyblue") +
+    geom_line(aes(y=y_pred_mean),col="blue") +
+    geom_line(aes(y=y_obs_mean),col="red") +
+    geom_errorbar(aes(ymin=y_obs_lo,ymax=y_obs_hi,col="red")) +
+    facet_grid(.~factor(b_d0,labels=paste("Left Distance:",levels(factor(b_d0))))) + 
+    coord_cartesian(ylim=c(0,1)) +
+    labs(x="Right Distance",y="Proportion Prioritizing Right Goal") +
+      theme(legend.position="none")
+    
+    dl_pp =ggplot(data=subset(pp_plot_data,expt==2),aes(x=factor(a_t0),group=1)) +
+      geom_ribbon(aes(ymin=y_pred_lo,ymax=y_pred_hi),fill="skyblue") +
+      geom_line(aes(y=y_pred_mean),col="blue") +
+      geom_line(aes(y=y_obs_mean),col="red") +
+      geom_errorbar(aes(ymin=y_obs_lo,ymax=y_obs_hi,col="red")) +
+      facet_grid(.~factor(b_t0,labels=paste("Left Deadline:",levels(factor(b_t0))))) + 
+      coord_cartesian(ylim=c(0,1)) +
+      labs(x="Right Deadline",y="Proportion Prioritizing Right Goal") +
+      theme(legend.position="none")
+  
+   return(list(ds_pp,dl_pp))
+}
+```
+
+
+# Observed Decisions
+
+```{r observed_fits, echo=FALSE, fig.align="center", fig.height=12, fig.width=10}
+#Approach
+#setwd("..")
+dataList=read_rdump('data/clean/obs_ap_rdump.R')
+
+load("data/derived/ap_obs_fit.RData")
+pp_data=generate_pp(fit=fit,dataList=dataList,Nsamp=100,source="obs")
+ap_obs_pp_plot= generate_pp_plot(pp_data)
+  
+  
+#Avoidance
+dataList=read_rdump('data/clean/obs_av_rdump.R')
+
+load("data/derived/av_obs_fit.RData")
+pp_data=generate_pp(fit=fit,dataList=dataList,Nsamp=100,source="obs")
+av_obs_pp_plot= generate_pp_plot(pp_data)
+
+#Posterior predictives
+grid.arrange(
+  arrangeGrob(ap_obs_pp_plot[[1]] + theme(axis.text.x = element_text(size=6)) ,
+              top="Distance Experiment, Approach Condition"),
+  arrangeGrob(av_obs_pp_plot[[1]]  + theme(axis.text.x = element_text(size=6)) ,
+              top="Distance Experiment, Avoidance Condition"),
+  arrangeGrob(ap_obs_pp_plot[[2]]  + theme(axis.text.x = element_text(size=6)) ,
+              top="Deadline Experiment, Approach Condition"),
+  arrangeGrob(av_obs_pp_plot[[2]]  + theme(axis.text.x = element_text(size=6)) ,
+              top="Deadline Experiment, Avoidance Condition"),
+  nrow=4
+)
+```
+
+# Optimal Decisions
+
+```{r optimal_fits, echo=FALSE, fig.align="center", fig.height=12, fig.width=10}
+
+#Approach
+#setwd("..")
+dataList=read_rdump('data/clean/opt_ap_rdump.R')
+
+load("data/derived/ap_opt_fit.RData")
+pp_data=generate_pp(fit=fit,dataList=dataList,Nsamp=100,source="opt")
+ap_opt_pp_plot= generate_pp_plot(pp_data)
+  
+  
+#Avoidance
+dataList=read_rdump('data/clean/opt_av_rdump.R')
+
+load("data/derived/av_opt_fit.RData")
+pp_data=generate_pp(fit=fit,dataList=dataList,Nsamp=100,source="opt")
+av_opt_pp_plot= generate_pp_plot(pp_data)
+
+#Posterior predictives
+grid.arrange(
+  arrangeGrob(ap_opt_pp_plot[[1]] + theme(axis.text.x = element_text(size=6)) ,
+              top="Distance Experiment, Approach Condition"),
+  arrangeGrob(av_opt_pp_plot[[1]]  + theme(axis.text.x = element_text(size=6)) ,
+              top="Distance Experiment, Avoidance Condition"),
+  arrangeGrob(ap_opt_pp_plot[[2]]  + theme(axis.text.x = element_text(size=6)) ,
+              top="Deadline Experiment, Approach Condition"),
+  arrangeGrob(av_opt_pp_plot[[2]]  + theme(axis.text.x = element_text(size=6)) ,
+              top="Deadline Experiment, Avoidance Condition"),
+  nrow=4
+)
+```

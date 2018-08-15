@@ -78,11 +78,11 @@ model {
   BtR_mean ~ normal(0,1);
   BtR_sd ~ normal(0,1);
 
-  B1 ~ normal(0,1);
-  BxA ~ normal(0,1);
-  BxR ~ normal(0,1);
-  BtA ~ normal(0,1);
-  BtR ~ normal(0,1);
+  B1_raw ~ normal(0,1);
+  BxA_raw ~ normal(0,1);
+  BxR_raw ~ normal(0,1);
+  BtA_raw ~ normal(0,1);
+  BtR_raw ~ normal(0,1);
   
   //likelihood
   y~bernoulli_logit(p_a_logit);

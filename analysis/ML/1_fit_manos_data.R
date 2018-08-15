@@ -15,6 +15,42 @@ dat$d_b = 0    #note: b is smaller, sooner option
 dat$choose_a = dat$Choice
 Nsubj = length(unique(dat$subject))
 
+#wrapper function 
+wrapper=function(pars,dat){
+  p_a = likelihood(pars,dat)
+  p_a = 0.001 + p_a*0.998  
+  neglnLs = -log(dat$choose_a*p_a + (1-dat$choose_a)*(1-p_a)) 
+  return(sum(neglnLs))
+}
+
+#par list
+model_pars = list(hyperbolic = c('k','sigma'),
+                  exponential = c('k','sigma'),
+                  hyperbolic_gm = c('k','s','sigma'),
+                  prop_diff = c('delta','sigma'),
+                  tradeoff = c('gamma','tau','theta','kappa','alpha','eps'),
+                  ITCH = c("B1","BxA","BxR","BtA","BtR"),
+                  const_sens = c("alpha","beta","sigma"),
+                  mazur1987 = c("k","s","sigma"),
+                  leowenstein1992 = c("alpha","beta","sigma"),
+                  mcclure2007 = c("omega","beta","delta","sigma"),
+                  killeen2009 = c('beta','lambda','sigma'))
+
+for(i in 1:length(model_pars)){
+  
+  #source model
+  model_name = names(model_pars)[i]
+  source(paste0("models/",model_name,".R"))
+  
+  #add empty columns in data frame for free parameters
+  dat_tmp = dat
+  for(j in 1:length(model_pars[[i]])){
+    dat_tmp[,model_pars[[i]][j]] = NA
+  }
+  
+}
+                  
+
 
 #----------------------------------------------------
 #fit hyperbolic
