@@ -13,4 +13,5 @@ output:
 
 ### Bayesian results
 
-in progress!
+* [Convergence and parameters](Bayes-convergence.html)
+* [Model fits](Bayes-predictives.html)

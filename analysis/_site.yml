@@ -9,6 +9,10 @@ navbar:
       href: ML-parameters.html
     - text: "ML Fits"
       href: ML-fits.html
+    - text: "Bayes Convergence"
+      href: Bayes-convergence.html
+    - text: "Bayes Fits"
+      href: Bayes-predictives.html
     - text: "About"
       href: about.html
     - text: "License"

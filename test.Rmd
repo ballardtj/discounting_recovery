@@ -1,0 +1,19 @@
+---
+title: "R Notebook"
+output:
+  html_document:
+    df_print: paged
+---
+
+Text and chunks that run ok.
+
+
+```{r results = "asis"}
+#library(knitr)
+for (i in 1:3) {
+  plot(rnorm(10))
+  cat('\n')
+  matrix(1:8,nrow=4)
+  cat('\n')
+}
+```
