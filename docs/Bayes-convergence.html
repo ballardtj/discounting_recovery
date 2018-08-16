@@ -291,6 +291,12 @@ div.tocify {
   <a href="ML-fits.html">ML Fits</a>
 </li>
 <li>
+  <a href="Bayes-convergence.html">Bayes Convergence</a>
+</li>
+<li>
+  <a href="Bayes-predictives.html">Bayes Fits</a>
+</li>
+<li>
   <a href="about.html">About</a>
 </li>
 <li>
@@ -325,12 +331,13 @@ div.section {
 </div>
 
 
-<p><strong>Last updated:</strong> 2018-08-15</p>
+<p><strong>Last updated:</strong> 2018-08-16</p>
 <strong>workflowr checks:</strong> <small>(Click a bullet for more information)</small>
 <ul>
 <li>
 <details>
-<p><summary> <strong style="color:red;">✖</strong> <strong>R Markdown file:</strong> uncommitted changes </summary> The R Markdown is untracked by Git. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
+<p><summary> <strong style="color:blue;">✔</strong> <strong>R Markdown file:</strong> up-to-date </summary></p>
+<p>Great! Since the R Markdown file has been committed to the Git repository, you know the exact version of the code that produced these results.</p>
 </details>
 </li>
 <li>
@@ -353,424 +360,2313 @@ div.section {
 </li>
 <li>
 <details>
-<p><summary> <strong style="color:blue;">✔</strong> <strong>Repository version:</strong> <a href="https://github.com/ballardtj/discounting_recovery/tree/c50013478fa303a97781542952753523c799316d" target="_blank">c500134</a> </summary></p>
+<p><summary> <strong style="color:blue;">✔</strong> <strong>Repository version:</strong> <a href="https://github.com/ballardtj/discounting_recovery/tree/2a3263a9685953b67eef9d82df82ed8ed6f040d9" target="_blank">2a3263a</a> </summary></p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility. The version displayed above was the version of the Git repository at the time these results were generated. <br><br> Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
 <pre><code>
 Ignored files:
     Ignored:    .DS_Store
     Ignored:    .Rproj.user/
     Ignored:    analysis/.DS_Store
+    Ignored:    analysis/.Rproj.user/C511515A/ctx/
+    Ignored:    analysis/.Rproj.user/C511515A/explorer-cache/
+    Ignored:    analysis/.Rproj.user/C511515A/presentation/
+    Ignored:    analysis/.Rproj.user/C511515A/profiles-cache/
+    Ignored:    analysis/.Rproj.user/C511515A/sources/per/u/
+    Ignored:    analysis/.Rproj.user/C511515A/viewer-cache/
     Ignored:    analysis/Bayes/.DS_Store
+    Ignored:    analysis/ML/.DS_Store
     Ignored:    analysis/ML/.Rproj.user/
     Ignored:    data/.DS_Store
+    Ignored:    docs/.DS_Store
+    Ignored:    docs/figure/.DS_Store
 
 Untracked files:
-    Untracked:  analysis/Bayes-convergence.Rmd
-    Untracked:  analysis/figure/
-    Untracked:  docs/figure/Bayes-convergence.Rmd/
+    Untracked:  data/derived/fit_Bayes_tradeoff.RData
+    Untracked:  docs/figure/Bayes-predictives.Rmd/
+    Untracked:  test.Rmd
 
 Unstaged changes:
-    Deleted:    data/derived/fit_ML_hyperbolic_mg.RData
-    Modified:   models/ITCH.stan
+    Modified:   analysis/_site.yml
+    Deleted:    analysis/predictives.Rmd
+    Modified:   data/derived/fit_Bayes_ITCH.RData
 
 </code></pre>
 Note that any generated files, e.g. HTML, png, CSS, etc., are not included in this status report because it is ok for generated content to have uncommitted changes.
 </details>
 </li>
 </ul>
+<details>
+<summary> <small><strong>Expand here to see past versions:</strong></small> </summary>
+<ul>
+<table style="border-collapse:separate; border-spacing:5px;">
+<thead>
+<tr>
+<th style="text-align:left;">
+File
+</th>
+<th style="text-align:left;">
+Version
+</th>
+<th style="text-align:left;">
+Author
+</th>
+<th style="text-align:left;">
+Date
+</th>
+<th style="text-align:left;">
+Message
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Rmd
+</td>
+<td style="text-align:left;">
+<a href="https://github.com/ballardtj/discounting_recovery/blob/2a3263a9685953b67eef9d82df82ed8ed6f040d9/analysis/Bayes-convergence.Rmd" target="_blank">2a3263a</a>
+</td>
+<td style="text-align:left;">
+ballardtj
+</td>
+<td style="text-align:left;">
+2018-08-16
+</td>
+<td style="text-align:left;">
+wflow_publish(&quot;analysis/*Rmd&quot;)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Rmd
+</td>
+<td style="text-align:left;">
+<a href="https://github.com/ballardtj/discounting_recovery/blob/106170df63e24b0a3ebb130cd79458ebe3ddce86/analysis/Bayes-convergence.Rmd" target="_blank">106170d</a>
+</td>
+<td style="text-align:left;">
+ballardtj
+</td>
+<td style="text-align:left;">
+2018-08-16
+</td>
+<td style="text-align:left;">
+Bayesian Summary
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+html
+</td>
+<td style="text-align:left;">
+<a href="https://cdn.rawgit.com/ballardtj/discounting_recovery/106170df63e24b0a3ebb130cd79458ebe3ddce86/docs/Bayes-convergence.html" target="_blank">106170d</a>
+</td>
+<td style="text-align:left;">
+ballardtj
+</td>
+<td style="text-align:left;">
+2018-08-16
+</td>
+<td style="text-align:left;">
+Bayesian Summary
+</td>
+</tr>
+</tbody>
+</table>
+</ul>
+</details>
 <hr />
-<p>Observed Model description:</p>
+<p>Model description:</p>
 <ul>
 <li>Hierarchical</li>
-<li>Weight parameters normally distributed, non-centered.</li>
-<li>Gradient parameters normally distributed, and explicitly truncated. Delta and Tau between 0 and 1. Alpha between 0.01 and 0.99.</li>
-</ul>
-<p>Optimal Model description:</p>
-<ul>
-<li>Same as above</li>
-</ul>
-<p>Run details:</p>
-<ul>
 <li>Chains: 8</li>
-<li>Burnin: 4000</li>
-<li>Post-burnin: 10000</li>
-<li>Thinning: 10</li>
+<li>Burnin: 1000</li>
+<li>Post-burnin: 1000</li>
+<li>Thinning: 1</li>
 <li>Total samples: 8000</li>
 </ul>
-<p>Current issues with model:</p>
-<p>?</p>
 <div id="hyperbolic-model" class="section level1">
 <h1>Hyperbolic model</h1>
 <div id="rstan-output" class="section level3">
 <h3>RStan output</h3>
-<pre><code>                  mean      se_mean           sd         2.5%          25%
-k_mean     0.001070394 1.183604e-05 0.0009076715 2.817458e-05 0.0003604302
-k_sd       0.303227113 1.999812e-03 0.0379662646 2.428376e-01 0.2757540711
-sigma_mean 0.022004510 6.825567e-05 0.0023806670 1.653716e-02 0.0206765729
-sigma_sd   0.050286513 2.839496e-04 0.0071490010 3.811136e-02 0.0452986615
-                    50%         75%       97.5%     n_eff     Rhat
-k_mean     0.0008405841 0.001544728 0.003357576 5880.9093 1.000571
-k_sd       0.2988877261 0.325963767 0.387600735  360.4271 1.013346
-sigma_mean 0.0222391071 0.023603938 0.026048266 1216.5218 1.005588
-sigma_sd   0.0495512496 0.054663434 0.066111696  633.8816 1.009382</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="center">mean</th>
+<th align="center">se_mean</th>
+<th align="center">sd</th>
+<th align="center">2.5%</th>
+<th align="center">25%</th>
+<th align="center">50%</th>
+<th align="center">75%</th>
+<th align="center">97.5%</th>
+<th align="center">n_eff</th>
+<th align="center">Rhat</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>k_mean</td>
+<td align="center">0.0010704</td>
+<td align="center">0.0000118</td>
+<td align="center">0.0009077</td>
+<td align="center">0.0000282</td>
+<td align="center">0.0003604</td>
+<td align="center">0.0008406</td>
+<td align="center">0.0015447</td>
+<td align="center">0.0033576</td>
+<td align="center">5880.9093</td>
+<td align="center">1.000571</td>
+</tr>
+<tr class="even">
+<td>k_sd</td>
+<td align="center">0.3032271</td>
+<td align="center">0.0019998</td>
+<td align="center">0.0379663</td>
+<td align="center">0.2428376</td>
+<td align="center">0.2757541</td>
+<td align="center">0.2988877</td>
+<td align="center">0.3259638</td>
+<td align="center">0.3876007</td>
+<td align="center">360.4271</td>
+<td align="center">1.013346</td>
+</tr>
+<tr class="odd">
+<td>sigma_mean</td>
+<td align="center">0.0220045</td>
+<td align="center">0.0000683</td>
+<td align="center">0.0023807</td>
+<td align="center">0.0165372</td>
+<td align="center">0.0206766</td>
+<td align="center">0.0222391</td>
+<td align="center">0.0236039</td>
+<td align="center">0.0260483</td>
+<td align="center">1216.5218</td>
+<td align="center">1.005588</td>
+</tr>
+<tr class="even">
+<td>sigma_sd</td>
+<td align="center">0.0502865</td>
+<td align="center">0.0002839</td>
+<td align="center">0.0071490</td>
+<td align="center">0.0381114</td>
+<td align="center">0.0452987</td>
+<td align="center">0.0495512</td>
+<td align="center">0.0546634</td>
+<td align="center">0.0661117</td>
+<td align="center">633.8816</td>
+<td align="center">1.009382</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div id="coda-output" class="section level3">
 <h3>Coda output</h3>
 <p>Effective sample size</p>
-<pre><code>    k_mean       k_sd sigma_mean   sigma_sd 
- 6550.7735   336.3681  1516.8968   911.8988 </code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="right">n_eff</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">k_mean</td>
+<td align="right">6550.7735</td>
+</tr>
+<tr class="even">
+<td align="left">k_sd</td>
+<td align="right">336.3681</td>
+</tr>
+<tr class="odd">
+<td align="left">sigma_mean</td>
+<td align="right">1516.8968</td>
+</tr>
+<tr class="even">
+<td align="left">sigma_sd</td>
+<td align="right">911.8988</td>
+</tr>
+</tbody>
+</table>
 <p>Gelman’s Rhat</p>
-<pre><code>           Point est. Upper C.I.
-k_mean       1.002277   1.005030
-k_sd         1.035093   1.073911
-sigma_mean   1.007941   1.016650
-sigma_sd     1.010212   1.023179</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="right">Point est.</th>
+<th align="right">Upper C.I.</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">k_mean</td>
+<td align="right">1.002277</td>
+<td align="right">1.005030</td>
+</tr>
+<tr class="even">
+<td align="left">k_sd</td>
+<td align="right">1.035093</td>
+<td align="right">1.073911</td>
+</tr>
+<tr class="odd">
+<td align="left">sigma_mean</td>
+<td align="right">1.007941</td>
+<td align="right">1.016650</td>
+</tr>
+<tr class="even">
+<td align="left">sigma_sd</td>
+<td align="right">1.010212</td>
+<td align="right">1.023179</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div id="plots" class="section level3">
-<h3>Plots</h3>
-<p><img src="figure/Bayes-convergence.Rmd/unnamed-chunk-5-1.png" width="672" style="display: block; margin: auto;" /><img src="figure/Bayes-convergence.Rmd/unnamed-chunk-5-2.png" width="672" style="display: block; margin: auto;" /></p>
+<h3>Plots<img src="figure/Bayes-convergence.Rmd/unnamed-chunk-1-1.png" width="672" style="display: block; margin: auto;" /><img src="figure/Bayes-convergence.Rmd/unnamed-chunk-1-2.png" width="672" style="display: block; margin: auto;" /></h3>
 </div>
 </div>
 <div id="exponential-model" class="section level1">
 <h1>Exponential model</h1>
 <div id="rstan-output-1" class="section level3">
 <h3>RStan output</h3>
-<pre><code>                  mean      se_mean           sd         2.5%          25%
-k_mean     0.001045599 1.363814e-05 0.0008678861 3.515577e-05 0.0003597166
-k_sd       0.141024130 1.080035e-03 0.0169273431 1.126320e-01 0.1289901617
-sigma_mean 0.015257335 6.243020e-05 0.0018914277 1.092495e-02 0.0142965242
-sigma_sd   0.045137319 2.625954e-04 0.0067306944 3.419432e-02 0.0404050524
-                    50%         75%       97.5%     n_eff     Rhat
-k_mean     0.0008317345 0.001515709 0.003210618 4049.6258 1.001398
-k_sd       0.1394091520 0.151092962 0.178490317  245.6414 1.023030
-sigma_mean 0.0154891216 0.016505762 0.018237461  917.8886 1.007002
-sigma_sd   0.0444708076 0.048982220 0.060247975  656.9698 1.010636</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="center">mean</th>
+<th align="center">se_mean</th>
+<th align="center">sd</th>
+<th align="center">2.5%</th>
+<th align="center">25%</th>
+<th align="center">50%</th>
+<th align="center">75%</th>
+<th align="center">97.5%</th>
+<th align="center">n_eff</th>
+<th align="center">Rhat</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>k_mean</td>
+<td align="center">0.0010456</td>
+<td align="center">0.0000136</td>
+<td align="center">0.0008679</td>
+<td align="center">0.0000352</td>
+<td align="center">0.0003597</td>
+<td align="center">0.0008317</td>
+<td align="center">0.0015157</td>
+<td align="center">0.0032106</td>
+<td align="center">4049.6258</td>
+<td align="center">1.001398</td>
+</tr>
+<tr class="even">
+<td>k_sd</td>
+<td align="center">0.1410241</td>
+<td align="center">0.0010800</td>
+<td align="center">0.0169273</td>
+<td align="center">0.1126320</td>
+<td align="center">0.1289902</td>
+<td align="center">0.1394092</td>
+<td align="center">0.1510930</td>
+<td align="center">0.1784903</td>
+<td align="center">245.6414</td>
+<td align="center">1.023030</td>
+</tr>
+<tr class="odd">
+<td>sigma_mean</td>
+<td align="center">0.0152573</td>
+<td align="center">0.0000624</td>
+<td align="center">0.0018914</td>
+<td align="center">0.0109250</td>
+<td align="center">0.0142965</td>
+<td align="center">0.0154891</td>
+<td align="center">0.0165058</td>
+<td align="center">0.0182375</td>
+<td align="center">917.8886</td>
+<td align="center">1.007003</td>
+</tr>
+<tr class="even">
+<td>sigma_sd</td>
+<td align="center">0.0451373</td>
+<td align="center">0.0002626</td>
+<td align="center">0.0067307</td>
+<td align="center">0.0341943</td>
+<td align="center">0.0404051</td>
+<td align="center">0.0444708</td>
+<td align="center">0.0489822</td>
+<td align="center">0.0602480</td>
+<td align="center">656.9698</td>
+<td align="center">1.010636</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div id="coda-output-1" class="section level3">
 <h3>Coda output</h3>
 <p>Effective sample size</p>
-<pre><code>    k_mean       k_sd sigma_mean   sigma_sd 
- 4378.4920   270.0991  1484.3313   832.2420 </code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="right">n_eff</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">k_mean</td>
+<td align="right">4378.4920</td>
+</tr>
+<tr class="even">
+<td align="left">k_sd</td>
+<td align="right">270.0991</td>
+</tr>
+<tr class="odd">
+<td align="left">sigma_mean</td>
+<td align="right">1484.3313</td>
+</tr>
+<tr class="even">
+<td align="left">sigma_sd</td>
+<td align="right">832.2420</td>
+</tr>
+</tbody>
+</table>
 <p>Gelman’s Rhat</p>
-<pre><code>           Point est. Upper C.I.
-k_mean       1.004034   1.009442
-k_sd         1.045639   1.088166
-sigma_mean   1.018338   1.029693
-sigma_sd     1.013695   1.027251</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="right">Point est.</th>
+<th align="right">Upper C.I.</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">k_mean</td>
+<td align="right">1.004034</td>
+<td align="right">1.009442</td>
+</tr>
+<tr class="even">
+<td align="left">k_sd</td>
+<td align="right">1.045639</td>
+<td align="right">1.088166</td>
+</tr>
+<tr class="odd">
+<td align="left">sigma_mean</td>
+<td align="right">1.018338</td>
+<td align="right">1.029693</td>
+</tr>
+<tr class="even">
+<td align="left">sigma_sd</td>
+<td align="right">1.013694</td>
+<td align="right">1.027251</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div id="plots-1" class="section level3">
-<h3>Plots</h3>
-<p><img src="figure/Bayes-convergence.Rmd/unnamed-chunk-10-1.png" width="672" style="display: block; margin: auto;" /><img src="figure/Bayes-convergence.Rmd/unnamed-chunk-10-2.png" width="672" style="display: block; margin: auto;" /></p>
+<h3>Plots<img src="figure/Bayes-convergence.Rmd/unnamed-chunk-1-3.png" width="672" style="display: block; margin: auto;" /><img src="figure/Bayes-convergence.Rmd/unnamed-chunk-1-4.png" width="672" style="display: block; margin: auto;" /></h3>
 </div>
 </div>
 <div id="hyperbolic-model-green-myerson-version" class="section level1">
 <h1>Hyperbolic model (Green &amp; Myerson version)</h1>
 <div id="rstan-output-2" class="section level3">
 <h3>RStan output</h3>
-<pre><code>                 mean      se_mean          sd         2.5%          25%
-k_mean     0.00174543 3.534232e-05 0.001776373 3.429804e-05 0.0004536283
-k_sd       0.18583117 1.032395e-03 0.044644346 1.144325e-01 0.1544064166
-s_mean     0.44353244 4.238765e-03 0.131851433 9.227924e-02 0.3776041581
-s_sd       2.09031426 5.490575e-03 0.359372122 1.480099e+00 1.8330329250
-sigma_mean 0.02040878 6.134278e-05 0.002622031 1.473840e-02 0.0188373772
-sigma_sd   0.05076831 1.802996e-04 0.007299538 3.844003e-02 0.0456535219
-                   50%         75%       97.5%     n_eff     Rhat
-k_mean     0.001167149 0.002451255 0.006461819 2526.2616 1.001996
-k_sd       0.179752203 0.211369129 0.289146589 1869.9989 1.002046
-s_mean     0.464761259 0.532596562 0.650534251  967.5891 1.005921
-s_sd       2.061812987 2.313030469 2.874502782 4284.0361 1.001546
-sigma_mean 0.020547724 0.022170746 0.025165659 1827.0434 1.003711
-sigma_sd   0.050007661 0.055084682 0.067199464 1639.0835 1.005502</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="center">mean</th>
+<th align="center">se_mean</th>
+<th align="center">sd</th>
+<th align="center">2.5%</th>
+<th align="center">25%</th>
+<th align="center">50%</th>
+<th align="center">75%</th>
+<th align="center">97.5%</th>
+<th align="center">n_eff</th>
+<th align="center">Rhat</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>k_mean</td>
+<td align="center">0.0017454</td>
+<td align="center">0.0000353</td>
+<td align="center">0.0017764</td>
+<td align="center">0.0000343</td>
+<td align="center">0.0004536</td>
+<td align="center">0.0011671</td>
+<td align="center">0.0024513</td>
+<td align="center">0.0064618</td>
+<td align="center">2526.2616</td>
+<td align="center">1.001996</td>
+</tr>
+<tr class="even">
+<td>k_sd</td>
+<td align="center">0.1858312</td>
+<td align="center">0.0010324</td>
+<td align="center">0.0446443</td>
+<td align="center">0.1144325</td>
+<td align="center">0.1544064</td>
+<td align="center">0.1797522</td>
+<td align="center">0.2113691</td>
+<td align="center">0.2891466</td>
+<td align="center">1869.9989</td>
+<td align="center">1.002046</td>
+</tr>
+<tr class="odd">
+<td>s_mean</td>
+<td align="center">0.4435324</td>
+<td align="center">0.0042388</td>
+<td align="center">0.1318514</td>
+<td align="center">0.0922792</td>
+<td align="center">0.3776042</td>
+<td align="center">0.4647613</td>
+<td align="center">0.5325966</td>
+<td align="center">0.6505343</td>
+<td align="center">967.5891</td>
+<td align="center">1.005921</td>
+</tr>
+<tr class="even">
+<td>s_sd</td>
+<td align="center">2.0903143</td>
+<td align="center">0.0054906</td>
+<td align="center">0.3593721</td>
+<td align="center">1.4800988</td>
+<td align="center">1.8330329</td>
+<td align="center">2.0618130</td>
+<td align="center">2.3130305</td>
+<td align="center">2.8745028</td>
+<td align="center">4284.0361</td>
+<td align="center">1.001546</td>
+</tr>
+<tr class="odd">
+<td>sigma_mean</td>
+<td align="center">0.0204088</td>
+<td align="center">0.0000613</td>
+<td align="center">0.0026220</td>
+<td align="center">0.0147384</td>
+<td align="center">0.0188374</td>
+<td align="center">0.0205477</td>
+<td align="center">0.0221707</td>
+<td align="center">0.0251657</td>
+<td align="center">1827.0434</td>
+<td align="center">1.003711</td>
+</tr>
+<tr class="even">
+<td>sigma_sd</td>
+<td align="center">0.0507683</td>
+<td align="center">0.0001803</td>
+<td align="center">0.0072995</td>
+<td align="center">0.0384400</td>
+<td align="center">0.0456535</td>
+<td align="center">0.0500077</td>
+<td align="center">0.0550847</td>
+<td align="center">0.0671995</td>
+<td align="center">1639.0835</td>
+<td align="center">1.005502</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div id="coda-output-2" class="section level3">
 <h3>Coda output</h3>
 <p>Effective sample size</p>
-<pre><code>    k_mean       k_sd     s_mean       s_sd sigma_mean   sigma_sd 
-  2970.635   2297.438   1655.008   4731.937   2417.977   1860.661 </code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="right">n_eff</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">k_mean</td>
+<td align="right">2970.635</td>
+</tr>
+<tr class="even">
+<td align="left">k_sd</td>
+<td align="right">2297.438</td>
+</tr>
+<tr class="odd">
+<td align="left">s_mean</td>
+<td align="right">1655.008</td>
+</tr>
+<tr class="even">
+<td align="left">s_sd</td>
+<td align="right">4731.937</td>
+</tr>
+<tr class="odd">
+<td align="left">sigma_mean</td>
+<td align="right">2417.977</td>
+</tr>
+<tr class="even">
+<td align="left">sigma_sd</td>
+<td align="right">1860.661</td>
+</tr>
+</tbody>
+</table>
 <p>Gelman’s Rhat</p>
-<pre><code>           Point est. Upper C.I.
-k_mean       1.003524   1.007273
-k_sd         1.003064   1.007318
-s_mean       1.004079   1.008352
-s_sd         1.000328   1.001629
-sigma_mean   1.000885   1.002645
-sigma_sd     1.005356   1.012547</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="right">Point est.</th>
+<th align="right">Upper C.I.</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">k_mean</td>
+<td align="right">1.003524</td>
+<td align="right">1.007273</td>
+</tr>
+<tr class="even">
+<td align="left">k_sd</td>
+<td align="right">1.003064</td>
+<td align="right">1.007318</td>
+</tr>
+<tr class="odd">
+<td align="left">s_mean</td>
+<td align="right">1.004079</td>
+<td align="right">1.008352</td>
+</tr>
+<tr class="even">
+<td align="left">s_sd</td>
+<td align="right">1.000328</td>
+<td align="right">1.001629</td>
+</tr>
+<tr class="odd">
+<td align="left">sigma_mean</td>
+<td align="right">1.000885</td>
+<td align="right">1.002645</td>
+</tr>
+<tr class="even">
+<td align="left">sigma_sd</td>
+<td align="right">1.005356</td>
+<td align="right">1.012547</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div id="plots-2" class="section level3">
-<h3>Plots</h3>
-<p><img src="figure/Bayes-convergence.Rmd/unnamed-chunk-15-1.png" width="672" style="display: block; margin: auto;" /><img src="figure/Bayes-convergence.Rmd/unnamed-chunk-15-2.png" width="672" style="display: block; margin: auto;" /></p>
+<h3>Plots<img src="figure/Bayes-convergence.Rmd/unnamed-chunk-1-5.png" width="672" style="display: block; margin: auto;" /><img src="figure/Bayes-convergence.Rmd/unnamed-chunk-1-6.png" width="672" style="display: block; margin: auto;" /></h3>
 </div>
 </div>
 <div id="proportional-difference-model" class="section level1">
 <h1>Proportional difference model</h1>
 <div id="rstan-output-3" class="section level3">
 <h3>RStan output</h3>
-<pre><code>                 mean     se_mean        sd        2.5%        25%
-delta_mean -0.2295212 0.007981257 0.4292030 -1.09740835 -0.4620521
-delta_sd    0.5896240 0.007484329 0.4473211  0.02375193  0.2378416
-sigma_mean  1.4520743 0.017196357 0.8649765  0.09724735  0.7781905
-sigma_sd    1.5806459 0.008475215 0.5806942  0.49115528  1.2000256
-                  50%         75%     97.5%    n_eff     Rhat
-delta_mean -0.2657947 0.005952861 0.7213156 2891.897 1.001520
-delta_sd    0.4904735 0.844786481 1.6881181 3572.177 1.010676
-sigma_mean  1.3656762 2.012726495 3.3854802 2530.088 1.001469
-sigma_sd    1.5503073 1.932632933 2.7946213 4694.545 1.000215</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="center">mean</th>
+<th align="center">se_mean</th>
+<th align="center">sd</th>
+<th align="center">2.5%</th>
+<th align="center">25%</th>
+<th align="center">50%</th>
+<th align="center">75%</th>
+<th align="center">97.5%</th>
+<th align="center">n_eff</th>
+<th align="center">Rhat</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>delta_mean</td>
+<td align="center">-0.2295212</td>
+<td align="center">0.0079813</td>
+<td align="center">0.4292030</td>
+<td align="center">-1.0974084</td>
+<td align="center">-0.4620521</td>
+<td align="center">-0.2657947</td>
+<td align="center">0.0059529</td>
+<td align="center">0.7213156</td>
+<td align="center">2891.897</td>
+<td align="center">1.001520</td>
+</tr>
+<tr class="even">
+<td>delta_sd</td>
+<td align="center">0.5896240</td>
+<td align="center">0.0074843</td>
+<td align="center">0.4473211</td>
+<td align="center">0.0237519</td>
+<td align="center">0.2378416</td>
+<td align="center">0.4904735</td>
+<td align="center">0.8447865</td>
+<td align="center">1.6881181</td>
+<td align="center">3572.177</td>
+<td align="center">1.010676</td>
+</tr>
+<tr class="odd">
+<td>sigma_mean</td>
+<td align="center">1.4520743</td>
+<td align="center">0.0171964</td>
+<td align="center">0.8649765</td>
+<td align="center">0.0972474</td>
+<td align="center">0.7781905</td>
+<td align="center">1.3656762</td>
+<td align="center">2.0127265</td>
+<td align="center">3.3854802</td>
+<td align="center">2530.088</td>
+<td align="center">1.001469</td>
+</tr>
+<tr class="even">
+<td>sigma_sd</td>
+<td align="center">1.5806459</td>
+<td align="center">0.0084752</td>
+<td align="center">0.5806942</td>
+<td align="center">0.4911553</td>
+<td align="center">1.2000256</td>
+<td align="center">1.5503073</td>
+<td align="center">1.9326329</td>
+<td align="center">2.7946213</td>
+<td align="center">4694.545</td>
+<td align="center">1.000215</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div id="coda-output-3" class="section level3">
 <h3>Coda output</h3>
 <p>Effective sample size</p>
-<pre><code>delta_mean   delta_sd sigma_mean   sigma_sd 
-  3103.872   5420.717   3992.870   5947.508 </code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="right">n_eff</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">delta_mean</td>
+<td align="right">3103.872</td>
+</tr>
+<tr class="even">
+<td align="left">delta_sd</td>
+<td align="right">5420.717</td>
+</tr>
+<tr class="odd">
+<td align="left">sigma_mean</td>
+<td align="right">3992.870</td>
+</tr>
+<tr class="even">
+<td align="left">sigma_sd</td>
+<td align="right">5947.508</td>
+</tr>
+</tbody>
+</table>
 <p>Gelman’s Rhat</p>
-<pre><code>           Point est. Upper C.I.
-delta_mean   1.005234   1.010644
-delta_sd     1.013451   1.027649
-sigma_mean   1.001389   1.003424
-sigma_sd     1.001502   1.002866</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="right">Point est.</th>
+<th align="right">Upper C.I.</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">delta_mean</td>
+<td align="right">1.005233</td>
+<td align="right">1.010644</td>
+</tr>
+<tr class="even">
+<td align="left">delta_sd</td>
+<td align="right">1.013451</td>
+<td align="right">1.027649</td>
+</tr>
+<tr class="odd">
+<td align="left">sigma_mean</td>
+<td align="right">1.001389</td>
+<td align="right">1.003424</td>
+</tr>
+<tr class="even">
+<td align="left">sigma_sd</td>
+<td align="right">1.001502</td>
+<td align="right">1.002866</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div id="plots-3" class="section level3">
-<h3>Plots</h3>
-<p><img src="figure/Bayes-convergence.Rmd/unnamed-chunk-20-1.png" width="672" style="display: block; margin: auto;" /><img src="figure/Bayes-convergence.Rmd/unnamed-chunk-20-2.png" width="672" style="display: block; margin: auto;" /></p>
+<h3>Plots<img src="figure/Bayes-convergence.Rmd/unnamed-chunk-1-7.png" width="672" style="display: block; margin: auto;" /><img src="figure/Bayes-convergence.Rmd/unnamed-chunk-1-8.png" width="672" style="display: block; margin: auto;" /></h3>
 </div>
 </div>
 <div id="tradeoff-model" class="section level1">
 <h1>Tradeoff model</h1>
 <div id="rstan-output-4" class="section level3">
 <h3>RStan output</h3>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="center">mean</th>
+<th align="center">se_mean</th>
+<th align="center">sd</th>
+<th align="center">2.5%</th>
+<th align="center">25%</th>
+<th align="center">50%</th>
+<th align="center">75%</th>
+<th align="center">97.5%</th>
+<th align="center">n_eff</th>
+<th align="center">Rhat</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>gamma_mean</td>
+<td align="center">0.0151817</td>
+<td align="center">0.0017780</td>
+<td align="center">0.0636447</td>
+<td align="center">0.0000273</td>
+<td align="center">0.0004441</td>
+<td align="center">0.0014542</td>
+<td align="center">0.0055514</td>
+<td align="center">0.1387003</td>
+<td align="center">1281.2974</td>
+<td align="center">1.0081346</td>
+</tr>
+<tr class="even">
+<td>gamma_sd</td>
+<td align="center">0.1096554</td>
+<td align="center">0.0051890</td>
+<td align="center">0.1762262</td>
+<td align="center">0.0270421</td>
+<td align="center">0.0450239</td>
+<td align="center">0.0621612</td>
+<td align="center">0.0968546</td>
+<td align="center">0.5773085</td>
+<td align="center">1153.3724</td>
+<td align="center">1.0089747</td>
+</tr>
+<tr class="odd">
+<td>tau_mean</td>
+<td align="center">0.0011720</td>
+<td align="center">0.0000132</td>
+<td align="center">0.0011830</td>
+<td align="center">0.0000332</td>
+<td align="center">0.0003307</td>
+<td align="center">0.0008003</td>
+<td align="center">0.0016128</td>
+<td align="center">0.0044223</td>
+<td align="center">8000.0000</td>
+<td align="center">0.9996593</td>
+</tr>
+<tr class="even">
+<td>tau_sd</td>
+<td align="center">0.0016052</td>
+<td align="center">0.0000191</td>
+<td align="center">0.0017050</td>
+<td align="center">0.0000438</td>
+<td align="center">0.0004564</td>
+<td align="center">0.0010501</td>
+<td align="center">0.0021675</td>
+<td align="center">0.0062853</td>
+<td align="center">8000.0000</td>
+<td align="center">0.9997312</td>
+</tr>
+<tr class="odd">
+<td>theta_mean</td>
+<td align="center">0.0927934</td>
+<td align="center">0.0006804</td>
+<td align="center">0.0424228</td>
+<td align="center">0.0120316</td>
+<td align="center">0.0635184</td>
+<td align="center">0.0934044</td>
+<td align="center">0.1207675</td>
+<td align="center">0.1757974</td>
+<td align="center">3887.5164</td>
+<td align="center">1.0005699</td>
+</tr>
+<tr class="even">
+<td>theta_sd</td>
+<td align="center">1.2714201</td>
+<td align="center">0.0054406</td>
+<td align="center">0.1668532</td>
+<td align="center">0.9798533</td>
+<td align="center">1.1573871</td>
+<td align="center">1.2589232</td>
+<td align="center">1.3706491</td>
+<td align="center">1.6468845</td>
+<td align="center">940.5195</td>
+<td align="center">1.0075194</td>
+</tr>
+<tr class="odd">
+<td>kappa_mean</td>
+<td align="center">0.4712171</td>
+<td align="center">0.0079536</td>
+<td align="center">0.2804266</td>
+<td align="center">0.0239909</td>
+<td align="center">0.2524942</td>
+<td align="center">0.4581919</td>
+<td align="center">0.6609331</td>
+<td align="center">1.0577326</td>
+<td align="center">1243.1216</td>
+<td align="center">1.0041505</td>
+</tr>
+<tr class="even">
+<td>kappa_sd</td>
+<td align="center">2.0299059</td>
+<td align="center">0.0283243</td>
+<td align="center">0.9806792</td>
+<td align="center">0.2158730</td>
+<td align="center">1.3282611</td>
+<td align="center">2.0514335</td>
+<td align="center">2.7200207</td>
+<td align="center">3.9353870</td>
+<td align="center">1198.7704</td>
+<td align="center">1.0085098</td>
+</tr>
+<tr class="odd">
+<td>alpha_mean</td>
+<td align="center">0.0005958</td>
+<td align="center">0.0000065</td>
+<td align="center">0.0005844</td>
+<td align="center">0.0000183</td>
+<td align="center">0.0001788</td>
+<td align="center">0.0004170</td>
+<td align="center">0.0008303</td>
+<td align="center">0.0022101</td>
+<td align="center">8000.0000</td>
+<td align="center">0.9998314</td>
+</tr>
+<tr class="even">
+<td>alpha_sd</td>
+<td align="center">0.0009038</td>
+<td align="center">0.0000109</td>
+<td align="center">0.0009761</td>
+<td align="center">0.0000227</td>
+<td align="center">0.0002429</td>
+<td align="center">0.0006017</td>
+<td align="center">0.0012254</td>
+<td align="center">0.0035221</td>
+<td align="center">8000.0000</td>
+<td align="center">0.9998611</td>
+</tr>
+<tr class="odd">
+<td>eps_mean</td>
+<td align="center">0.0906007</td>
+<td align="center">0.0005157</td>
+<td align="center">0.0174319</td>
+<td align="center">0.0478493</td>
+<td align="center">0.0819446</td>
+<td align="center">0.0931251</td>
+<td align="center">0.1026142</td>
+<td align="center">0.1174976</td>
+<td align="center">1142.7805</td>
+<td align="center">1.0071743</td>
+</tr>
+<tr class="even">
+<td>eps_sd</td>
+<td align="center">0.3892759</td>
+<td align="center">0.0016834</td>
+<td align="center">0.0580131</td>
+<td align="center">0.2903965</td>
+<td align="center">0.3484614</td>
+<td align="center">0.3839017</td>
+<td align="center">0.4245307</td>
+<td align="center">0.5164808</td>
+<td align="center">1187.6758</td>
+<td align="center">1.0072938</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div id="coda-output-4" class="section level3">
 <h3>Coda output</h3>
 <p>Effective sample size</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="right">n_eff</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">gamma_mean</td>
+<td align="right">1335.6765</td>
+</tr>
+<tr class="even">
+<td align="left">gamma_sd</td>
+<td align="right">1196.1992</td>
+</tr>
+<tr class="odd">
+<td align="left">tau_mean</td>
+<td align="right">13724.5022</td>
+</tr>
+<tr class="even">
+<td align="left">tau_sd</td>
+<td align="right">10053.8896</td>
+</tr>
+<tr class="odd">
+<td align="left">theta_mean</td>
+<td align="right">4294.3945</td>
+</tr>
+<tr class="even">
+<td align="left">theta_sd</td>
+<td align="right">997.9278</td>
+</tr>
+<tr class="odd">
+<td align="left">kappa_mean</td>
+<td align="right">1479.3478</td>
+</tr>
+<tr class="even">
+<td align="left">kappa_sd</td>
+<td align="right">1372.3235</td>
+</tr>
+<tr class="odd">
+<td align="left">alpha_mean</td>
+<td align="right">11456.4735</td>
+</tr>
+<tr class="even">
+<td align="left">alpha_sd</td>
+<td align="right">8071.2010</td>
+</tr>
+<tr class="odd">
+<td align="left">eps_mean</td>
+<td align="right">1434.3677</td>
+</tr>
+<tr class="even">
+<td align="left">eps_sd</td>
+<td align="right">1649.5320</td>
+</tr>
+</tbody>
+</table>
 <p>Gelman’s Rhat</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="right">Point est.</th>
+<th align="right">Upper C.I.</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">gamma_mean</td>
+<td align="right">1.080071</td>
+<td align="right">1.114193</td>
+</tr>
+<tr class="even">
+<td align="left">gamma_sd</td>
+<td align="right">1.039348</td>
+<td align="right">1.060232</td>
+</tr>
+<tr class="odd">
+<td align="left">tau_mean</td>
+<td align="right">1.001259</td>
+<td align="right">1.001879</td>
+</tr>
+<tr class="even">
+<td align="left">tau_sd</td>
+<td align="right">1.001484</td>
+<td align="right">1.003234</td>
+</tr>
+<tr class="odd">
+<td align="left">theta_mean</td>
+<td align="right">1.001955</td>
+<td align="right">1.004424</td>
+</tr>
+<tr class="even">
+<td align="left">theta_sd</td>
+<td align="right">1.013682</td>
+<td align="right">1.027439</td>
+</tr>
+<tr class="odd">
+<td align="left">kappa_mean</td>
+<td align="right">1.010021</td>
+<td align="right">1.023279</td>
+</tr>
+<tr class="even">
+<td align="left">kappa_sd</td>
+<td align="right">1.009880</td>
+<td align="right">1.022755</td>
+</tr>
+<tr class="odd">
+<td align="left">alpha_mean</td>
+<td align="right">1.001469</td>
+<td align="right">1.002978</td>
+</tr>
+<tr class="even">
+<td align="left">alpha_sd</td>
+<td align="right">1.001989</td>
+<td align="right">1.003855</td>
+</tr>
+<tr class="odd">
+<td align="left">eps_mean</td>
+<td align="right">1.006672</td>
+<td align="right">1.013545</td>
+</tr>
+<tr class="even">
+<td align="left">eps_sd</td>
+<td align="right">1.010723</td>
+<td align="right">1.023589</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div id="plots-4" class="section level3">
-<h3>Plots</h3>
+<h3>Plots<img src="figure/Bayes-convergence.Rmd/unnamed-chunk-1-9.png" width="672" style="display: block; margin: auto;" /><img src="figure/Bayes-convergence.Rmd/unnamed-chunk-1-10.png" width="672" style="display: block; margin: auto;" /></h3>
 </div>
 </div>
 <div id="itch-model" class="section level1">
 <h1>ITCH model</h1>
 <div id="rstan-output-5" class="section level3">
 <h3>RStan output</h3>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="center">mean</th>
+<th align="center">se_mean</th>
+<th align="center">sd</th>
+<th align="center">2.5%</th>
+<th align="center">25%</th>
+<th align="center">50%</th>
+<th align="center">75%</th>
+<th align="center">97.5%</th>
+<th align="center">n_eff</th>
+<th align="center">Rhat</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>B1_mean</td>
+<td align="center">-0.9447241</td>
+<td align="center">0.0216370</td>
+<td align="center">0.4089128</td>
+<td align="center">-1.7373054</td>
+<td align="center">-1.2214226</td>
+<td align="center">-0.9461813</td>
+<td align="center">-0.6702177</td>
+<td align="center">-0.1288035</td>
+<td align="center">357.1644</td>
+<td align="center">1.0081883</td>
+</tr>
+<tr class="even">
+<td>B1_sd</td>
+<td align="center">2.6646075</td>
+<td align="center">0.0104320</td>
+<td align="center">0.2753184</td>
+<td align="center">2.1915374</td>
+<td align="center">2.4728481</td>
+<td align="center">2.6430051</td>
+<td align="center">2.8305105</td>
+<td align="center">3.2714715</td>
+<td align="center">696.5228</td>
+<td align="center">1.0041318</td>
+</tr>
+<tr class="odd">
+<td>BxA_mean</td>
+<td align="center">0.0006279</td>
+<td align="center">0.0000058</td>
+<td align="center">0.0005153</td>
+<td align="center">0.0000171</td>
+<td align="center">0.0002192</td>
+<td align="center">0.0005041</td>
+<td align="center">0.0009128</td>
+<td align="center">0.0018938</td>
+<td align="center">8000.0000</td>
+<td align="center">0.9995486</td>
+</tr>
+<tr class="even">
+<td>BxA_sd</td>
+<td align="center">0.1571383</td>
+<td align="center">0.0040543</td>
+<td align="center">0.3171000</td>
+<td align="center">0.0001382</td>
+<td align="center">0.0025439</td>
+<td align="center">0.0183449</td>
+<td align="center">0.1462280</td>
+<td align="center">1.1414900</td>
+<td align="center">6117.2807</td>
+<td align="center">1.0006435</td>
+</tr>
+<tr class="odd">
+<td>BxR_mean</td>
+<td align="center">1.2572155</td>
+<td align="center">0.0118499</td>
+<td align="center">0.5988874</td>
+<td align="center">0.1047954</td>
+<td align="center">0.7887232</td>
+<td align="center">1.3026885</td>
+<td align="center">1.7649150</td>
+<td align="center">2.1931192</td>
+<td align="center">2554.2468</td>
+<td align="center">1.0020697</td>
+</tr>
+<tr class="even">
+<td>BxR_sd</td>
+<td align="center">0.9875071</td>
+<td align="center">0.0064399</td>
+<td align="center">0.5760028</td>
+<td align="center">0.0802549</td>
+<td align="center">0.5594669</td>
+<td align="center">0.9197006</td>
+<td align="center">1.3445954</td>
+<td align="center">2.2744088</td>
+<td align="center">8000.0000</td>
+<td align="center">0.9998680</td>
+</tr>
+<tr class="odd">
+<td>BtA_mean</td>
+<td align="center">-0.1105438</td>
+<td align="center">0.0010755</td>
+<td align="center">0.0558536</td>
+<td align="center">-0.1884294</td>
+<td align="center">-0.1612201</td>
+<td align="center">-0.1177846</td>
+<td align="center">-0.0638057</td>
+<td align="center">-0.0076979</td>
+<td align="center">2697.0906</td>
+<td align="center">1.0027085</td>
+</tr>
+<tr class="even">
+<td>BtA_sd</td>
+<td align="center">0.4136648</td>
+<td align="center">0.0047966</td>
+<td align="center">0.4290179</td>
+<td align="center">0.0104697</td>
+<td align="center">0.1084324</td>
+<td align="center">0.2667709</td>
+<td align="center">0.5763428</td>
+<td align="center">1.5904899</td>
+<td align="center">8000.0000</td>
+<td align="center">0.9997698</td>
+</tr>
+<tr class="odd">
+<td>BtR_mean</td>
+<td align="center">-0.7983323</td>
+<td align="center">0.0067938</td>
+<td align="center">0.6076587</td>
+<td align="center">-2.2556815</td>
+<td align="center">-1.1472505</td>
+<td align="center">-0.6720830</td>
+<td align="center">-0.3117243</td>
+<td align="center">-0.0357870</td>
+<td align="center">8000.0000</td>
+<td align="center">1.0004276</td>
+</tr>
+<tr class="even">
+<td>BtR_sd</td>
+<td align="center">0.8072537</td>
+<td align="center">0.0067751</td>
+<td align="center">0.6059809</td>
+<td align="center">0.0308698</td>
+<td align="center">0.3217655</td>
+<td align="center">0.6944674</td>
+<td align="center">1.1526221</td>
+<td align="center">2.2591723</td>
+<td align="center">8000.0000</td>
+<td align="center">1.0002241</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div id="coda-output-5" class="section level3">
 <h3>Coda output</h3>
 <p>Effective sample size</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="right">n_eff</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">B1_mean</td>
+<td align="right">401.0710</td>
+</tr>
+<tr class="even">
+<td align="left">B1_sd</td>
+<td align="right">982.5068</td>
+</tr>
+<tr class="odd">
+<td align="left">BxA_mean</td>
+<td align="right">9513.7239</td>
+</tr>
+<tr class="even">
+<td align="left">BxA_sd</td>
+<td align="right">6395.9627</td>
+</tr>
+<tr class="odd">
+<td align="left">BxR_mean</td>
+<td align="right">4329.6613</td>
+</tr>
+<tr class="even">
+<td align="left">BxR_sd</td>
+<td align="right">8227.8249</td>
+</tr>
+<tr class="odd">
+<td align="left">BtA_mean</td>
+<td align="right">4064.4280</td>
+</tr>
+<tr class="even">
+<td align="left">BtA_sd</td>
+<td align="right">7962.1126</td>
+</tr>
+<tr class="odd">
+<td align="left">BtR_mean</td>
+<td align="right">10907.6333</td>
+</tr>
+<tr class="even">
+<td align="left">BtR_sd</td>
+<td align="right">10816.8611</td>
+</tr>
+</tbody>
+</table>
 <p>Gelman’s Rhat</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="right">Point est.</th>
+<th align="right">Upper C.I.</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">B1_mean</td>
+<td align="right">1.009100</td>
+<td align="right">1.019795</td>
+</tr>
+<tr class="even">
+<td align="left">B1_sd</td>
+<td align="right">1.009441</td>
+<td align="right">1.020169</td>
+</tr>
+<tr class="odd">
+<td align="left">BxA_mean</td>
+<td align="right">1.000190</td>
+<td align="right">1.001351</td>
+</tr>
+<tr class="even">
+<td align="left">BxA_sd</td>
+<td align="right">1.007850</td>
+<td align="right">1.012819</td>
+</tr>
+<tr class="odd">
+<td align="left">BxR_mean</td>
+<td align="right">1.001822</td>
+<td align="right">1.004735</td>
+</tr>
+<tr class="even">
+<td align="left">BxR_sd</td>
+<td align="right">1.000152</td>
+<td align="right">1.000999</td>
+</tr>
+<tr class="odd">
+<td align="left">BtA_mean</td>
+<td align="right">1.001616</td>
+<td align="right">1.004112</td>
+</tr>
+<tr class="even">
+<td align="left">BtA_sd</td>
+<td align="right">1.000779</td>
+<td align="right">1.002378</td>
+</tr>
+<tr class="odd">
+<td align="left">BtR_mean</td>
+<td align="right">1.000760</td>
+<td align="right">1.002698</td>
+</tr>
+<tr class="even">
+<td align="left">BtR_sd</td>
+<td align="right">1.000285</td>
+<td align="right">1.001552</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div id="plots-5" class="section level3">
-<h3>Plots</h3>
+<h3>Plots<img src="figure/Bayes-convergence.Rmd/unnamed-chunk-1-11.png" width="672" style="display: block; margin: auto;" /><img src="figure/Bayes-convergence.Rmd/unnamed-chunk-1-12.png" width="672" style="display: block; margin: auto;" /></h3>
 </div>
 </div>
 <div id="constant-sensitivity-model-ebert-prelec-2007" class="section level1">
 <h1>Constant Sensitivity Model (Ebert &amp; Prelec, 2007)</h1>
 <div id="rstan-output-6" class="section level3">
 <h3>RStan output</h3>
-<pre><code>                 mean      se_mean          sd         2.5%         25%
-alpha_mean 0.00303769 8.495466e-05 0.002540959 8.742431e-05 0.001001589
-alpha_sd   0.18808021 1.331928e-03 0.027021502 1.443438e-01 0.169377537
-beta_mean  0.16103475 6.888361e-04 0.030768606 9.098066e-02 0.143969096
-beta_sd    0.80743533 3.405333e-03 0.106402741 6.258750e-01 0.733170885
-sigma_mean 0.02280860 6.759052e-05 0.002764932 1.690384e-02 0.021170608
-sigma_sd   0.04775942 1.788371e-04 0.007052693 3.601251e-02 0.042730112
-                   50%         75%       97.5%     n_eff     Rhat
-alpha_mean 0.002373496 0.004445915 0.009361523  894.5834 1.006913
-alpha_sd   0.184812316 0.202718371 0.251449898  411.5828 1.020745
-beta_mean  0.163470323 0.180614287 0.215885175 1995.1879 1.003049
-beta_sd    0.798266440 0.872889441 1.048106345  976.3068 1.017678
-sigma_mean 0.023023068 0.024665881 0.027738916 1673.3912 1.004476
-sigma_sd   0.047088830 0.051894112 0.063941262 1555.2307 1.006942</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="center">mean</th>
+<th align="center">se_mean</th>
+<th align="center">sd</th>
+<th align="center">2.5%</th>
+<th align="center">25%</th>
+<th align="center">50%</th>
+<th align="center">75%</th>
+<th align="center">97.5%</th>
+<th align="center">n_eff</th>
+<th align="center">Rhat</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>alpha_mean</td>
+<td align="center">0.0030377</td>
+<td align="center">0.0000850</td>
+<td align="center">0.0025410</td>
+<td align="center">0.0000874</td>
+<td align="center">0.0010016</td>
+<td align="center">0.0023735</td>
+<td align="center">0.0044459</td>
+<td align="center">0.0093615</td>
+<td align="center">894.5834</td>
+<td align="center">1.006913</td>
+</tr>
+<tr class="even">
+<td>alpha_sd</td>
+<td align="center">0.1880802</td>
+<td align="center">0.0013319</td>
+<td align="center">0.0270215</td>
+<td align="center">0.1443438</td>
+<td align="center">0.1693775</td>
+<td align="center">0.1848123</td>
+<td align="center">0.2027184</td>
+<td align="center">0.2514499</td>
+<td align="center">411.5828</td>
+<td align="center">1.020746</td>
+</tr>
+<tr class="odd">
+<td>beta_mean</td>
+<td align="center">0.1610348</td>
+<td align="center">0.0006888</td>
+<td align="center">0.0307686</td>
+<td align="center">0.0909807</td>
+<td align="center">0.1439691</td>
+<td align="center">0.1634703</td>
+<td align="center">0.1806143</td>
+<td align="center">0.2158852</td>
+<td align="center">1995.1879</td>
+<td align="center">1.003049</td>
+</tr>
+<tr class="even">
+<td>beta_sd</td>
+<td align="center">0.8074353</td>
+<td align="center">0.0034053</td>
+<td align="center">0.1064027</td>
+<td align="center">0.6258750</td>
+<td align="center">0.7331709</td>
+<td align="center">0.7982664</td>
+<td align="center">0.8728894</td>
+<td align="center">1.0481063</td>
+<td align="center">976.3068</td>
+<td align="center">1.017678</td>
+</tr>
+<tr class="odd">
+<td>sigma_mean</td>
+<td align="center">0.0228086</td>
+<td align="center">0.0000676</td>
+<td align="center">0.0027649</td>
+<td align="center">0.0169038</td>
+<td align="center">0.0211706</td>
+<td align="center">0.0230231</td>
+<td align="center">0.0246659</td>
+<td align="center">0.0277389</td>
+<td align="center">1673.3912</td>
+<td align="center">1.004476</td>
+</tr>
+<tr class="even">
+<td>sigma_sd</td>
+<td align="center">0.0477594</td>
+<td align="center">0.0001788</td>
+<td align="center">0.0070527</td>
+<td align="center">0.0360125</td>
+<td align="center">0.0427301</td>
+<td align="center">0.0470888</td>
+<td align="center">0.0518941</td>
+<td align="center">0.0639413</td>
+<td align="center">1555.2307</td>
+<td align="center">1.006942</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div id="coda-output-6" class="section level3">
 <h3>Coda output</h3>
 <p>Effective sample size</p>
-<pre><code>alpha_mean   alpha_sd  beta_mean    beta_sd sigma_mean   sigma_sd 
- 2660.1696   551.9581  2837.3170  1236.7968  1897.0822  1785.4795 </code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="right">n_eff</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">alpha_mean</td>
+<td align="right">2660.1696</td>
+</tr>
+<tr class="even">
+<td align="left">alpha_sd</td>
+<td align="right">551.9581</td>
+</tr>
+<tr class="odd">
+<td align="left">beta_mean</td>
+<td align="right">2837.3170</td>
+</tr>
+<tr class="even">
+<td align="left">beta_sd</td>
+<td align="right">1236.7968</td>
+</tr>
+<tr class="odd">
+<td align="left">sigma_mean</td>
+<td align="right">1897.0822</td>
+</tr>
+<tr class="even">
+<td align="left">sigma_sd</td>
+<td align="right">1785.4795</td>
+</tr>
+</tbody>
+</table>
 <p>Gelman’s Rhat</p>
-<pre><code>           Point est. Upper C.I.
-alpha_mean   1.001914   1.005171
-alpha_sd     1.013972   1.029240
-beta_mean    1.004390   1.009372
-beta_sd      1.007695   1.017743
-sigma_mean   1.006965   1.014474
-sigma_sd     1.009719   1.022716</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="right">Point est.</th>
+<th align="right">Upper C.I.</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">alpha_mean</td>
+<td align="right">1.001914</td>
+<td align="right">1.005171</td>
+</tr>
+<tr class="even">
+<td align="left">alpha_sd</td>
+<td align="right">1.013972</td>
+<td align="right">1.029240</td>
+</tr>
+<tr class="odd">
+<td align="left">beta_mean</td>
+<td align="right">1.004390</td>
+<td align="right">1.009372</td>
+</tr>
+<tr class="even">
+<td align="left">beta_sd</td>
+<td align="right">1.007695</td>
+<td align="right">1.017743</td>
+</tr>
+<tr class="odd">
+<td align="left">sigma_mean</td>
+<td align="right">1.006965</td>
+<td align="right">1.014474</td>
+</tr>
+<tr class="even">
+<td align="left">sigma_sd</td>
+<td align="right">1.009719</td>
+<td align="right">1.022716</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div id="plots-6" class="section level3">
-<h3>Plots</h3>
-<p><img src="figure/Bayes-convergence.Rmd/unnamed-chunk-35-1.png" width="672" style="display: block; margin: auto;" /><img src="figure/Bayes-convergence.Rmd/unnamed-chunk-35-2.png" width="672" style="display: block; margin: auto;" /></p>
+<h3>Plots<img src="figure/Bayes-convergence.Rmd/unnamed-chunk-1-13.png" width="672" style="display: block; margin: auto;" /><img src="figure/Bayes-convergence.Rmd/unnamed-chunk-1-14.png" width="672" style="display: block; margin: auto;" /></h3>
 </div>
 </div>
 <div id="hyperboloid-model-mazur-1987" class="section level1">
 <h1>Hyperboloid Model (Mazur, 1987)</h1>
 <div id="rstan-output-7" class="section level3">
 <h3>RStan output</h3>
-<pre><code>                  mean      se_mean          sd         2.5%          25%
-k_mean     0.001445548 0.0000134243 0.001200706 5.886081e-05 0.0005428407
-k_sd       0.376923672 0.0014178377 0.059721869 2.747677e-01 0.3346418990
-s_mean     0.262814725 0.0019019343 0.080329366 1.118715e-01 0.2099501436
-s_sd       1.091962799 0.0040680409 0.148853288 8.271492e-01 0.9884711029
-sigma_mean 0.023608905 0.0000677836 0.002869438 1.727953e-02 0.0218500125
-sigma_sd   0.049943153 0.0001804502 0.007410158 3.751960e-02 0.0448002230
-                   50%         75%       97.5%    n_eff     Rhat
-k_mean     0.001145563 0.002019845 0.004474642 8000.000 1.000759
-k_sd       0.372307993 0.412485018 0.510409032 1774.246 1.004476
-s_mean     0.257891765 0.310427509 0.439613911 1783.847 1.007285
-s_sd       1.084982314 1.184285093 1.406640734 1338.894 1.007926
-sigma_mean 0.023825608 0.025579761 0.028667411 1792.027 1.006057
-sigma_sd   0.049203810 0.054366004 0.065975094 1686.321 1.001438</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="center">mean</th>
+<th align="center">se_mean</th>
+<th align="center">sd</th>
+<th align="center">2.5%</th>
+<th align="center">25%</th>
+<th align="center">50%</th>
+<th align="center">75%</th>
+<th align="center">97.5%</th>
+<th align="center">n_eff</th>
+<th align="center">Rhat</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>k_mean</td>
+<td align="center">0.0014455</td>
+<td align="center">0.0000134</td>
+<td align="center">0.0012007</td>
+<td align="center">0.0000589</td>
+<td align="center">0.0005428</td>
+<td align="center">0.0011456</td>
+<td align="center">0.0020198</td>
+<td align="center">0.0044746</td>
+<td align="center">8000.000</td>
+<td align="center">1.000760</td>
+</tr>
+<tr class="even">
+<td>k_sd</td>
+<td align="center">0.3769237</td>
+<td align="center">0.0014178</td>
+<td align="center">0.0597219</td>
+<td align="center">0.2747677</td>
+<td align="center">0.3346419</td>
+<td align="center">0.3723080</td>
+<td align="center">0.4124850</td>
+<td align="center">0.5104090</td>
+<td align="center">1774.246</td>
+<td align="center">1.004476</td>
+</tr>
+<tr class="odd">
+<td>s_mean</td>
+<td align="center">0.2628147</td>
+<td align="center">0.0019019</td>
+<td align="center">0.0803294</td>
+<td align="center">0.1118715</td>
+<td align="center">0.2099501</td>
+<td align="center">0.2578918</td>
+<td align="center">0.3104275</td>
+<td align="center">0.4396139</td>
+<td align="center">1783.847</td>
+<td align="center">1.007285</td>
+</tr>
+<tr class="even">
+<td>s_sd</td>
+<td align="center">1.0919628</td>
+<td align="center">0.0040680</td>
+<td align="center">0.1488533</td>
+<td align="center">0.8271492</td>
+<td align="center">0.9884711</td>
+<td align="center">1.0849823</td>
+<td align="center">1.1842851</td>
+<td align="center">1.4066407</td>
+<td align="center">1338.894</td>
+<td align="center">1.007926</td>
+</tr>
+<tr class="odd">
+<td>sigma_mean</td>
+<td align="center">0.0236089</td>
+<td align="center">0.0000678</td>
+<td align="center">0.0028694</td>
+<td align="center">0.0172795</td>
+<td align="center">0.0218500</td>
+<td align="center">0.0238256</td>
+<td align="center">0.0255798</td>
+<td align="center">0.0286674</td>
+<td align="center">1792.027</td>
+<td align="center">1.006057</td>
+</tr>
+<tr class="even">
+<td>sigma_sd</td>
+<td align="center">0.0499432</td>
+<td align="center">0.0001805</td>
+<td align="center">0.0074102</td>
+<td align="center">0.0375196</td>
+<td align="center">0.0448002</td>
+<td align="center">0.0492038</td>
+<td align="center">0.0543660</td>
+<td align="center">0.0659751</td>
+<td align="center">1686.321</td>
+<td align="center">1.001438</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div id="coda-output-7" class="section level3">
 <h3>Coda output</h3>
 <p>Effective sample size</p>
-<pre><code>    k_mean       k_sd     s_mean       s_sd sigma_mean   sigma_sd 
-  8452.268   1890.868   2020.959   1388.986   1921.050   1804.852 </code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="right">n_eff</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">k_mean</td>
+<td align="right">8452.268</td>
+</tr>
+<tr class="even">
+<td align="left">k_sd</td>
+<td align="right">1890.868</td>
+</tr>
+<tr class="odd">
+<td align="left">s_mean</td>
+<td align="right">2020.959</td>
+</tr>
+<tr class="even">
+<td align="left">s_sd</td>
+<td align="right">1388.986</td>
+</tr>
+<tr class="odd">
+<td align="left">sigma_mean</td>
+<td align="right">1921.050</td>
+</tr>
+<tr class="even">
+<td align="left">sigma_sd</td>
+<td align="right">1804.852</td>
+</tr>
+</tbody>
+</table>
 <p>Gelman’s Rhat</p>
-<pre><code>           Point est. Upper C.I.
-k_mean       1.000572   1.002067
-k_sd         1.005196   1.012683
-s_mean       1.011751   1.025890
-s_sd         1.015570   1.035868
-sigma_mean   1.008812   1.020046
-sigma_sd     1.000665   1.002505</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="right">Point est.</th>
+<th align="right">Upper C.I.</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">k_mean</td>
+<td align="right">1.000572</td>
+<td align="right">1.002067</td>
+</tr>
+<tr class="even">
+<td align="left">k_sd</td>
+<td align="right">1.005196</td>
+<td align="right">1.012683</td>
+</tr>
+<tr class="odd">
+<td align="left">s_mean</td>
+<td align="right">1.011751</td>
+<td align="right">1.025890</td>
+</tr>
+<tr class="even">
+<td align="left">s_sd</td>
+<td align="right">1.015570</td>
+<td align="right">1.035868</td>
+</tr>
+<tr class="odd">
+<td align="left">sigma_mean</td>
+<td align="right">1.008812</td>
+<td align="right">1.020046</td>
+</tr>
+<tr class="even">
+<td align="left">sigma_sd</td>
+<td align="right">1.000665</td>
+<td align="right">1.002504</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div id="plots-7" class="section level3">
-<h3>Plots</h3>
-<p><img src="figure/Bayes-convergence.Rmd/unnamed-chunk-40-1.png" width="672" style="display: block; margin: auto;" /><img src="figure/Bayes-convergence.Rmd/unnamed-chunk-40-2.png" width="672" style="display: block; margin: auto;" /></p>
+<h3>Plots<img src="figure/Bayes-convergence.Rmd/unnamed-chunk-1-15.png" width="672" style="display: block; margin: auto;" /><img src="figure/Bayes-convergence.Rmd/unnamed-chunk-1-16.png" width="672" style="display: block; margin: auto;" /></h3>
 </div>
 </div>
 <div id="loewenstein-prelecs-1992-model" class="section level1">
 <h1>Loewenstein &amp; Prelec’s (1992) Model</h1>
 <div id="rstan-output-8" class="section level3">
 <h3>RStan output</h3>
-<pre><code>                   mean      se_mean           sd         2.5%
-alpha_mean 0.0009682053 1.095191e-05 0.0009795683 2.268606e-05
-alpha_sd   0.1823081036 9.987102e-04 0.0406392800 1.159174e-01
-beta_mean  0.0042196776 8.966393e-05 0.0037456063 1.165631e-04
-beta_sd    0.2058306013 9.585525e-04 0.0268058430 1.599684e-01
-sigma_mean 0.0201330631 6.580745e-05 0.0026911661 1.430304e-02
-sigma_sd   0.0512901452 2.258424e-04 0.0076212259 3.843429e-02
-                    25%          50%         75%       97.5%     n_eff
-alpha_mean 0.0002807129 0.0006821282 0.001314297 0.003649465 8000.0000
-alpha_sd   0.1533558965 0.1779248868 0.206066454 0.273567087 1655.8197
-beta_mean  0.0013344715 0.0031645575 0.005988588 0.013824775 1745.0532
-beta_sd    0.1870192041 0.2036837877 0.221749399 0.263892047  782.0366
-sigma_mean 0.0184991792 0.0203106851 0.021979135 0.024881136 1672.3646
-sigma_sd   0.0459659134 0.0506392066 0.055655663 0.068275208 1138.7770
-                Rhat
-alpha_mean 0.9993977
-alpha_sd   1.0055169
-beta_mean  1.0055153
-beta_sd    1.0085405
-sigma_mean 1.0019133
-sigma_sd   1.0044579</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="center">mean</th>
+<th align="center">se_mean</th>
+<th align="center">sd</th>
+<th align="center">2.5%</th>
+<th align="center">25%</th>
+<th align="center">50%</th>
+<th align="center">75%</th>
+<th align="center">97.5%</th>
+<th align="center">n_eff</th>
+<th align="center">Rhat</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>alpha_mean</td>
+<td align="center">0.0009682</td>
+<td align="center">0.0000110</td>
+<td align="center">0.0009796</td>
+<td align="center">0.0000227</td>
+<td align="center">0.0002807</td>
+<td align="center">0.0006821</td>
+<td align="center">0.0013143</td>
+<td align="center">0.0036495</td>
+<td align="center">8000.0000</td>
+<td align="center">0.9993977</td>
+</tr>
+<tr class="even">
+<td>alpha_sd</td>
+<td align="center">0.1823081</td>
+<td align="center">0.0009987</td>
+<td align="center">0.0406393</td>
+<td align="center">0.1159174</td>
+<td align="center">0.1533559</td>
+<td align="center">0.1779249</td>
+<td align="center">0.2060665</td>
+<td align="center">0.2735671</td>
+<td align="center">1655.8197</td>
+<td align="center">1.0055169</td>
+</tr>
+<tr class="odd">
+<td>beta_mean</td>
+<td align="center">0.0042197</td>
+<td align="center">0.0000897</td>
+<td align="center">0.0037456</td>
+<td align="center">0.0001166</td>
+<td align="center">0.0013345</td>
+<td align="center">0.0031646</td>
+<td align="center">0.0059886</td>
+<td align="center">0.0138248</td>
+<td align="center">1745.0532</td>
+<td align="center">1.0055153</td>
+</tr>
+<tr class="even">
+<td>beta_sd</td>
+<td align="center">0.2058306</td>
+<td align="center">0.0009586</td>
+<td align="center">0.0268058</td>
+<td align="center">0.1599684</td>
+<td align="center">0.1870192</td>
+<td align="center">0.2036838</td>
+<td align="center">0.2217494</td>
+<td align="center">0.2638920</td>
+<td align="center">782.0366</td>
+<td align="center">1.0085405</td>
+</tr>
+<tr class="odd">
+<td>sigma_mean</td>
+<td align="center">0.0201331</td>
+<td align="center">0.0000658</td>
+<td align="center">0.0026912</td>
+<td align="center">0.0143030</td>
+<td align="center">0.0184992</td>
+<td align="center">0.0203107</td>
+<td align="center">0.0219791</td>
+<td align="center">0.0248811</td>
+<td align="center">1672.3646</td>
+<td align="center">1.0019133</td>
+</tr>
+<tr class="even">
+<td>sigma_sd</td>
+<td align="center">0.0512901</td>
+<td align="center">0.0002258</td>
+<td align="center">0.0076212</td>
+<td align="center">0.0384343</td>
+<td align="center">0.0459659</td>
+<td align="center">0.0506392</td>
+<td align="center">0.0556557</td>
+<td align="center">0.0682752</td>
+<td align="center">1138.7770</td>
+<td align="center">1.0044579</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div id="coda-output-8" class="section level3">
 <h3>Coda output</h3>
 <p>Effective sample size</p>
-<pre><code>alpha_mean   alpha_sd  beta_mean    beta_sd sigma_mean   sigma_sd 
-11638.1509  2191.7902  2383.5104   858.3026  1642.1991  1350.7417 </code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="right">n_eff</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">alpha_mean</td>
+<td align="right">11638.1509</td>
+</tr>
+<tr class="even">
+<td align="left">alpha_sd</td>
+<td align="right">2191.7902</td>
+</tr>
+<tr class="odd">
+<td align="left">beta_mean</td>
+<td align="right">2383.5104</td>
+</tr>
+<tr class="even">
+<td align="left">beta_sd</td>
+<td align="right">858.3026</td>
+</tr>
+<tr class="odd">
+<td align="left">sigma_mean</td>
+<td align="right">1642.1991</td>
+</tr>
+<tr class="even">
+<td align="left">sigma_sd</td>
+<td align="right">1350.7417</td>
+</tr>
+</tbody>
+</table>
 <p>Gelman’s Rhat</p>
-<pre><code>           Point est. Upper C.I.
-alpha_mean   1.001309   1.001915
-alpha_sd     1.007537   1.015729
-beta_mean    1.007254   1.015093
-beta_sd      1.008308   1.017053
-sigma_mean   1.003549   1.008201
-sigma_sd     1.005693   1.012514</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="right">Point est.</th>
+<th align="right">Upper C.I.</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">alpha_mean</td>
+<td align="right">1.001309</td>
+<td align="right">1.001915</td>
+</tr>
+<tr class="even">
+<td align="left">alpha_sd</td>
+<td align="right">1.007537</td>
+<td align="right">1.015729</td>
+</tr>
+<tr class="odd">
+<td align="left">beta_mean</td>
+<td align="right">1.007254</td>
+<td align="right">1.015093</td>
+</tr>
+<tr class="even">
+<td align="left">beta_sd</td>
+<td align="right">1.008308</td>
+<td align="right">1.017053</td>
+</tr>
+<tr class="odd">
+<td align="left">sigma_mean</td>
+<td align="right">1.003549</td>
+<td align="right">1.008201</td>
+</tr>
+<tr class="even">
+<td align="left">sigma_sd</td>
+<td align="right">1.005693</td>
+<td align="right">1.012514</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div id="plots-8" class="section level3">
-<h3>Plots</h3>
-<p><img src="figure/Bayes-convergence.Rmd/unnamed-chunk-45-1.png" width="672" style="display: block; margin: auto;" /><img src="figure/Bayes-convergence.Rmd/unnamed-chunk-45-2.png" width="672" style="display: block; margin: auto;" /></p>
+<h3>Plots<img src="figure/Bayes-convergence.Rmd/unnamed-chunk-1-17.png" width="672" style="display: block; margin: auto;" /><img src="figure/Bayes-convergence.Rmd/unnamed-chunk-1-18.png" width="672" style="display: block; margin: auto;" /></h3>
 </div>
 </div>
 <div id="double-exponential-model-mcclure-et-al.-2007" class="section level1">
 <h1>Double Exponential Model (McClure et al., 2007)</h1>
 <div id="rstan-output-9" class="section level3">
 <h3>RStan output</h3>
-<pre><code>                 mean     se_mean         sd         2.5%         25%
-omega_a    1.13032309 0.203212207 0.52808979 3.506473e-01 0.662542836
-omega_b    0.91939781 0.211839929 0.50805585 3.193762e-01 0.520085209
-beta_mean  0.01918719 0.015283311 0.04034322 5.576149e-05 0.000635931
-beta_sd    0.41966385 0.221070165 0.47386702 6.241621e-02 0.076597082
-delta_mean 0.04149755 0.016355861 0.05391597 9.584187e-05 0.001233507
-delta_sd   0.65154952 0.223135751 0.49928997 6.498215e-02 0.087607369
-sigma_mean 5.32357273 0.018951047 0.86230533 3.638785e+00 4.736222683
-sigma_sd   9.19009275 0.007986162 0.55601366 8.099899e+00 8.815937631
-                  50%        75%      97.5%       n_eff     Rhat
-omega_a    1.11568927 1.50153980  2.2132122    6.753299 1.542153
-omega_b    0.73430731 1.26682517  2.0873770    5.751846 1.772170
-beta_mean  0.00161938 0.01088887  0.1429347    6.967968 1.498998
-beta_sd    0.08953587 0.82308394  1.4671363    4.594653 2.715835
-delta_mean 0.01456524 0.07062375  0.1774969   10.866459 1.246414
-delta_sd   0.74907742 1.00852616  1.6016249    5.006882 2.174807
-sigma_mean 5.34196642 5.90379427  6.9881392 2070.406920 1.000499
-sigma_sd   9.18869994 9.54796456 10.3058481 4847.241881 1.000433</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="center">mean</th>
+<th align="center">se_mean</th>
+<th align="center">sd</th>
+<th align="center">2.5%</th>
+<th align="center">25%</th>
+<th align="center">50%</th>
+<th align="center">75%</th>
+<th align="center">97.5%</th>
+<th align="center">n_eff</th>
+<th align="center">Rhat</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>omega_a</td>
+<td align="center">1.1303231</td>
+<td align="center">0.2032122</td>
+<td align="center">0.5280898</td>
+<td align="center">0.3506473</td>
+<td align="center">0.6625428</td>
+<td align="center">1.1156893</td>
+<td align="center">1.5015398</td>
+<td align="center">2.2132122</td>
+<td align="center">6.753299</td>
+<td align="center">1.542153</td>
+</tr>
+<tr class="even">
+<td>omega_b</td>
+<td align="center">0.9193978</td>
+<td align="center">0.2118399</td>
+<td align="center">0.5080559</td>
+<td align="center">0.3193762</td>
+<td align="center">0.5200852</td>
+<td align="center">0.7343073</td>
+<td align="center">1.2668252</td>
+<td align="center">2.0873770</td>
+<td align="center">5.751846</td>
+<td align="center">1.772170</td>
+</tr>
+<tr class="odd">
+<td>beta_mean</td>
+<td align="center">0.0191872</td>
+<td align="center">0.0152833</td>
+<td align="center">0.0403432</td>
+<td align="center">0.0000558</td>
+<td align="center">0.0006359</td>
+<td align="center">0.0016194</td>
+<td align="center">0.0108889</td>
+<td align="center">0.1429347</td>
+<td align="center">6.967968</td>
+<td align="center">1.498998</td>
+</tr>
+<tr class="even">
+<td>beta_sd</td>
+<td align="center">0.4196638</td>
+<td align="center">0.2210702</td>
+<td align="center">0.4738670</td>
+<td align="center">0.0624162</td>
+<td align="center">0.0765971</td>
+<td align="center">0.0895359</td>
+<td align="center">0.8230839</td>
+<td align="center">1.4671363</td>
+<td align="center">4.594653</td>
+<td align="center">2.715835</td>
+</tr>
+<tr class="odd">
+<td>delta_mean</td>
+<td align="center">0.0414976</td>
+<td align="center">0.0163559</td>
+<td align="center">0.0539160</td>
+<td align="center">0.0000958</td>
+<td align="center">0.0012335</td>
+<td align="center">0.0145652</td>
+<td align="center">0.0706237</td>
+<td align="center">0.1774969</td>
+<td align="center">10.866459</td>
+<td align="center">1.246414</td>
+</tr>
+<tr class="even">
+<td>delta_sd</td>
+<td align="center">0.6515495</td>
+<td align="center">0.2231358</td>
+<td align="center">0.4992900</td>
+<td align="center">0.0649822</td>
+<td align="center">0.0876074</td>
+<td align="center">0.7490774</td>
+<td align="center">1.0085262</td>
+<td align="center">1.6016249</td>
+<td align="center">5.006882</td>
+<td align="center">2.174807</td>
+</tr>
+<tr class="odd">
+<td>sigma_mean</td>
+<td align="center">5.3235727</td>
+<td align="center">0.0189510</td>
+<td align="center">0.8623053</td>
+<td align="center">3.6387854</td>
+<td align="center">4.7362227</td>
+<td align="center">5.3419664</td>
+<td align="center">5.9037943</td>
+<td align="center">6.9881392</td>
+<td align="center">2070.406920</td>
+<td align="center">1.000499</td>
+</tr>
+<tr class="even">
+<td>sigma_sd</td>
+<td align="center">9.1900928</td>
+<td align="center">0.0079862</td>
+<td align="center">0.5560137</td>
+<td align="center">8.0998985</td>
+<td align="center">8.8159376</td>
+<td align="center">9.1886999</td>
+<td align="center">9.5479646</td>
+<td align="center">10.3058481</td>
+<td align="center">4847.241881</td>
+<td align="center">1.000433</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div id="coda-output-9" class="section level3">
 <h3>Coda output</h3>
 <p>Effective sample size</p>
-<pre><code>   omega_a    omega_b  beta_mean    beta_sd delta_mean   delta_sd 
-  2415.951   2103.730   6075.422   1565.999   4704.981   2015.534 
-sigma_mean   sigma_sd 
-  2497.497   4963.913 </code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="right">n_eff</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">omega_a</td>
+<td align="right">2415.951</td>
+</tr>
+<tr class="even">
+<td align="left">omega_b</td>
+<td align="right">2103.730</td>
+</tr>
+<tr class="odd">
+<td align="left">beta_mean</td>
+<td align="right">6075.422</td>
+</tr>
+<tr class="even">
+<td align="left">beta_sd</td>
+<td align="right">1565.999</td>
+</tr>
+<tr class="odd">
+<td align="left">delta_mean</td>
+<td align="right">4704.981</td>
+</tr>
+<tr class="even">
+<td align="left">delta_sd</td>
+<td align="right">2015.534</td>
+</tr>
+<tr class="odd">
+<td align="left">sigma_mean</td>
+<td align="right">2497.497</td>
+</tr>
+<tr class="even">
+<td align="left">sigma_sd</td>
+<td align="right">4963.913</td>
+</tr>
+</tbody>
+</table>
 <p>Gelman’s Rhat</p>
-<pre><code>           Point est. Upper C.I.
-omega_a      1.729374   2.408884
-omega_b      1.999201   2.979171
-beta_mean    1.798548   3.980408
-beta_sd      3.157420   6.356229
-delta_mean   1.305798   1.717858
-delta_sd     2.528022   4.046478
-sigma_mean   1.001800   1.005144
-sigma_sd     1.000368   1.001802</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="right">Point est.</th>
+<th align="right">Upper C.I.</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">omega_a</td>
+<td align="right">1.729374</td>
+<td align="right">2.408884</td>
+</tr>
+<tr class="even">
+<td align="left">omega_b</td>
+<td align="right">1.999201</td>
+<td align="right">2.979171</td>
+</tr>
+<tr class="odd">
+<td align="left">beta_mean</td>
+<td align="right">1.798548</td>
+<td align="right">3.980408</td>
+</tr>
+<tr class="even">
+<td align="left">beta_sd</td>
+<td align="right">3.157420</td>
+<td align="right">6.356229</td>
+</tr>
+<tr class="odd">
+<td align="left">delta_mean</td>
+<td align="right">1.305798</td>
+<td align="right">1.717858</td>
+</tr>
+<tr class="even">
+<td align="left">delta_sd</td>
+<td align="right">2.528022</td>
+<td align="right">4.046478</td>
+</tr>
+<tr class="odd">
+<td align="left">sigma_mean</td>
+<td align="right">1.001800</td>
+<td align="right">1.005144</td>
+</tr>
+<tr class="even">
+<td align="left">sigma_sd</td>
+<td align="right">1.000368</td>
+<td align="right">1.001802</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div id="plots-9" class="section level3">
-<h3>Plots</h3>
-<p><img src="figure/Bayes-convergence.Rmd/unnamed-chunk-50-1.png" width="672" style="display: block; margin: auto;" /><img src="figure/Bayes-convergence.Rmd/unnamed-chunk-50-2.png" width="672" style="display: block; margin: auto;" /></p>
+<h3>Plots<img src="figure/Bayes-convergence.Rmd/unnamed-chunk-1-19.png" width="672" style="display: block; margin: auto;" /><img src="figure/Bayes-convergence.Rmd/unnamed-chunk-1-20.png" width="672" style="display: block; margin: auto;" /></h3>
 </div>
 </div>
 <div id="additive-utility-model-killeen-2009" class="section level1">
 <h1>Additive Utility Model (Killeen, 2009)</h1>
 <div id="rstan-output-10" class="section level3">
 <h3>RStan output</h3>
-<pre><code>                   mean      se_mean           sd         2.5%         25%
-beta_mean   0.793400242 1.157541e-03 0.0548411513 0.6804557294 0.758940488
-beta_sd     0.497913664 1.377198e-03 0.0812448472 0.3575576399 0.441510563
-lambda_mean 0.162778277 1.534978e-03 0.1372926090 0.0056764470 0.057343391
-lambda_sd   9.283338547 6.803426e-03 0.6085168972 8.1166942112 8.879465337
-sigma_mean  0.001997736 1.927473e-05 0.0008515134 0.0002317781 0.001436047
-sigma_sd    0.027226098 1.108945e-04 0.0040176991 0.0204416037 0.024394629
-                    50%         75%        97.5%    n_eff      Rhat
-beta_mean   0.796464193 0.830601229  0.892775424 2244.605 1.0023468
-beta_sd     0.490692815 0.546657045  0.680814839 3480.159 1.0003539
-lambda_mean 0.130121633 0.231616471  0.510965708 8000.000 0.9997838
-lambda_sd   9.274921896 9.685597696 10.492448997 8000.000 1.0004782
-sigma_mean  0.002057161 0.002607264  0.003554659 1951.670 1.0056048
-sigma_sd    0.026842744 0.029681916  0.036051476 1312.607 1.0052516</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="center">mean</th>
+<th align="center">se_mean</th>
+<th align="center">sd</th>
+<th align="center">2.5%</th>
+<th align="center">25%</th>
+<th align="center">50%</th>
+<th align="center">75%</th>
+<th align="center">97.5%</th>
+<th align="center">n_eff</th>
+<th align="center">Rhat</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>beta_mean</td>
+<td align="center">0.7934002</td>
+<td align="center">0.0011575</td>
+<td align="center">0.0548412</td>
+<td align="center">0.6804557</td>
+<td align="center">0.7589405</td>
+<td align="center">0.7964642</td>
+<td align="center">0.8306012</td>
+<td align="center">0.8927754</td>
+<td align="center">2244.605</td>
+<td align="center">1.0023468</td>
+</tr>
+<tr class="even">
+<td>beta_sd</td>
+<td align="center">0.4979137</td>
+<td align="center">0.0013772</td>
+<td align="center">0.0812448</td>
+<td align="center">0.3575576</td>
+<td align="center">0.4415106</td>
+<td align="center">0.4906928</td>
+<td align="center">0.5466570</td>
+<td align="center">0.6808148</td>
+<td align="center">3480.159</td>
+<td align="center">1.0003539</td>
+</tr>
+<tr class="odd">
+<td>lambda_mean</td>
+<td align="center">0.1627783</td>
+<td align="center">0.0015350</td>
+<td align="center">0.1372926</td>
+<td align="center">0.0056764</td>
+<td align="center">0.0573434</td>
+<td align="center">0.1301216</td>
+<td align="center">0.2316165</td>
+<td align="center">0.5109657</td>
+<td align="center">8000.000</td>
+<td align="center">0.9997838</td>
+</tr>
+<tr class="even">
+<td>lambda_sd</td>
+<td align="center">9.2833385</td>
+<td align="center">0.0068034</td>
+<td align="center">0.6085169</td>
+<td align="center">8.1166942</td>
+<td align="center">8.8794653</td>
+<td align="center">9.2749219</td>
+<td align="center">9.6855977</td>
+<td align="center">10.4924490</td>
+<td align="center">8000.000</td>
+<td align="center">1.0004782</td>
+</tr>
+<tr class="odd">
+<td>sigma_mean</td>
+<td align="center">0.0019977</td>
+<td align="center">0.0000193</td>
+<td align="center">0.0008515</td>
+<td align="center">0.0002318</td>
+<td align="center">0.0014360</td>
+<td align="center">0.0020572</td>
+<td align="center">0.0026073</td>
+<td align="center">0.0035547</td>
+<td align="center">1951.670</td>
+<td align="center">1.0056048</td>
+</tr>
+<tr class="even">
+<td>sigma_sd</td>
+<td align="center">0.0272261</td>
+<td align="center">0.0001109</td>
+<td align="center">0.0040177</td>
+<td align="center">0.0204416</td>
+<td align="center">0.0243946</td>
+<td align="center">0.0268427</td>
+<td align="center">0.0296819</td>
+<td align="center">0.0360515</td>
+<td align="center">1312.607</td>
+<td align="center">1.0052516</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div id="coda-output-10" class="section level3">
 <h3>Coda output</h3>
 <p>Effective sample size</p>
-<pre><code>  beta_mean     beta_sd lambda_mean   lambda_sd  sigma_mean    sigma_sd 
-   2294.566    3587.579    8203.416    9423.649    2370.023    1359.421 </code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="right">n_eff</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">beta_mean</td>
+<td align="right">2294.566</td>
+</tr>
+<tr class="even">
+<td align="left">beta_sd</td>
+<td align="right">3587.579</td>
+</tr>
+<tr class="odd">
+<td align="left">lambda_mean</td>
+<td align="right">8203.416</td>
+</tr>
+<tr class="even">
+<td align="left">lambda_sd</td>
+<td align="right">9423.649</td>
+</tr>
+<tr class="odd">
+<td align="left">sigma_mean</td>
+<td align="right">2370.023</td>
+</tr>
+<tr class="even">
+<td align="left">sigma_sd</td>
+<td align="right">1359.421</td>
+</tr>
+</tbody>
+</table>
 <p>Gelman’s Rhat</p>
-<pre><code>            Point est. Upper C.I.
-beta_mean    1.0034994   1.008640
-beta_sd      1.0028521   1.005921
-lambda_mean  0.9999401   1.000629
-lambda_sd    1.0019555   1.005660
-sigma_mean   1.0037633   1.009059
-sigma_sd     1.0051243   1.011878</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="right">Point est.</th>
+<th align="right">Upper C.I.</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">beta_mean</td>
+<td align="right">1.0034994</td>
+<td align="right">1.008640</td>
+</tr>
+<tr class="even">
+<td align="left">beta_sd</td>
+<td align="right">1.0028521</td>
+<td align="right">1.005921</td>
+</tr>
+<tr class="odd">
+<td align="left">lambda_mean</td>
+<td align="right">0.9999401</td>
+<td align="right">1.000629</td>
+</tr>
+<tr class="even">
+<td align="left">lambda_sd</td>
+<td align="right">1.0019555</td>
+<td align="right">1.005660</td>
+</tr>
+<tr class="odd">
+<td align="left">sigma_mean</td>
+<td align="right">1.0037633</td>
+<td align="right">1.009059</td>
+</tr>
+<tr class="even">
+<td align="left">sigma_sd</td>
+<td align="right">1.0051243</td>
+<td align="right">1.011878</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div id="plots-10" class="section level3">
-<h3>Plots</h3>
-<p><img src="figure/Bayes-convergence.Rmd/unnamed-chunk-55-1.png" width="672" style="display: block; margin: auto;" /><img src="figure/Bayes-convergence.Rmd/unnamed-chunk-55-2.png" width="672" style="display: block; margin: auto;" /></p>
+<h3>Plots<img src="figure/Bayes-convergence.Rmd/unnamed-chunk-1-21.png" width="672" style="display: block; margin: auto;" /><img src="figure/Bayes-convergence.Rmd/unnamed-chunk-1-22.png" width="672" style="display: block; margin: auto;" /></h3>
 </div>
 <div id="session-information" class="section level2">
 <h2>Session information</h2>
 <pre class="r"><code>sessionInfo()</code></pre>
 <pre><code>R version 3.5.1 (2018-07-02)
 Platform: x86_64-apple-darwin15.6.0 (64-bit)
-Running under: OS X El Capitan 10.11.6
+Running under: macOS High Sierra 10.13.3
 
 Matrix products: default
 BLAS: /Library/Frameworks/R.framework/Versions/3.5/Resources/lib/libRblas.0.dylib
@@ -783,18 +2679,18 @@ attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
-[1] coda_0.19-1        rstan_2.17.3       StanHeaders_2.17.2
-[4] ggplot2_3.0.0     
+[1] knitr_1.20         coda_0.19-1        rstan_2.17.3      
+[4] StanHeaders_2.17.2 ggplot2_3.0.0     
 
 loaded via a namespace (and not attached):
- [1] Rcpp_0.12.17       compiler_3.5.1     pillar_1.3.0      
- [4] git2r_0.22.1       plyr_1.8.4         workflowr_1.1.1   
- [7] bindr_0.1.1        R.methodsS3_1.7.1  R.utils_2.6.0     
-[10] tools_3.5.1        digest_0.6.15      lattice_0.20-35   
-[13] evaluate_0.10.1    tibble_1.4.2       gtable_0.2.0      
-[16] pkgconfig_2.0.1    rlang_0.2.1        yaml_2.1.19       
-[19] bindrcpp_0.2.2     gridExtra_2.3      withr_2.1.2       
-[22] stringr_1.3.1      dplyr_0.7.6        knitr_1.20        
+ [1] Rcpp_0.12.17       highr_0.7          compiler_3.5.1    
+ [4] pillar_1.3.0       git2r_0.22.1       plyr_1.8.4        
+ [7] workflowr_1.1.1    bindr_0.1.1        R.methodsS3_1.7.1 
+[10] R.utils_2.6.0      tools_3.5.1        digest_0.6.15     
+[13] lattice_0.20-35    evaluate_0.10.1    tibble_1.4.2      
+[16] gtable_0.2.0       pkgconfig_2.0.1    rlang_0.2.1       
+[19] yaml_2.1.19        bindrcpp_0.2.2     gridExtra_2.3     
+[22] withr_2.1.2        stringr_1.3.1      dplyr_0.7.6       
 [25] stats4_3.5.1       rprojroot_1.3-2    grid_3.5.1        
 [28] tidyselect_0.2.4   inline_0.3.15      glue_1.2.0        
 [31] R6_2.2.2           rmarkdown_1.10     purrr_0.2.5       
