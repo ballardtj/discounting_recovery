@@ -5,7 +5,7 @@ output:
     df_print: paged
 ---
 
-```{r echo=FALSE,results='asis'}
+```{r echo=FALSE, message=FALSE,warning=FALSE,results='asis'}
 library(tidyverse)
 
 model_names = c(hyperbolic = 'Hyperbolic model',

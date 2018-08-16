@@ -5,519 +5,104 @@ output:
     df_print: paged
 ---
 
-Observed Model description:
+Model description:
 
 * Hierarchical
-* Weight parameters normally distributed, non-centered.
-* Gradient parameters normally distributed, and explicitly truncated. Delta and Tau between 0 and 1. Alpha between 0.01 and 0.99.
-
-Optimal Model description:
-
-* Same as above
-
-Run details: 
-
 * Chains: 8
-* Burnin: 4000
-* Post-burnin: 10000
-* Thinning: 10
+* Burnin: 1000
+* Post-burnin: 1000
+* Thinning: 1
 * Total samples: 8000
 
-Current issues with model:
 
-?
-
-# Hyperbolic model
-
-```{r,echo=FALSE,include=FALSE}
+```{r echo=FALSE, warning=FALSE,  message=FALSE,results='asis'}
 library(rstan)
 library(coda)
+library(knitr)
 
-hypers=c('k_mean','k_sd','sigma_mean','sigma_sd')
+models = list(hyperbolic = list(
+              name = 'Hyperbolic model', 
+              hypers=c('k_mean','k_sd','sigma_mean','sigma_sd')),
+                
+           exponential = list(
+              name = 'Exponential model',
+              hypers=c('k_mean','k_sd','sigma_mean','sigma_sd')),
+                
+           hyperbolic_gm = list( 
+              name = 'Hyperbolic model (Green & Myerson version)',
+              hypers=c('k_mean','k_sd','s_mean','s_sd','sigma_mean','sigma_sd')),
+           
+           prop_diff = list( 
+              name = 'Proportional difference model',
+              hypers=c('delta_mean','delta_sd','sigma_mean','sigma_sd')),  
+           
+           tradeoff = list(
+              name = 'Tradeoff model',
+              hypers=c("gamma_mean","gamma_sd","tau_mean","tau_sd","theta_mean","theta_sd",
+              "kappa_mean","kappa_sd","alpha_mean","alpha_sd","eps_mean","eps_sd")),
+              
+           ITCH = list(
+              name = 'ITCH model',
+              hypers=c("B1_mean","B1_sd","BxA_mean","BxA_sd","BxR_mean","BxR_sd",
+              "BtA_mean","BtA_sd","BtR_mean","BtR_sd")),
+              
+           const_sens = list(
+              name = 'Constant Sensitivity Model (Ebert & Prelec, 2007)',
+              hypers=c('alpha_mean','alpha_sd','beta_mean','beta_sd','sigma_mean','sigma_sd')),
+              
+           mazur1987 = list(
+              name = 'Hyperboloid Model (Mazur, 1987)',
+              hypers=c('k_mean','k_sd','s_mean','s_sd','sigma_mean','sigma_sd')),
+           
+           loewenstein1992 = list(
+              name = "Loewenstein & Prelec's (1992) Model",
+              hypers=c('alpha_mean','alpha_sd','beta_mean','beta_sd','sigma_mean','sigma_sd')),
+           
+           mcclure2007 = list(
+              name = "Double Exponential Model (McClure et al., 2007)",
+              hypers=c('omega_a','omega_b','beta_mean','beta_sd',"delta_mean","delta_sd","sigma_mean",'sigma_sd')),  
+           
+           killeen2009 = list(
+              name = "Additive Utility Model (Killeen, 2009)",
+              hypers=c('beta_mean','beta_sd',"lambda_mean","lambda_sd","sigma_mean",'sigma_sd'))
+        )
 
-load("data/derived/fit_Bayes_hyperbolic.RData")
-```
-
-### RStan output
-
-```{r,echo=FALSE}
-smrystan = summary(fit)
-smrystan[[1]][hypers,]
-```
-
-### Coda output
-
-Effective sample size
-
-```{r,echo=FALSE}
 stan2coda <- function(fit) {
   mcmc.list(lapply(1:ncol(fit), function(x) mcmc(as.array(fit)[,x,])))
 }
-effectiveSize(stan2coda(fit))[hypers]
-```
 
-Gelman's Rhat
+for (i in 1:length(models)){
+  cat('\n')  
+  cat("# ",models[[i]]$name)
+  
+  load(file=paste0("data/derived/fit_Bayes_", names(models)[i],".RData"))
+  
+  cat('\n') 
+  cat("### RStan output")
 
-```{r,echo=FALSE}
-gelman.diag(stan2coda(fit))[[1]][hypers,]
-```
+  smrystan = summary(fit)
+  print(kable(smrystan[[1]][models[[i]]$hypers,]),format="markdown")
+  
+  cat('\n') 
+  cat("### Coda output")
+  cat('\n')
+  cat("Effective sample size")
 
-### Plots
+  print(kable(effectiveSize(stan2coda(fit))[models[[i]]$hypers],format="markdown",col.names="n_eff"))
 
-```{r,echo=FALSE}
-rstan::traceplot(fit,par=hypers)
-pairs(fit,pars=hypers)
-```
+  cat('\n')
+  cat("Gelman's Rhat")
+  cat('\n')
 
+  print(kable(gelman.diag(stan2coda(fit))[[1]][models[[i]]$hypers,],format="markdown"))
 
+  cat('\n')
+  cat("### Plots")
 
-# Exponential model
+  print(rstan::traceplot(fit,par=models[[i]]$hypers))
+  pairs(fit,pars=models[[i]]$hypers)
 
-```{r,echo=FALSE,include=FALSE}
-library(rstan)
-library(coda)
-
-hypers=c('k_mean','k_sd','sigma_mean','sigma_sd')
-
-load("data/derived/fit_Bayes_exponential.RData")
-```
-
-### RStan output
-
-```{r,echo=FALSE}
-smrystan = summary(fit)
-smrystan[[1]][hypers,]
-```
-
-### Coda output
-
-Effective sample size
-
-```{r,echo=FALSE}
-stan2coda <- function(fit) {
-  mcmc.list(lapply(1:ncol(fit), function(x) mcmc(as.array(fit)[,x,])))
+  cat('\n')
 }
-effectiveSize(stan2coda(fit))[hypers]
 ```
 
-Gelman's Rhat
-
-```{r,echo=FALSE}
-gelman.diag(stan2coda(fit))[[1]][hypers,]
-```
-
-### Plots
-
-```{r,echo=FALSE}
-rstan::traceplot(fit,par=hypers)
-pairs(fit,pars=hypers)
-```
-
-
-# Hyperbolic model (Green & Myerson version)
-
-```{r,echo=FALSE,include=FALSE}
-library(rstan)
-library(coda)
-
-hypers=c('k_mean','k_sd','s_mean','s_sd','sigma_mean','sigma_sd')
-
-load("data/derived/fit_Bayes_hyperbolic_gm.RData")
-```
-
-### RStan output
-
-```{r,echo=FALSE}
-smrystan = summary(fit)
-smrystan[[1]][hypers,]
-```
-
-### Coda output
-
-Effective sample size
-
-```{r,echo=FALSE}
-stan2coda <- function(fit) {
-  mcmc.list(lapply(1:ncol(fit), function(x) mcmc(as.array(fit)[,x,])))
-}
-effectiveSize(stan2coda(fit))[hypers]
-```
-
-Gelman's Rhat
-
-```{r,echo=FALSE}
-gelman.diag(stan2coda(fit))[[1]][hypers,]
-```
-
-### Plots
-
-```{r,echo=FALSE}
-rstan::traceplot(fit,par=hypers)
-pairs(fit,pars=hypers)
-```
-
-
-
-# Proportional difference model
-
-```{r,echo=FALSE,include=FALSE}
-library(rstan)
-library(coda)
-
-hypers=c('delta_mean','delta_sd','sigma_mean','sigma_sd')
-
-load("data/derived/fit_Bayes_prop_diff.RData")
-```
-
-### RStan output
-
-```{r,echo=FALSE}
-smrystan = summary(fit)
-smrystan[[1]][hypers,]
-```
-
-### Coda output
-
-Effective sample size
-
-```{r,echo=FALSE}
-stan2coda <- function(fit) {
-  mcmc.list(lapply(1:ncol(fit), function(x) mcmc(as.array(fit)[,x,])))
-}
-effectiveSize(stan2coda(fit))[hypers]
-```
-
-Gelman's Rhat
-
-```{r,echo=FALSE}
-gelman.diag(stan2coda(fit))[[1]][hypers,]
-```
-
-### Plots
-
-```{r,echo=FALSE}
-rstan::traceplot(fit,par=hypers)
-pairs(fit,pars=hypers)
-```
-
-
-
-
-
-# Tradeoff model
-
-```{r,eval=FALSE, include=FALSE, echo=FALSE}
-library(rstan)
-library(coda)
-
-hypers=c("gamma_mean","gamma_sd","tau_mean","tau_sd","theta_mean","theta_sd",
-         "kappa_mean","kappa_sd","alpha_mean","alpha_sd","eps_mean","eps_sd")
-
-load("data/derived/fit_Bayes_tradeoff.RData")
-```
-
-### RStan output
-
-```{r,eval=FALSE, include=FALSE, echo=FALSE}
-smrystan = summary(fit)
-smrystan[[1]][hypers,]
-```
-
-### Coda output
-
-Effective sample size
-
-```{r,eval=FALSE, include=FALSE, echo=FALSE}
-stan2coda <- function(fit) {
-  mcmc.list(lapply(1:ncol(fit), function(x) mcmc(as.array(fit)[,x,])))
-}
-effectiveSize(stan2coda(fit))[hypers]
-```
-
-Gelman's Rhat
-
-```{r,eval=FALSE, include=FALSE, echo=FALSE}
-gelman.diag(stan2coda(fit))[[1]][hypers,]
-```
-
-### Plots
-
-```{r,eval=FALSE, include=FALSE, echo=FALSE}
-rstan::traceplot(fit,par=hypers)
-pairs(fit,pars=hypers)
-```
-
-
-
-
-# ITCH model
-
-```{r,echo=FALSE,include=FALSE}
-library(rstan)
-library(coda)
-
-hypers=c("B1_mean","B1_sd","BxA_mean","BxA_sd","BxR_mean","BxR_sd",
-         "BtA_mean","BtA_sd","BtR_mean","BtR_sd")
-
-load("data/derived/fit_Bayes_ITCH.RData")
-```
-
-### RStan output
-
-```{r,eval=FALSE, include=FALSE, echo=FALSE}
-smrystan = summary(fit)
-smrystan[[1]][hypers,]
-```
-
-### Coda output
-
-Effective sample size
-
-```{r,eval=FALSE, include=FALSE, echo=FALSE}
-stan2coda <- function(fit) {
-  mcmc.list(lapply(1:ncol(fit), function(x) mcmc(as.array(fit)[,x,])))
-}
-effectiveSize(stan2coda(fit))[hypers]
-```
-
-Gelman's Rhat
-
-```{r,eval=FALSE, include=FALSE, echo=FALSE}
-gelman.diag(stan2coda(fit))[[1]][hypers,]
-```
-
-### Plots
-
-```{r,eval=FALSE, include=FALSE, echo=FALSE}
-rstan::traceplot(fit,par=hypers)
-pairs(fit,pars=hypers)
-```
-
-
-
-
-
-# Constant Sensitivity Model (Ebert & Prelec, 2007)
-
-```{r,echo=FALSE,include=FALSE}
-library(rstan)
-library(coda)
-
-hypers=c('alpha_mean','alpha_sd','beta_mean','beta_sd','sigma_mean','sigma_sd')
-
-load("data/derived/fit_Bayes_const_sens.RData")
-```
-
-### RStan output
-
-```{r,echo=FALSE}
-smrystan = summary(fit)
-smrystan[[1]][hypers,]
-```
-
-### Coda output
-
-Effective sample size
-
-```{r,echo=FALSE}
-stan2coda <- function(fit) {
-  mcmc.list(lapply(1:ncol(fit), function(x) mcmc(as.array(fit)[,x,])))
-}
-effectiveSize(stan2coda(fit))[hypers]
-```
-
-Gelman's Rhat
-
-```{r,echo=FALSE}
-gelman.diag(stan2coda(fit))[[1]][hypers,]
-```
-
-### Plots
-
-```{r,echo=FALSE}
-rstan::traceplot(fit,par=hypers)
-pairs(fit,pars=hypers)
-```
-
-
-
-
-
-# Hyperboloid Model (Mazur, 1987)
-
-```{r,echo=FALSE,include=FALSE}
-library(rstan)
-library(coda)
-
-hypers=c('k_mean','k_sd','s_mean','s_sd','sigma_mean','sigma_sd')
-
-load("data/derived/fit_Bayes_mazur1987.RData")
-```
-
-### RStan output
-
-```{r,echo=FALSE}
-smrystan = summary(fit)
-smrystan[[1]][hypers,]
-```
-
-### Coda output
-
-Effective sample size
-
-```{r,echo=FALSE}
-stan2coda <- function(fit) {
-  mcmc.list(lapply(1:ncol(fit), function(x) mcmc(as.array(fit)[,x,])))
-}
-effectiveSize(stan2coda(fit))[hypers]
-```
-
-Gelman's Rhat
-
-```{r,echo=FALSE}
-gelman.diag(stan2coda(fit))[[1]][hypers,]
-```
-
-### Plots
-
-```{r,echo=FALSE}
-rstan::traceplot(fit,par=hypers)
-pairs(fit,pars=hypers)
-```
-
-
-
-
-# Loewenstein & Prelec's (1992) Model
-
-
-```{r,echo=FALSE,include=FALSE}
-library(rstan)
-library(coda)
-
-hypers=c('alpha_mean','alpha_sd','beta_mean','beta_sd','sigma_mean','sigma_sd')
-
-load("data/derived/fit_Bayes_loewenstein1992.RData")
-```
-
-### RStan output
-
-```{r,echo=FALSE}
-smrystan = summary(fit)
-smrystan[[1]][hypers,]
-```
-
-### Coda output
-
-Effective sample size
-
-```{r,echo=FALSE}
-stan2coda <- function(fit) {
-  mcmc.list(lapply(1:ncol(fit), function(x) mcmc(as.array(fit)[,x,])))
-}
-effectiveSize(stan2coda(fit))[hypers]
-```
-
-Gelman's Rhat
-
-```{r,echo=FALSE}
-gelman.diag(stan2coda(fit))[[1]][hypers,]
-```
-
-### Plots
-
-```{r,echo=FALSE}
-rstan::traceplot(fit,par=hypers)
-pairs(fit,pars=hypers)
-```
-
-
-
-# Double Exponential Model (McClure et al., 2007)
-
-
-```{r,echo=FALSE,include=FALSE}
-library(rstan)
-library(coda)
-
-hypers=c('omega_a','omega_b','beta_mean','beta_sd',"delta_mean","delta_sd","sigma_mean",'sigma_sd')
-
-load("data/derived/fit_Bayes_mcclure2007.RData")
-```
-
-### RStan output
-
-```{r,echo=FALSE}
-smrystan = summary(fit)
-smrystan[[1]][hypers,]
-```
-
-### Coda output
-
-Effective sample size
-
-```{r,echo=FALSE}
-stan2coda <- function(fit) {
-  mcmc.list(lapply(1:ncol(fit), function(x) mcmc(as.array(fit)[,x,])))
-}
-effectiveSize(stan2coda(fit))[hypers]
-```
-
-Gelman's Rhat
-
-```{r,echo=FALSE}
-gelman.diag(stan2coda(fit))[[1]][hypers,]
-```
-
-### Plots
-
-```{r,echo=FALSE}
-rstan::traceplot(fit,par=hypers)
-pairs(fit,pars=hypers)
-```
-
-
-
-
-# Additive Utility Model (Killeen, 2009)
-
-
-```{r,echo=FALSE,include=FALSE}
-library(rstan)
-library(coda)
-
-hypers=c('beta_mean','beta_sd',"lambda_mean","lambda_sd","sigma_mean",'sigma_sd')
-
-load("data/derived/fit_Bayes_killeen2009.RData")
-```
-
-### RStan output
-
-```{r,echo=FALSE}
-smrystan = summary(fit)
-smrystan[[1]][hypers,]
-```
-
-### Coda output
-
-Effective sample size
-
-```{r,echo=FALSE}
-stan2coda <- function(fit) {
-  mcmc.list(lapply(1:ncol(fit), function(x) mcmc(as.array(fit)[,x,])))
-}
-effectiveSize(stan2coda(fit))[hypers]
-```
-
-Gelman's Rhat
-
-```{r,echo=FALSE}
-gelman.diag(stan2coda(fit))[[1]][hypers,]
-```
-
-### Plots
-
-```{r,echo=FALSE}
-rstan::traceplot(fit,par=hypers)
-pairs(fit,pars=hypers)
-```
