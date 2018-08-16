@@ -325,13 +325,12 @@ div.section {
 </div>
 
 
-<p><strong>Last updated:</strong> 2018-07-30</p>
+<p><strong>Last updated:</strong> 2018-08-16</p>
 <strong>workflowr checks:</strong> <small>(Click a bullet for more information)</small>
 <ul>
 <li>
 <details>
-<p><summary> <strong style="color:blue;">✔</strong> <strong>R Markdown file:</strong> up-to-date </summary></p>
-<p>Great! Since the R Markdown file has been committed to the Git repository, you know the exact version of the code that produced these results.</p>
+<p><summary> <strong style="color:red;">✖</strong> <strong>R Markdown file:</strong> uncommitted changes </summary> The R Markdown file has unstaged changes. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
 </details>
 </li>
 <li>
@@ -354,30 +353,64 @@ div.section {
 </li>
 <li>
 <details>
-<p><summary> <strong style="color:blue;">✔</strong> <strong>Repository version:</strong> <a href="https://github.com/ballardtj/discounting_recovery/tree/0cf4d752626b45792d91991134a218094abe9f95" target="_blank">0cf4d75</a> </summary></p>
+<p><summary> <strong style="color:blue;">✔</strong> <strong>Repository version:</strong> <a href="https://github.com/ballardtj/discounting_recovery/tree/106170df63e24b0a3ebb130cd79458ebe3ddce86" target="_blank">106170d</a> </summary></p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility. The version displayed above was the version of the Git repository at the time these results were generated. <br><br> Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
 <pre><code>
 Ignored files:
     Ignored:    .DS_Store
     Ignored:    .Rproj.user/
     Ignored:    analysis/.DS_Store
+    Ignored:    analysis/.Rproj.user/C511515A/ctx/
+    Ignored:    analysis/.Rproj.user/C511515A/explorer-cache/
+    Ignored:    analysis/.Rproj.user/C511515A/presentation/
+    Ignored:    analysis/.Rproj.user/C511515A/profiles-cache/
+    Ignored:    analysis/.Rproj.user/C511515A/sources/per/u/
+    Ignored:    analysis/.Rproj.user/C511515A/viewer-cache/
     Ignored:    analysis/Bayes/.DS_Store
+    Ignored:    analysis/ML/.DS_Store
     Ignored:    analysis/ML/.Rproj.user/
     Ignored:    data/.DS_Store
+    Ignored:    docs/.DS_Store
+    Ignored:    docs/figure/.DS_Store
+
+Untracked files:
+    Untracked:  data/derived/fit_ML_loewenstein1992.RData
+    Untracked:  data/derived/fit_ML_new_ITCH.RData
+    Untracked:  data/derived/fit_ML_new_const_sens.RData
+    Untracked:  data/derived/fit_ML_new_exponential.RData
+    Untracked:  data/derived/fit_ML_new_hyperbolic.RData
+    Untracked:  data/derived/fit_ML_new_hyperbolic_gm.RData
+    Untracked:  data/derived/fit_ML_new_killeen2009.RData
+    Untracked:  data/derived/fit_ML_new_loewenstein1992.RData
+    Untracked:  data/derived/fit_ML_new_mazur1987.RData
+    Untracked:  data/derived/fit_ML_new_mcclure2007.RData
+    Untracked:  data/derived/fit_ML_new_prop_diff.RData
+    Untracked:  data/derived/fit_ML_new_tradeoff.RData
 
 Unstaged changes:
-    Modified:   data/derived/fit_Bayes_ITCH.RData
-    Modified:   data/derived/fit_Bayes_const_sens.RData
-    Modified:   data/derived/fit_Bayes_exponential.RData
-    Modified:   data/derived/fit_Bayes_hyperbolic.RData
-    Modified:   data/derived/fit_Bayes_hyperbolic_gm.RData
-    Modified:   data/derived/fit_Bayes_killeen2009.RData
-    Modified:   data/derived/fit_Bayes_loewenstein1992.RData
-    Modified:   data/derived/fit_Bayes_mazur1987.RData
-    Modified:   data/derived/fit_Bayes_mcclure2007.RData
-    Modified:   data/derived/fit_Bayes_prop_diff.RData
-    Deleted:    data/derived/fit_Bayes_propdiff.RData
-    Deleted:    data/derived/fit_Bayes_tradeoff.RData
+    Modified:   analysis/ML-fits.Rmd
+    Modified:   analysis/ML-parameters.Rmd
+    Modified:   analysis/ML/1_fit_manos_data.R
+    Modified:   data/derived/fit_ML_ITCH.RData
+    Modified:   data/derived/fit_ML_const_sens.RData
+    Modified:   data/derived/fit_ML_exponential.RData
+    Modified:   data/derived/fit_ML_hyperbolic.RData
+    Modified:   data/derived/fit_ML_hyperbolic_gm.RData
+    Modified:   data/derived/fit_ML_killeen2009.RData
+    Modified:   data/derived/fit_ML_mazur1987.RData
+    Modified:   data/derived/fit_ML_mcclure2007.RData
+    Modified:   data/derived/fit_ML_prop_diff.RData
+    Modified:   data/derived/fit_ML_tradeoff.RData
+    Modified:   models/ITCH.R
+    Modified:   models/exponential.R
+    Modified:   models/hyperbolic.R
+    Modified:   models/hyperbolic_gm.R
+    Modified:   models/killeen2009.R
+    Modified:   models/loewenstein1992.R
+    Modified:   models/mazur1987.R
+    Modified:   models/mcclure2007.R
+    Modified:   models/prop_diff.R
+    Modified:   models/tradeoff.R
 
 </code></pre>
 Note that any generated files, e.g. HTML, png, CSS, etc., are not included in this status report because it is ok for generated content to have uncommitted changes.
@@ -408,6 +441,23 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td style="text-align:left;">
+html
+</td>
+<td style="text-align:left;">
+<a href="https://cdn.rawgit.com/ballardtj/discounting_recovery/74ff0c82ec5d8e4f860049eb186130d3879d4eba/docs/ML-fits.html" target="_blank">74ff0c8</a>
+</td>
+<td style="text-align:left;">
+ballardtj
+</td>
+<td style="text-align:left;">
+2018-07-30
+</td>
+<td style="text-align:left;">
+Build site.
+</td>
+</tr>
 <tr>
 <td style="text-align:left;">
 html
@@ -583,11 +633,18 @@ wflow_publish(&quot;analysis/*Rmd&quot;)
 </ul>
 </details>
 <hr />
+<pre><code>── Attaching packages ─────────────────────────────────────────────────────────────────────────────────────────── tidyverse 1.2.1 ──</code></pre>
+<pre><code>✔ ggplot2 3.0.0     ✔ purrr   0.2.5
+✔ tibble  1.4.2     ✔ dplyr   0.7.6
+✔ tidyr   0.8.1     ✔ stringr 1.3.1
+✔ readr   1.1.1     ✔ forcats 0.3.0</code></pre>
+<pre><code>── Conflicts ────────────────────────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()</code></pre>
 <div id="hyperbolic-model" class="section level1">
-<h1>Hyperbolic Model</h1>
-<p><img src="figure/ML-fits.Rmd/unnamed-chunk-2-1.png" width="672" style="display: block; margin: auto;" /></p>
+<h1>Hyperbolic model<img src="figure/ML-fits.Rmd/unnamed-chunk-1-1.png" width="672" style="display: block; margin: auto;" /></h1>
 <details>
-<summary><em>Expand here to see past versions of unnamed-chunk-2-1.png:</em></summary>
+<summary><em>Expand here to see past versions of unnamed-chunk-1-1.png:</em></summary>
 <table style = "border-collapse:separate; border-spacing:5px;">
 <thead>
 <tr>
@@ -605,18 +662,7 @@ Date
 <tbody>
 <tr>
 <td style="text-align:left;">
-<a href="https://github.com/ballardtj/discounting_recovery/blob/ae8ded236d4773a4a94d47b68a892da52563b488/docs/figure/ML-fits.Rmd/unnamed-chunk-2-1.png" target="_blank">ae8ded2</a>
-</td>
-<td style="text-align:left;">
-ballardtj
-</td>
-<td style="text-align:left;">
-2018-07-27
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-<a href="https://github.com/ballardtj/discounting_recovery/blob/accd306c55d697a626c3536353b16f39f876da4f/docs/figure/ML-fits.Rmd/unnamed-chunk-2-1.png" target="_blank">accd306</a>
+<a href="https://github.com/ballardtj/discounting_recovery/blob/accd306c55d697a626c3536353b16f39f876da4f/docs/figure/ML-fits.Rmd/unnamed-chunk-1-1.png" target="_blank">accd306</a>
 </td>
 <td style="text-align:left;">
 ballardtj
@@ -630,475 +676,34 @@ ballardtj
 </details>
 </div>
 <div id="exponential-model" class="section level1">
-<h1>Exponential Model</h1>
-<p><img src="figure/ML-fits.Rmd/unnamed-chunk-3-1.png" width="672" style="display: block; margin: auto;" /></p>
-<details>
-<summary><em>Expand here to see past versions of unnamed-chunk-3-1.png:</em></summary>
-<table style = "border-collapse:separate; border-spacing:5px;">
-<thead>
-<tr>
-<th style="text-align:left;">
-Version
-</th>
-<th style="text-align:left;">
-Author
-</th>
-<th style="text-align:left;">
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-<a href="https://github.com/ballardtj/discounting_recovery/blob/ae8ded236d4773a4a94d47b68a892da52563b488/docs/figure/ML-fits.Rmd/unnamed-chunk-3-1.png" target="_blank">ae8ded2</a>
-</td>
-<td style="text-align:left;">
-ballardtj
-</td>
-<td style="text-align:left;">
-2018-07-27
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-<a href="https://github.com/ballardtj/discounting_recovery/blob/accd306c55d697a626c3536353b16f39f876da4f/docs/figure/ML-fits.Rmd/unnamed-chunk-3-1.png" target="_blank">accd306</a>
-</td>
-<td style="text-align:left;">
-ballardtj
-</td>
-<td style="text-align:left;">
-2018-07-27
-</td>
-</tr>
-</tbody>
-</table>
-</details>
+<h1>Exponential model<img src="figure/ML-fits.Rmd/unnamed-chunk-1-2.png" width="672" style="display: block; margin: auto;" /></h1>
 </div>
-<div id="green-myerson-hyperbolic" class="section level1">
-<h1>Green &amp; Myerson Hyperbolic</h1>
-<p><img src="figure/ML-fits.Rmd/unnamed-chunk-4-1.png" width="672" style="display: block; margin: auto;" /></p>
-<details>
-<summary><em>Expand here to see past versions of unnamed-chunk-4-1.png:</em></summary>
-<table style = "border-collapse:separate; border-spacing:5px;">
-<thead>
-<tr>
-<th style="text-align:left;">
-Version
-</th>
-<th style="text-align:left;">
-Author
-</th>
-<th style="text-align:left;">
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-<a href="https://github.com/ballardtj/discounting_recovery/blob/ae8ded236d4773a4a94d47b68a892da52563b488/docs/figure/ML-fits.Rmd/unnamed-chunk-4-1.png" target="_blank">ae8ded2</a>
-</td>
-<td style="text-align:left;">
-ballardtj
-</td>
-<td style="text-align:left;">
-2018-07-27
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-<a href="https://github.com/ballardtj/discounting_recovery/blob/accd306c55d697a626c3536353b16f39f876da4f/docs/figure/ML-fits.Rmd/unnamed-chunk-4-1.png" target="_blank">accd306</a>
-</td>
-<td style="text-align:left;">
-ballardtj
-</td>
-<td style="text-align:left;">
-2018-07-27
-</td>
-</tr>
-</tbody>
-</table>
-</details>
+<div id="hyperbolic-model-green-myerson-version" class="section level1">
+<h1>Hyperbolic model (Green &amp; Myerson version)<img src="figure/ML-fits.Rmd/unnamed-chunk-1-3.png" width="672" style="display: block; margin: auto;" /></h1>
 </div>
 <div id="proportional-difference-model" class="section level1">
-<h1>Proportional Difference Model</h1>
-<p><img src="figure/ML-fits.Rmd/unnamed-chunk-5-1.png" width="672" style="display: block; margin: auto;" /></p>
-<details>
-<summary><em>Expand here to see past versions of unnamed-chunk-5-1.png:</em></summary>
-<table style = "border-collapse:separate; border-spacing:5px;">
-<thead>
-<tr>
-<th style="text-align:left;">
-Version
-</th>
-<th style="text-align:left;">
-Author
-</th>
-<th style="text-align:left;">
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-<a href="https://github.com/ballardtj/discounting_recovery/blob/ed463e5e0f12749b442354a5d64dfc38d4469066/docs/figure/ML-fits.Rmd/unnamed-chunk-5-1.png" target="_blank">ed463e5</a>
-</td>
-<td style="text-align:left;">
-ballardtj
-</td>
-<td style="text-align:left;">
-2018-07-27
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-<a href="https://github.com/ballardtj/discounting_recovery/blob/aba6a7396116a91b1592ce4a6a2866f703b1a9bf/docs/figure/ML-fits.Rmd/unnamed-chunk-5-1.png" target="_blank">aba6a73</a>
-</td>
-<td style="text-align:left;">
-ballardtj
-</td>
-<td style="text-align:left;">
-2018-07-27
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-<a href="https://github.com/ballardtj/discounting_recovery/blob/ae8ded236d4773a4a94d47b68a892da52563b488/docs/figure/ML-fits.Rmd/unnamed-chunk-5-1.png" target="_blank">ae8ded2</a>
-</td>
-<td style="text-align:left;">
-ballardtj
-</td>
-<td style="text-align:left;">
-2018-07-27
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-<a href="https://github.com/ballardtj/discounting_recovery/blob/accd306c55d697a626c3536353b16f39f876da4f/docs/figure/ML-fits.Rmd/unnamed-chunk-5-1.png" target="_blank">accd306</a>
-</td>
-<td style="text-align:left;">
-ballardtj
-</td>
-<td style="text-align:left;">
-2018-07-27
-</td>
-</tr>
-</tbody>
-</table>
-</details>
+<h1>Proportional difference model<img src="figure/ML-fits.Rmd/unnamed-chunk-1-4.png" width="672" style="display: block; margin: auto;" /></h1>
 </div>
 <div id="tradeoff-model" class="section level1">
-<h1>Tradeoff Model</h1>
-<p><img src="figure/ML-fits.Rmd/unnamed-chunk-6-1.png" width="672" style="display: block; margin: auto;" /></p>
-<details>
-<summary><em>Expand here to see past versions of unnamed-chunk-6-1.png:</em></summary>
-<table style = "border-collapse:separate; border-spacing:5px;">
-<thead>
-<tr>
-<th style="text-align:left;">
-Version
-</th>
-<th style="text-align:left;">
-Author
-</th>
-<th style="text-align:left;">
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-<a href="https://github.com/ballardtj/discounting_recovery/blob/ae8ded236d4773a4a94d47b68a892da52563b488/docs/figure/ML-fits.Rmd/unnamed-chunk-6-1.png" target="_blank">ae8ded2</a>
-</td>
-<td style="text-align:left;">
-ballardtj
-</td>
-<td style="text-align:left;">
-2018-07-27
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-<a href="https://github.com/ballardtj/discounting_recovery/blob/accd306c55d697a626c3536353b16f39f876da4f/docs/figure/ML-fits.Rmd/unnamed-chunk-6-1.png" target="_blank">accd306</a>
-</td>
-<td style="text-align:left;">
-ballardtj
-</td>
-<td style="text-align:left;">
-2018-07-27
-</td>
-</tr>
-</tbody>
-</table>
-</details>
+<h1>Tradeoff model<img src="figure/ML-fits.Rmd/unnamed-chunk-1-5.png" width="672" style="display: block; margin: auto;" /></h1>
 </div>
 <div id="itch-model" class="section level1">
-<h1>ITCH Model</h1>
-<p><img src="figure/ML-fits.Rmd/unnamed-chunk-7-1.png" width="672" style="display: block; margin: auto;" /></p>
-<details>
-<summary><em>Expand here to see past versions of unnamed-chunk-7-1.png:</em></summary>
-<table style = "border-collapse:separate; border-spacing:5px;">
-<thead>
-<tr>
-<th style="text-align:left;">
-Version
-</th>
-<th style="text-align:left;">
-Author
-</th>
-<th style="text-align:left;">
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-<a href="https://github.com/ballardtj/discounting_recovery/blob/ae8ded236d4773a4a94d47b68a892da52563b488/docs/figure/ML-fits.Rmd/unnamed-chunk-7-1.png" target="_blank">ae8ded2</a>
-</td>
-<td style="text-align:left;">
-ballardtj
-</td>
-<td style="text-align:left;">
-2018-07-27
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-<a href="https://github.com/ballardtj/discounting_recovery/blob/accd306c55d697a626c3536353b16f39f876da4f/docs/figure/ML-fits.Rmd/unnamed-chunk-7-1.png" target="_blank">accd306</a>
-</td>
-<td style="text-align:left;">
-ballardtj
-</td>
-<td style="text-align:left;">
-2018-07-27
-</td>
-</tr>
-</tbody>
-</table>
-</details>
+<h1>ITCH model<img src="figure/ML-fits.Rmd/unnamed-chunk-1-6.png" width="672" style="display: block; margin: auto;" /></h1>
 </div>
 <div id="constant-sensitivity-model-ebert-prelec-2007" class="section level1">
-<h1>Constant Sensitivity Model (Ebert &amp; Prelec, 2007)</h1>
-<p><img src="figure/ML-fits.Rmd/unnamed-chunk-8-1.png" width="672" style="display: block; margin: auto;" /></p>
-<details>
-<summary><em>Expand here to see past versions of unnamed-chunk-8-1.png:</em></summary>
-<table style = "border-collapse:separate; border-spacing:5px;">
-<thead>
-<tr>
-<th style="text-align:left;">
-Version
-</th>
-<th style="text-align:left;">
-Author
-</th>
-<th style="text-align:left;">
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-<a href="https://github.com/ballardtj/discounting_recovery/blob/ae8ded236d4773a4a94d47b68a892da52563b488/docs/figure/ML-fits.Rmd/unnamed-chunk-8-1.png" target="_blank">ae8ded2</a>
-</td>
-<td style="text-align:left;">
-ballardtj
-</td>
-<td style="text-align:left;">
-2018-07-27
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-<a href="https://github.com/ballardtj/discounting_recovery/blob/accd306c55d697a626c3536353b16f39f876da4f/docs/figure/ML-fits.Rmd/unnamed-chunk-8-1.png" target="_blank">accd306</a>
-</td>
-<td style="text-align:left;">
-ballardtj
-</td>
-<td style="text-align:left;">
-2018-07-27
-</td>
-</tr>
-</tbody>
-</table>
-</details>
+<h1>Constant Sensitivity Model (Ebert &amp; Prelec, 2007)<img src="figure/ML-fits.Rmd/unnamed-chunk-1-7.png" width="672" style="display: block; margin: auto;" /></h1>
 </div>
 <div id="hyperboloid-model-mazur-1987" class="section level1">
-<h1>Hyperboloid Model (Mazur, 1987)</h1>
-<p><img src="figure/ML-fits.Rmd/unnamed-chunk-9-1.png" width="672" style="display: block; margin: auto;" /></p>
-<details>
-<summary><em>Expand here to see past versions of unnamed-chunk-9-1.png:</em></summary>
-<table style = "border-collapse:separate; border-spacing:5px;">
-<thead>
-<tr>
-<th style="text-align:left;">
-Version
-</th>
-<th style="text-align:left;">
-Author
-</th>
-<th style="text-align:left;">
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-<a href="https://github.com/ballardtj/discounting_recovery/blob/ae8ded236d4773a4a94d47b68a892da52563b488/docs/figure/ML-fits.Rmd/unnamed-chunk-9-1.png" target="_blank">ae8ded2</a>
-</td>
-<td style="text-align:left;">
-ballardtj
-</td>
-<td style="text-align:left;">
-2018-07-27
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-<a href="https://github.com/ballardtj/discounting_recovery/blob/accd306c55d697a626c3536353b16f39f876da4f/docs/figure/ML-fits.Rmd/unnamed-chunk-9-1.png" target="_blank">accd306</a>
-</td>
-<td style="text-align:left;">
-ballardtj
-</td>
-<td style="text-align:left;">
-2018-07-27
-</td>
-</tr>
-</tbody>
-</table>
-</details>
+<h1>Hyperboloid Model (Mazur, 1987)<img src="figure/ML-fits.Rmd/unnamed-chunk-1-8.png" width="672" style="display: block; margin: auto;" /></h1>
 </div>
 <div id="loewenstein-prelecs-1992-model" class="section level1">
-<h1>Loewenstein &amp; Prelec’s (1992) Model</h1>
-<p><img src="figure/ML-fits.Rmd/unnamed-chunk-10-1.png" width="672" style="display: block; margin: auto;" /></p>
-<details>
-<summary><em>Expand here to see past versions of unnamed-chunk-10-1.png:</em></summary>
-<table style = "border-collapse:separate; border-spacing:5px;">
-<thead>
-<tr>
-<th style="text-align:left;">
-Version
-</th>
-<th style="text-align:left;">
-Author
-</th>
-<th style="text-align:left;">
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-<a href="https://github.com/ballardtj/discounting_recovery/blob/ae8ded236d4773a4a94d47b68a892da52563b488/docs/figure/ML-fits.Rmd/unnamed-chunk-10-1.png" target="_blank">ae8ded2</a>
-</td>
-<td style="text-align:left;">
-ballardtj
-</td>
-<td style="text-align:left;">
-2018-07-27
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-<a href="https://github.com/ballardtj/discounting_recovery/blob/accd306c55d697a626c3536353b16f39f876da4f/docs/figure/ML-fits.Rmd/unnamed-chunk-10-1.png" target="_blank">accd306</a>
-</td>
-<td style="text-align:left;">
-ballardtj
-</td>
-<td style="text-align:left;">
-2018-07-27
-</td>
-</tr>
-</tbody>
-</table>
-</details>
+<h1>Loewenstein &amp; Prelec’s (1992) Model<img src="figure/ML-fits.Rmd/unnamed-chunk-1-9.png" width="672" style="display: block; margin: auto;" /></h1>
 </div>
 <div id="double-exponential-model-mcclure-et-al.-2007" class="section level1">
-<h1>Double Exponential Model (McClure et al., 2007)</h1>
-<p><img src="figure/ML-fits.Rmd/unnamed-chunk-11-1.png" width="672" style="display: block; margin: auto;" /></p>
-<details>
-<summary><em>Expand here to see past versions of unnamed-chunk-11-1.png:</em></summary>
-<table style = "border-collapse:separate; border-spacing:5px;">
-<thead>
-<tr>
-<th style="text-align:left;">
-Version
-</th>
-<th style="text-align:left;">
-Author
-</th>
-<th style="text-align:left;">
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-<a href="https://github.com/ballardtj/discounting_recovery/blob/ae8ded236d4773a4a94d47b68a892da52563b488/docs/figure/ML-fits.Rmd/unnamed-chunk-11-1.png" target="_blank">ae8ded2</a>
-</td>
-<td style="text-align:left;">
-ballardtj
-</td>
-<td style="text-align:left;">
-2018-07-27
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-<a href="https://github.com/ballardtj/discounting_recovery/blob/accd306c55d697a626c3536353b16f39f876da4f/docs/figure/ML-fits.Rmd/unnamed-chunk-11-1.png" target="_blank">accd306</a>
-</td>
-<td style="text-align:left;">
-ballardtj
-</td>
-<td style="text-align:left;">
-2018-07-27
-</td>
-</tr>
-</tbody>
-</table>
-</details>
+<h1>Double Exponential Model (McClure et al., 2007)<img src="figure/ML-fits.Rmd/unnamed-chunk-1-10.png" width="672" style="display: block; margin: auto;" /></h1>
 </div>
 <div id="additive-utility-model-killeen-2009" class="section level1">
-<h1>Additive Utility Model (Killeen, 2009)</h1>
-<p><img src="figure/ML-fits.Rmd/unnamed-chunk-12-1.png" width="672" style="display: block; margin: auto;" /></p>
-<details>
-<summary><em>Expand here to see past versions of unnamed-chunk-12-1.png:</em></summary>
-<table style = "border-collapse:separate; border-spacing:5px;">
-<thead>
-<tr>
-<th style="text-align:left;">
-Version
-</th>
-<th style="text-align:left;">
-Author
-</th>
-<th style="text-align:left;">
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-<a href="https://github.com/ballardtj/discounting_recovery/blob/ae8ded236d4773a4a94d47b68a892da52563b488/docs/figure/ML-fits.Rmd/unnamed-chunk-12-1.png" target="_blank">ae8ded2</a>
-</td>
-<td style="text-align:left;">
-ballardtj
-</td>
-<td style="text-align:left;">
-2018-07-27
-</td>
-</tr>
-</tbody>
-</table>
-</details>
+<h1>Additive Utility Model (Killeen, 2009)<img src="figure/ML-fits.Rmd/unnamed-chunk-1-11.png" width="672" style="display: block; margin: auto;" /></h1>
 </div>
 <div id="model-comparison" class="section level1">
 <h1>Model Comparison</h1>
@@ -1106,7 +711,7 @@ ballardtj
 <caption>Results of Model Comparisons</caption>
 <thead>
 <tr class="header">
-<th align="left">model</th>
+<th align="left">model_names</th>
 <th align="right">lnl</th>
 <th align="right">nparms</th>
 <th align="right">bic</th>
@@ -1114,70 +719,70 @@ ballardtj
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">Double Exponential (McClure et al., 2007)</td>
-<td align="right">-3722.791</td>
+<td align="left">Double Exponential Model (McClure et al., 2007)</td>
+<td align="right">-3729.490</td>
 <td align="right">4</td>
-<td align="right">7484.098</td>
+<td align="right">7497.496</td>
 </tr>
 <tr class="even">
-<td align="left">Constant Sensitivity</td>
-<td align="right">-3729.575</td>
+<td align="left">Hyperboloid Model (Mazur, 1987)</td>
+<td align="right">-3747.683</td>
 <td align="right">3</td>
-<td align="right">7488.036</td>
+<td align="right">7524.253</td>
 </tr>
 <tr class="odd">
-<td align="left">Hyerboloid (Mazur, 1987)</td>
-<td align="right">-3740.342</td>
+<td align="left">Hyperbolic model (Green &amp; Myerson version)</td>
+<td align="right">-3785.127</td>
 <td align="right">3</td>
-<td align="right">7509.571</td>
+<td align="right">7599.141</td>
 </tr>
 <tr class="even">
-<td align="left">Green &amp; Myerson Hyperbolic</td>
-<td align="right">-3740.346</td>
-<td align="right">3</td>
-<td align="right">7509.579</td>
-</tr>
-<tr class="odd">
-<td align="left">Loewenstein &amp; Prelec (1992)</td>
-<td align="right">-3758.136</td>
-<td align="right">3</td>
-<td align="right">7545.158</td>
-</tr>
-<tr class="even">
-<td align="left">Additive Utility (Killeen, 2009)</td>
-<td align="right">-3792.658</td>
-<td align="right">3</td>
-<td align="right">7614.203</td>
-</tr>
-<tr class="odd">
-<td align="left">Hyperbolic</td>
-<td align="right">-3988.011</td>
-<td align="right">2</td>
-<td align="right">7995.280</td>
-</tr>
-<tr class="even">
-<td align="left">Exponential</td>
-<td align="right">-3997.260</td>
-<td align="right">2</td>
-<td align="right">8013.778</td>
-</tr>
-<tr class="odd">
-<td align="left">ITCH</td>
-<td align="right">-4805.208</td>
-<td align="right">5</td>
-<td align="right">9658.561</td>
-</tr>
-<tr class="even">
-<td align="left">Proportional Difference</td>
-<td align="right">-10509.777</td>
-<td align="right">2</td>
-<td align="right">21038.812</td>
-</tr>
-<tr class="odd">
-<td align="left">Tradeoff</td>
-<td align="right">-34547.980</td>
+<td align="left">Tradeoff model</td>
+<td align="right">-3806.915</td>
 <td align="right">6</td>
-<td align="right">69153.734</td>
+<td align="right">7671.604</td>
+</tr>
+<tr class="odd">
+<td align="left">Constant Sensitivity Model (Ebert &amp; Prelec, 2007)</td>
+<td align="right">-3821.483</td>
+<td align="right">3</td>
+<td align="right">7671.854</td>
+</tr>
+<tr class="even">
+<td align="left">Hyperbolic model</td>
+<td align="right">-3992.413</td>
+<td align="right">2</td>
+<td align="right">8004.083</td>
+</tr>
+<tr class="odd">
+<td align="left">Exponential model</td>
+<td align="right">-3994.906</td>
+<td align="right">2</td>
+<td align="right">8009.071</td>
+</tr>
+<tr class="even">
+<td align="left">Loewenstein &amp; Prelec’s (1992) Model</td>
+<td align="right">-4819.613</td>
+<td align="right">3</td>
+<td align="right">9668.113</td>
+</tr>
+<tr class="odd">
+<td align="left">ITCH model</td>
+<td align="right">-4864.607</td>
+<td align="right">5</td>
+<td align="right">9777.360</td>
+</tr>
+<tr class="even">
+<td align="left">Additive Utility Model (Killeen, 2009)</td>
+<td align="right">-6717.925</td>
+<td align="right">3</td>
+<td align="right">13464.736</td>
+</tr>
+<tr class="odd">
+<td align="left">Proportional difference model</td>
+<td align="right">-6875.747</td>
+<td align="right">2</td>
+<td align="right">13770.753</td>
 </tr>
 </tbody>
 </table>
@@ -1186,7 +791,7 @@ ballardtj
 <pre class="r"><code>sessionInfo()</code></pre>
 <pre><code>R version 3.5.1 (2018-07-02)
 Platform: x86_64-apple-darwin15.6.0 (64-bit)
-Running under: OS X El Capitan 10.11.6
+Running under: macOS High Sierra 10.13.3
 
 Matrix products: default
 BLAS: /Library/Frameworks/R.framework/Versions/3.5/Resources/lib/libRblas.0.dylib

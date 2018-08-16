@@ -5,97 +5,33 @@ output:
     df_print: paged
 ---
 
-# Hyperbolic model
-
-```{r echo=FALSE}
-#load ggpairs
+```{r echo=FALSE,results='asis'}
 library(GGally)
-#load data
-load("data/derived/fit_ML_hyperbolic.RData")
-ggpairs(dat_tmp[dat_tmp$trial==1,names(dat_tmp) %in% c("k","sigma")])
+
+model_names = c(hyperbolic = 'Hyperbolic model',
+                exponential = 'Exponential model',
+                hyperbolic_gm = 'Hyperbolic model (Green & Myerson version)',
+                prop_diff = 'Proportional difference model',
+                tradeoff = 'Tradeoff model',
+                ITCH = 'ITCH model',
+                const_sens = 'Constant Sensitivity Model (Ebert & Prelec, 2007)',
+                mazur1987 = 'Hyperboloid Model (Mazur, 1987)',
+                loewenstein1992 = "Loewenstein & Prelec's (1992) Model",
+                mcclure2007 = "Double Exponential Model (McClure et al., 2007)",
+                killeen2009 = "Additive Utility Model (Killeen, 2009)")
+
+for (i in 1:length(model_names)){
+  cat('\n')  
+  cat("# ",model_names[i])
+  
+  load(file=paste0("data/derived/fit_ML_", names(model_names)[i],".RData"))
+  
+  par_inds_start = grep("choose_a",names(dat_tmp)) + 1
+  par_inds_end = grep("p_a",names(dat_tmp)) - 1
+  print(
+    ggpairs(dat_tmp[dat_tmp$trial==1,par_inds_start:par_inds_end])
+  )
+  cat('\n') 
+}
 ```
 
-# Exponential model
-
-```{r echo=FALSE}
-#load ggpairs
-library(GGally)
-#load data
-load("data/derived/fit_ML_exponential.RData")
-ggpairs(dat_tmp[dat_tmp$trial==1,names(dat_tmp) %in% c("k","sigma")])
-```
-
-# Hyperbolic model (Green & Myerson version)
-
-```{r echo=FALSE}
-#load ggpairs
-library(GGally)
-#load data
-load("data/derived/fit_ML_hyperbolic_gm.RData")
-ggpairs(dat_tmp[dat_tmp$trial==1,names(dat_tmp) %in% c("k","s","sigma")])
-```
-
-# Proportional difference model
-
-```{r echo=FALSE}
-#load ggpairs
-library(GGally)
-#load data
-load("data/derived/fit_ML_prop_diff.RData")
-ggpairs(dat_tmp[dat_tmp$trial==1,names(dat_tmp) %in% c("delta","sigma")])
-```
-
-# Tradeoff model
-
-```{r echo=FALSE}
-#load ggpairs
-library(GGally)
-#load data
-load("data/derived/fit_ML_tradeoff.RData")
-ggpairs(dat_tmp[dat_tmp$trial==1,names(dat_tmp) %in% c("gamma","tau","theta","kappa","alpha","eps")])
-```
-
-# ITCH model
-
-```{r echo=FALSE}
-#load ggpairs
-library(GGally)
-#load data
-load("data/derived/fit_ML_ITCH.RData")
-ggpairs(dat_tmp[dat_tmp$trial==1,names(dat_tmp) %in% c("B1","BxA","BxR","BtA","BtR")])
-```
-
-# Constant Sensitivity Model (Ebert & Prelec, 2007)
-
-```{r echo=FALSE}
-load(file="data/derived/fit_ML_const_sens.RData")
-ggpairs(dat_tmp[dat_tmp$trial==1,names(dat_tmp) %in% c("alpha","beta","sigma")])
-```
-
-# Hyperboloid Model (Mazur, 1987)
-
-```{r echo=FALSE}
-load(file="data/derived/fit_ML_mazur1987.RData")
-ggpairs(dat_tmp[dat_tmp$trial==1,names(dat_tmp) %in% c("k","s","sigma")])
-```
-
-# Loewenstein & Prelec's (1992) Model
-
-```{r echo=FALSE}
-load(file="data/derived/fit_ML_leowenstein1992.RData")
-ggpairs(dat_tmp[dat_tmp$trial==1,names(dat_tmp) %in% c("alpha","beta","sigma")])
-```
-
-# Double Exponential Model (McClure et al., 2007)
-
-```{r echo=FALSE}
-load(file="data/derived/fit_ML_mcclure2007.RData")
-ggpairs(dat_tmp[dat_tmp$trial==1,names(dat_tmp) %in% c("omega","beta","delta","sigma")])
-```
-
-# Additive Utility Model (Killeen, 2009)
-
-```{r echo=FALSE}
-load(file="data/derived/fit_ML_killeen2009.RData")
-ggpairs(dat_tmp[dat_tmp$trial==1,names(dat_tmp) %in% c("beta","lambda","sigma")])
-```

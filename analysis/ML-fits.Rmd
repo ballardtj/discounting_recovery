@@ -5,8 +5,20 @@ output:
     df_print: paged
 ---
 
-```{r include=FALSE}
+```{r echo=FALSE,results='asis'}
 library(tidyverse)
+
+model_names = c(hyperbolic = 'Hyperbolic model',
+                exponential = 'Exponential model',
+                hyperbolic_gm = 'Hyperbolic model (Green & Myerson version)',
+                prop_diff = 'Proportional difference model',
+                tradeoff = 'Tradeoff model',
+                ITCH = 'ITCH model',
+                const_sens = 'Constant Sensitivity Model (Ebert & Prelec, 2007)',
+                mazur1987 = 'Hyperboloid Model (Mazur, 1987)',
+                loewenstein1992 = "Loewenstein & Prelec's (1992) Model",
+                mcclure2007 = "Double Exponential Model (McClure et al., 2007)",
+                killeen2009 = "Additive Utility Model (Killeen, 2009)")
 
 plot_pp = function(dat_tmp){
   dat_pl = dat_tmp %>%
@@ -39,107 +51,30 @@ get_bic = function(dat_tmp){
 #output for storing fit stats
 output=list()
 ctr=0
+
+
+for (i in 1:length(model_names)){
+  cat('\n')  
+  cat("# ",model_names[i])
+  
+  load(file=paste0("data/derived/fit_ML_", names(model_names)[i],".RData"))
+  
+  #print(
+    plot_pp(dat_tmp)
+  #)
+  ctr=ctr+1
+  output[[ctr]]=get_bic(dat_tmp)
+  cat('\n') 
+}
 ```
 
-
-# Hyperbolic Model
-
-```{r echo=FALSE}
-load(file="data/derived/fit_ML_hyperbolic.RData")
-plot_pp(dat_tmp)
-ctr=ctr+1
-output[[ctr]]=get_bic(dat_tmp)
-```
-
-# Exponential Model
-```{r echo=FALSE}
-load(file="data/derived/fit_ML_exponential.RData")
-plot_pp(dat_tmp)
-ctr=ctr+1
-output[[ctr]]=get_bic(dat_tmp)
-```
-
-# Green & Myerson Hyperbolic
-```{r echo=FALSE}
-load(file="data/derived/fit_ML_hyperbolic_gm.RData")
-plot_pp(dat_tmp)
-ctr=ctr+1
-output[[ctr]]=get_bic(dat_tmp)
-```
-
-# Proportional Difference Model
-```{r echo=FALSE}
-load(file="data/derived/fit_ML_prop_diff.RData")
-plot_pp(dat_tmp)
-ctr=ctr+1
-output[[ctr]]=get_bic(dat_tmp)
-```
-
-# Tradeoff Model
-```{r echo=FALSE}
-load(file="data/derived/fit_ML_tradeoff.RData")
-plot_pp(dat_tmp)
-ctr=ctr+1
-output[[ctr]]=get_bic(dat_tmp)
-```
-
-# ITCH Model
-```{r echo=FALSE}
-load(file="data/derived/fit_ML_ITCH.RData")
-plot_pp(dat_tmp)
-ctr=ctr+1
-output[[ctr]]=get_bic(dat_tmp)
-```
-
-# Constant Sensitivity Model (Ebert & Prelec, 2007)
-```{r echo=FALSE}
-load(file="data/derived/fit_ML_const_sens.RData")
-plot_pp(dat_tmp)
-ctr=ctr+1
-output[[ctr]]=get_bic(dat_tmp)
-```
-
-# Hyperboloid Model (Mazur, 1987)
-```{r echo=FALSE}
-load(file="data/derived/fit_ML_mazur1987.RData")
-plot_pp(dat_tmp)
-ctr=ctr+1
-output[[ctr]]=get_bic(dat_tmp)
-```
-
-# Loewenstein & Prelec's (1992) Model
-```{r echo=FALSE}
-load(file="data/derived/fit_ML_leowenstein1992.RData")
-plot_pp(dat_tmp)
-ctr=ctr+1
-output[[ctr]]=get_bic(dat_tmp)
-```
-
-# Double Exponential Model (McClure et al., 2007)
-```{r echo=FALSE}
-load(file="data/derived/fit_ML_mcclure2007.RData")
-plot_pp(dat_tmp)
-ctr=ctr+1
-output[[ctr]]=get_bic(dat_tmp)
-```
-
-# Additive Utility Model (Killeen, 2009)
-```{r echo=FALSE}
-load(file="data/derived/fit_ML_killeen2009.RData")
-plot_pp(dat_tmp)
-ctr=ctr+1
-output[[ctr]]=get_bic(dat_tmp)
-```
 
 # Model Comparison
 ```{r echo=FALSE}
 library(knitr)
-model = c('Hyperbolic','Exponential','Green & Myerson Hyperbolic','Proportional Difference','Tradeoff','ITCH',
-              'Constant Sensitivity','Hyerboloid (Mazur, 1987)','Loewenstein & Prelec (1992)','Double Exponential (McClure et al., 2007)',
-              'Additive Utility (Killeen, 2009)')
 
 results=t(as.data.frame(output))
-results2 = as.data.frame(cbind(model,results))
+results2 = as.data.frame(cbind(model_names,results))
 results3 = results2 %>%
   mutate(lnl = as.numeric(as.character(lnl)),
          nparms = as.numeric(as.character(nparms)),
