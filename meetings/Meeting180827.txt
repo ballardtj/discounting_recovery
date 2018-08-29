@@ -1,0 +1,25 @@
+
+
+### DESIGN OF MODEL RECOVERY ANALYSIS ###
+
+1) Sampling distributions
+    
+    - sample from obtained distributions. For each sample in the recovery analysis,
+      randomly sample a chain, subject, and iteration and select the values for all 
+      parameters. 
+    - generate 100 datasets for that parameter value. Fit to each one.
+    - repeat 100 times to cover the parameter space.
+
+2) Choice set 
+    - start with Manos choice set
+
+3) Analysis procedure
+
+Option 1) Maximum likelihood, single subject (start with this one)
+
+Option 2) Bayesian, single subject
+
+Option 3) Bayesian, multiple subject
+
+
+Next step after that - model recovery
