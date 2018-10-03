@@ -58,7 +58,8 @@ models = list(hyperbolic = list(
 
 i = 1
 seed = 12345
-nsamples = 100
+nsamples = 100  #number of different parameter values tested
+nreps = 100     #number of times recovery is run for each parameter value
 iter_samples = sample(1:8000,size=nsamples,replace=TRUE)
 subject_samples = sample(1:40,size=nsamples,replace=TRUE)
 
@@ -79,14 +80,27 @@ parms = matrix(NA,nrow=nsamples,ncol=length(parm_names))
 colnames(parms) = parm_names
 
 for(j in 1:nsample){
+  #store sampled parameter values 
   for(k in 1:length(parm_names)){
-  #for each sample re-centre parameter
+  #for each sample re-centre parameters (will need to be updated for different models)
   parms[j,k] = posts[paste0(parm_names[k],'_raw')][[1]][iter_samples[j],subject_samples[j]]*
       posts[paste0(parm_names[k],'_sd')][[1]][iter_samples[j]] +
       posts[paste0(parm_names[k],'_mean')][[1]][iter_samples[j]]
-  
-  sim_dat$prob_a = likelihood(parms[j,],sim_dat)
   }
+  
+  #get choice probabilities under sampled parameter values
+  sim_dat$prob_a = likelihood(parms[j,],sim_dat)
+  
+  #for each repetition, generate random choices from probabilities, and fit model to the randomly genereated choices
+  for(l in 1:nreps){
+    #randomly generate choices
+    sim_dat$choose_a = as.numeric( runif(nrow(sim_dat)) < sim_dat$prob_a )
+    
+    #fit model to randomly generated choices
+    
+  }
+  
+  
 }
 
 
