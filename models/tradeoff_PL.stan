@@ -31,25 +31,25 @@ model {
   real Qd;
   
   for(i in 1:Ntotal){
-    sm_a = (1/gamma[i]) * log1p(gamma[i]*m_a[i]);
-    sm_b = (1/gamma[i]) * log1p(gamma[i]*m_b[i]);
+    sm_a = (1/gamma[subj[i]]) * log1p(gamma[subj[i]]*m_a[i]);
+    sm_b = (1/gamma[subj[i]]) * log1p(gamma[subj[i]]*m_b[i]);
     Qm = sm_a - sm_b;
     
-    sd_a = (1/tau[i]) * log1p(tau[i]*d_a[i]);
-    sd_b = (1/tau[i]) * log1p(tau[i]*d_b[i]);
-    Qd = (kappa[i]/alpha[i]) * log1p(alpha[i]*((sd_a-sd_b)/theta[i])^theta[i]);
+    sd_a = (1/tau[subj[i]]) * log1p(tau[subj[i]]*d_a[i]);
+    sd_b = (1/tau[subj[i]]) * log1p(tau[subj[i]]*d_b[i]);
+    Qd = (kappa[subj[i]]/alpha[subj[i]]) * log1p(alpha[subj[i]]* pow((sd_a-sd_b)/theta[subj[i]],theta[subj[i]]));
     
-    p_a[i] = pow(Qm,1/eps[i]) / (pow(Qm,1/eps[i]) + pow(Qd,1/eps[i]));
+    p_a[i] = pow(Qm,1/eps[subj[i]]) / (pow(Qm,1/eps[subj[i]]) + pow(Qd,1/eps[subj[i]]) + 1e-10);
   }
 
   
   //priors
-  gamma_raw ~ normal(0,5);
-  tau_raw ~ normal(0,5);
-  theta_raw ~ normal(1,5);
-  kappa_raw ~ normal(0,5);
-  alpha_raw ~ normal(0,5);
-  eps_raw ~ normal(0,5);
+  gamma ~ normal(0,5);
+  tau ~ normal(0,5);
+  theta ~ normal(1,5);
+  kappa ~ normal(0,5);
+  alpha ~ normal(0,5);
+  eps ~ normal(0,5);
 
   //likelihood
   y~bernoulli(p_a);

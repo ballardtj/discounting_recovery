@@ -41,7 +41,7 @@ parameters {
 
 model {
   //model
-   vector[Ntotal] p_a_logit = B1 + BxA[subj].*xA + BxR[subj].*xR + BtA[subj].*tA + BxR[subj].*xR;
+   vector[Ntotal] p_a_logit = B1[subj] + BxA[subj].*xA + BxR[subj].*xR + BtA[subj].*tA + BxR[subj].*xR;
    
   //priors
   B1 ~ normal(0,5);

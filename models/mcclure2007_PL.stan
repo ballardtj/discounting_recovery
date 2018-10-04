@@ -25,10 +25,10 @@ model {
   real u_b;
 
   for(i in 1:Ntotal){
-    u_a = m_a[i] * (omega[subj[i]] * exp(-beta[i]*d_a[i]) + (1-omega[subj[i]])*exp(-delta[i]*d_a[i]));
-    u_b = m_b[i] * (omega[subj[i]] * exp(-beta[i]*d_b[i]) + (1-omega[subj[i]])*exp(-delta[i]*d_b[i]));
+    u_a = m_a[i] * (omega[subj[i]] * exp(-beta[subj[i]]*d_a[i]) + (1-omega[subj[i]])*exp(-delta[subj[i]]*d_a[i]));
+    u_b = m_b[i] * (omega[subj[i]] * exp(-beta[subj[i]]*d_b[i]) + (1-omega[subj[i]])*exp(-delta[subj[i]]*d_b[i]));
   
-    p_a_logit[i] = (u_a - u_b) / sigma[i];
+    p_a_logit[i] = (u_a - u_b) / sigma[subj[i]];
   }
 
   //priors
