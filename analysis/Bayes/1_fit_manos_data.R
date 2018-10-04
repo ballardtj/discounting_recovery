@@ -1,18 +1,20 @@
 rm(list=ls())
 
-###read in the arguments listed at the command line
-args <- commandArgs(trailingOnly = F)
+# ###read in the arguments listed at the command line
+# args <- commandArgs(trailingOnly = F)
+# 
+# print(args)
+# 
+# i <- args[length(args)]
+# i <- strsplit(i,"--")[[1]][2]
+# i <- as.numeric(i)
+# 
+# print(i)
+# 
+# #set working directory
+# setwd("~/discounting_recovery")
 
-print(args)
-
-i <- args[length(args)]
-i <- strsplit(i,"--")[[1]][2]
-i <- as.numeric(i)
-
-print(i)
-
-#set working directory
-setwd("~/discounting_recovery")
+i = 5 #refit tradeoff model
 
 #load packages
 library(tidyverse)
