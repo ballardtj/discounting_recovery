@@ -61,9 +61,9 @@ model {
     
     sd_a = (1/tau[i]) * log1p(tau[i]*d_a[i]);
     sd_b = (1/tau[i]) * log1p(tau[i]*d_b[i]);
-    Qd = (kappa[i]/alpha[i]) * log1p(alpha[i]*((sd_a-sd_b)/theta[i])^theta[i]);
+    Qd = (kappa[i]/alpha[i]) * log1p(alpha[i]* pow((sd_a-sd_b)/theta[i],theta[i]));
     
-    p_a[i] = pow(Qm,1/eps[i]) / (pow(Qm,1/eps[i]) + pow(Qd,1/eps[i]));
+    p_a[i] = pow(Qm,1/eps[i]) / (pow(Qm,1/eps[i]) + pow(Qd,1/eps[i]) + 1e-10);
   }
 
   

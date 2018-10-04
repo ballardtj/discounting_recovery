@@ -60,7 +60,7 @@ model {
    vector[Ntotal] BxR = BxR_raw[subj]*BxR_sd + BxR_mean;
    vector[Ntotal] BtA = BtA_raw[subj]*BtA_sd + BtA_mean;
    vector[Ntotal] BtR = BtR_raw[subj]*BtR_sd + BtR_mean;
-   vector[Ntotal] p_a_logit = B1 + BxA[subj].*xA + BxR[subj].*xR + BtA[subj].*tA + BxR[subj].*xR;
+   vector[Ntotal] p_a_logit = B1 + BxA .*xA + BxR .*xR + BtA .*tA + BxR .*xR;
    
   //priors
   B1_mean ~ normal(0,1);
