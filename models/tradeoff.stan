@@ -19,7 +19,7 @@ parameters {
   real<lower=0> tau_sd;
    vector<lower=0>[Nsubj] tau_raw;
   
-  real<lower=0> theta_mean;
+  real<lower=1> theta_mean;
   real<lower=0> theta_sd;
    vector<lower=0>[Nsubj] theta_raw;
   
@@ -74,7 +74,7 @@ model {
   tau_mean ~ normal(0,1);
   tau_sd ~ normal(0,1);
   
-  theta_mean ~ normal(0,1);
+  theta_mean ~ normal(1,1);
   theta_sd ~ normal(0,1);
   
   kappa_mean ~ normal(0,1);
