@@ -14,7 +14,10 @@ rm(list=ls())
 # #set working directory
 # setwd("~/discounting_recovery")
 
-i = 5 #refit tradeoff model
+i = 6 #refit ITCH model
+
+#set seed
+set.seed(12345)
 
 #load packages
 library(tidyverse)

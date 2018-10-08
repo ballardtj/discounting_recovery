@@ -1,19 +1,19 @@
 rm(list=ls())
 
 ###read in the arguments listed at the command line
-args <- commandArgs(trailingOnly = F)
-
-print(args)
-
-i <- args[length(args)]
-i <- strsplit(i,"--")[[1]][2]
-i <- as.numeric(i)
-
-print(i)
+# args <- commandArgs(trailingOnly = F)
+# 
+# print(args)
+# 
+# i <- args[length(args)]
+# i <- strsplit(i,"--")[[1]][2]
+# i <- as.numeric(i)
+# 
+# print(i)
 
 #set working directory
-setwd("~/discounting_recovery")
-
+# setwd("~/discounting_recovery")
+i = 3
 library(tidyverse)
 library(rstan)
 
@@ -99,7 +99,7 @@ names(posts)
 parms = matrix(NA,nrow=nsamples,ncol=length(parm_names))
 colnames(parms) = parm_names
 
-for(j in 1:nsample){
+j = 3#for(j in 1:nsample){
   
   #store sampled parameter values 
   for(k in 1:length(parm_names)){
@@ -131,15 +131,15 @@ for(j in 1:nsample){
   stan_list$Nsubj = nreps
   
   #run person level model in stan with each value of 'subj' representing a seperate repetition.
-  fit = stan(file=paste0('models/',names(models)[i],'_PL.stan'),data=stan_list,cores=4,seed=12345)
+  fit = stan(file=paste0('models/',names(models)[i],'_PL.stan'),data=stan_list,cores=1,chains=1,iter=1,seed=12345)
   #save results of person level model
   #save(fit,file=paste0("data/derived/recovery_fit_",names(models)[i],"_",j,".RData"))
-  save(fit,file=paste0("/30days/uqtballa/recovery_fit_",names(models)[i],"_",j,".RData"))
-}
+  #save(fit,file=paste0("/30days/uqtballa/recovery_fit_",names(models)[i],"_",j,".RData"))
+#}
 
 #save generating parameters
 #save(parms,file=paste0("data/derived/recovery_generating_parms_",names(models)[i],".RData"))
-save(parms,file=paste0("/30days/uqtballa/recovery_generating_parms_",names(models)[i],".RData"))
+#save(parms,file=paste0("/30days/uqtballa/recovery_generating_parms_",names(models)[i],".RData"))
 
 
 
