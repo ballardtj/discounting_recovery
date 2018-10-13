@@ -13,7 +13,7 @@ rm(list=ls())
 
 #set working directory
 # setwd("~/discounting_recovery")
-i = 3
+i = 5
 library(tidyverse)
 library(rstan)
 
@@ -99,7 +99,7 @@ names(posts)
 parms = matrix(NA,nrow=nsamples,ncol=length(parm_names))
 colnames(parms) = parm_names
 
-j = 3#for(j in 1:nsample){
+j = 1#for(j in 1:nsample){
   
   #store sampled parameter values 
   for(k in 1:length(parm_names)){
