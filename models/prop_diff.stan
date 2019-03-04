@@ -44,7 +44,11 @@ model {
    vector[Ntotal] delta = delta_raw[subj]*delta_sd + delta_mean;
    vector[Ntotal] sigma = sigma_raw[subj]*sigma_sd + sigma_mean;
 
-   vector[Ntotal] p_a_logit = (d-delta[subj]) .* sigma[subj];
+   vector[Ntotal] p_a;
+   
+   for(i in 1:Ntotal){
+     p_a[i] = Phi_approx((d[i]-delta[subj[i]]) * sigma[subj[i]]);
+    }
    
   //priors
   delta_mean ~ normal(0,1);
@@ -57,5 +61,5 @@ model {
   delta_raw ~ normal(0,1);
 
   //likelihood
-  y~bernoulli_logit(p_a_logit);
+  y~bernoulli(p_a);
 }

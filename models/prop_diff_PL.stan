@@ -36,8 +36,12 @@ parameters {
 
 model {
   //model
-   vector[Ntotal] p_a_logit = (d-delta[subj]) .* sigma[subj];
+   vector[Ntotal] p_a;
    
+  for(i in 1:Ntotal){
+     p_a[i] = Phi_approx((d[i]-delta[subj[i]]) * sigma[subj[i]]);
+  }
+  
   //priors
   sigma ~ normal(0,5);
   delta ~ normal(0,5);

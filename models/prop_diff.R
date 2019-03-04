@@ -15,7 +15,8 @@ likelihood=function(pars,dat){
   pi_d = (pmax(abs(d_a),abs(d_b)) - pmin(abs(d_a),abs(d_b))) / alpha_d
   
   d = pi_m-pi_d
-  p_a = 1/(1+exp(- (d-delta)*sigma)) #probability of selecting option a
   
+  p_a = pnorm((d-delta)*sigma)    
+
   return(p_a)
 }
