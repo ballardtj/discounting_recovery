@@ -1,20 +1,18 @@
 rm(list=ls())
 
-# ###read in the arguments listed at the command line
-# args <- commandArgs(trailingOnly = F)
-# 
-# print(args)
-# 
-# i <- args[length(args)]
-# i <- strsplit(i,"--")[[1]][2]
-# i <- as.numeric(i)
-# 
-# print(i)
-# 
-# #set working directory
-# setwd("~/discounting_recovery")
+###read in the arguments listed at the command line
+args <- commandArgs(trailingOnly = F)
 
-i = 6 #refit ITCH model
+print(args)
+
+i <- args[length(args)]
+i <- strsplit(i,"--")[[1]][2]
+i <- as.numeric(i)
+
+print(i)
+
+#set working directory
+setwd("/QRISdata/Q0992")
 
 #set seed
 set.seed(12345)
@@ -61,8 +59,9 @@ fit=stan(file=paste0("models/",models[i],".stan"),
          data=data_list,
          iter=2000,
          warmup=1000,
-         cores=4,
-         chains=4,
+         cores=8,
+         chains=8,
+         control=list(max_treedepth=20,adapt_delta=0.99),
          seed=12345)
 
-save(fit,file=paste0("data/derived/fit_Bayes_",models[i],".RData"))
+save(fit,file=paste0("data/derived/fits/fit_Bayes_",models[i],".RData"))

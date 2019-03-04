@@ -1,0 +1,323 @@
+WARNING: unknown option '--3'
+
+
+R version 3.3.1 (2016-06-21) -- "Bug in Your Hair"
+Copyright (C) 2016 The R Foundation for Statistical Computing
+Platform: x86_64-pc-linux-gnu (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> rm(list=ls())
+> 
+> ###read in the arguments listed at the command line
+> args <- commandArgs(trailingOnly = F)
+> 
+> print(args)
+[1] "/gpfs1/homes/uqtballa/.linuxbrew/Cellar/r/3.3.1_2/lib/R/bin/exec/R"
+[2] "-f"                                                                
+[3] "/QRISdata/Q0992/analysis/Bayes/1_fit_manos_data.R"                 
+[4] "--restore"                                                         
+[5] "--save"                                                            
+[6] "--no-readline"                                                     
+[7] "--no-save"                                                         
+[8] "--no-restore"                                                      
+[9] "--3"                                                               
+> 
+> i <- args[length(args)]
+> i <- strsplit(i,"--")[[1]][2]
+> i <- as.numeric(i)
+> 
+> print(i)
+[1] 3
+> 
+> #set working directory
+> setwd("/QRISdata/Q0992")
+> 
+> #set seed
+> set.seed(12345)
+> 
+> #load packages
+> library(tidyverse)
+── Attaching packages ─────────────────────────────────────── tidyverse 1.2.1 ──
+✔ ggplot2 2.2.1     ✔ purrr   0.2.4
+✔ tibble  1.4.2     ✔ dplyr   0.7.4
+✔ tidyr   0.7.2     ✔ stringr 1.3.0
+✔ readr   1.1.1     ✔ forcats 0.3.0
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+> library(rstan)
+Loading required package: StanHeaders
+rstan (Version 2.17.3, GitRev: 2e1f913d3ca3)
+For execution on a local, multicore CPU with excess RAM we recommend calling
+options(mc.cores = parallel::detectCores()).
+To avoid recompilation of unchanged Stan programs, we recommend calling
+rstan_options(auto_write = TRUE)
+
+Attaching package: ‘rstan’
+
+The following object is masked from ‘package:tidyr’:
+
+    extract
+
+> 
+> #load data
+> dat=readRDS(file="data/raw/data_delay_lba2018.rds")
+> 
+> #format data for model fitting
+> dat$m_a = dat$amount
+> dat$d_a = dat$delay
+> dat$m_b = 100
+> dat$d_b = 0    #note: b is smaller, sooner option
+> dat$choose_a = dat$Choice
+> Nsubj = length(unique(dat$subject))
+> 
+> #prep data
+> data_list = list(Ntotal = dim(dat)[1],
++                  Nsubj = Nsubj,
++                  subj = dat$subject,
++                  y=dat$choose_a,
++                  d_a = dat$d_a,
++                  d_b = dat$d_b,
++                  m_a = dat$m_a,
++                  m_b = dat$m_b)
+> 
+> models = c('hyperbolic',
++            'exponential',
++            'hyperbolic_gm',
++            'prop_diff',
++            'tradeoff',
++            'ITCH',
++            'const_sens',
++            'mazur1987',
++            'loewenstein1992',
++            'mcclure2007',
++            'killeen2009')
+> 
+> 
+> fit=stan(file=paste0("models/",models[i],".stan"),
++          data=data_list,
++          iter=2000,
++          warmup=1000,
++          cores=8,
++          chains=8,
++          control=list(max_treedepth=20,adapt_delta=0.99),
++          seed=12345)
+
+SAMPLING FOR MODEL 'hyperbolic_gm' NOW (CHAIN 1).
+
+Gradient evaluation took 0.014398 seconds
+1000 transitions using 10 leapfrog steps per transition would take 143.98 seconds.
+Adjust your expectations accordingly!
+
+
+Iteration:    1 / 2000 [  0%]  (Warmup)
+
+SAMPLING FOR MODEL 'hyperbolic_gm' NOW (CHAIN 2).
+
+Gradient evaluation took 0.014113 seconds
+1000 transitions using 10 leapfrog steps per transition would take 141.13 seconds.
+Adjust your expectations accordingly!
+
+
+Iteration:    1 / 2000 [  0%]  (Warmup)
+
+SAMPLING FOR MODEL 'hyperbolic_gm' NOW (CHAIN 3).
+
+Gradient evaluation took 0.013764 seconds
+1000 transitions using 10 leapfrog steps per transition would take 137.64 seconds.
+Adjust your expectations accordingly!
+
+
+Iteration:    1 / 2000 [  0%]  (Warmup)
+
+SAMPLING FOR MODEL 'hyperbolic_gm' NOW (CHAIN 4).
+
+Gradient evaluation took 0.014535 seconds
+1000 transitions using 10 leapfrog steps per transition would take 145.35 seconds.
+Adjust your expectations accordingly!
+
+
+Iteration:    1 / 2000 [  0%]  (Warmup)
+
+SAMPLING FOR MODEL 'hyperbolic_gm' NOW (CHAIN 5).
+
+Gradient evaluation took 0.014961 seconds
+1000 transitions using 10 leapfrog steps per transition would take 149.61 seconds.
+Adjust your expectations accordingly!
+
+
+Iteration:    1 / 2000 [  0%]  (Warmup)
+
+SAMPLING FOR MODEL 'hyperbolic_gm' NOW (CHAIN 6).
+
+Gradient evaluation took 0.015671 seconds
+1000 transitions using 10 leapfrog steps per transition would take 156.71 seconds.
+Adjust your expectations accordingly!
+
+
+Iteration:    1 / 2000 [  0%]  (Warmup)
+
+SAMPLING FOR MODEL 'hyperbolic_gm' NOW (CHAIN 7).
+
+Gradient evaluation took 0.014591 seconds
+1000 transitions using 10 leapfrog steps per transition would take 145.91 seconds.
+Adjust your expectations accordingly!
+
+
+Iteration:    1 / 2000 [  0%]  (Warmup)
+
+SAMPLING FOR MODEL 'hyperbolic_gm' NOW (CHAIN 8).
+
+Gradient evaluation took 0.014548 seconds
+1000 transitions using 10 leapfrog steps per transition would take 145.48 seconds.
+Adjust your expectations accordingly!
+
+
+Iteration:    1 / 2000 [  0%]  (Warmup)
+Iteration:  200 / 2000 [ 10%]  (Warmup)
+Iteration:  200 / 2000 [ 10%]  (Warmup)
+Iteration:  200 / 2000 [ 10%]  (Warmup)
+Iteration:  200 / 2000 [ 10%]  (Warmup)
+Iteration:  200 / 2000 [ 10%]  (Warmup)
+Iteration:  200 / 2000 [ 10%]  (Warmup)
+Iteration:  200 / 2000 [ 10%]  (Warmup)
+Iteration:  200 / 2000 [ 10%]  (Warmup)
+Iteration:  400 / 2000 [ 20%]  (Warmup)
+Iteration:  400 / 2000 [ 20%]  (Warmup)
+Iteration:  400 / 2000 [ 20%]  (Warmup)
+Iteration:  400 / 2000 [ 20%]  (Warmup)
+Iteration:  400 / 2000 [ 20%]  (Warmup)
+Iteration:  400 / 2000 [ 20%]  (Warmup)
+Iteration:  400 / 2000 [ 20%]  (Warmup)
+Iteration:  600 / 2000 [ 30%]  (Warmup)
+Iteration:  400 / 2000 [ 20%]  (Warmup)
+Iteration:  600 / 2000 [ 30%]  (Warmup)
+Iteration:  600 / 2000 [ 30%]  (Warmup)
+Iteration:  600 / 2000 [ 30%]  (Warmup)
+Iteration:  600 / 2000 [ 30%]  (Warmup)
+Iteration:  800 / 2000 [ 40%]  (Warmup)
+Iteration:  600 / 2000 [ 30%]  (Warmup)
+Iteration:  600 / 2000 [ 30%]  (Warmup)
+Iteration:  800 / 2000 [ 40%]  (Warmup)
+Iteration:  800 / 2000 [ 40%]  (Warmup)
+Iteration:  800 / 2000 [ 40%]  (Warmup)
+Iteration:  800 / 2000 [ 40%]  (Warmup)
+Iteration:  600 / 2000 [ 30%]  (Warmup)
+Iteration: 1000 / 2000 [ 50%]  (Warmup)
+Iteration: 1001 / 2000 [ 50%]  (Sampling)
+Iteration:  800 / 2000 [ 40%]  (Warmup)
+Iteration:  800 / 2000 [ 40%]  (Warmup)
+Iteration: 1200 / 2000 [ 60%]  (Sampling)
+Iteration:  800 / 2000 [ 40%]  (Warmup)
+Iteration: 1000 / 2000 [ 50%]  (Warmup)
+Iteration: 1001 / 2000 [ 50%]  (Sampling)
+Iteration: 1000 / 2000 [ 50%]  (Warmup)
+Iteration: 1001 / 2000 [ 50%]  (Sampling)
+Iteration: 1000 / 2000 [ 50%]  (Warmup)
+Iteration: 1001 / 2000 [ 50%]  (Sampling)
+Iteration: 1400 / 2000 [ 70%]  (Sampling)
+Iteration: 1000 / 2000 [ 50%]  (Warmup)
+Iteration: 1001 / 2000 [ 50%]  (Sampling)
+Iteration: 1000 / 2000 [ 50%]  (Warmup)
+Iteration: 1001 / 2000 [ 50%]  (Sampling)
+Iteration: 1200 / 2000 [ 60%]  (Sampling)
+Iteration: 1200 / 2000 [ 60%]  (Sampling)
+Iteration: 1000 / 2000 [ 50%]  (Warmup)
+Iteration: 1001 / 2000 [ 50%]  (Sampling)
+Iteration: 1600 / 2000 [ 80%]  (Sampling)
+Iteration: 1000 / 2000 [ 50%]  (Warmup)
+Iteration: 1001 / 2000 [ 50%]  (Sampling)
+Iteration: 1200 / 2000 [ 60%]  (Sampling)
+Iteration: 1800 / 2000 [ 90%]  (Sampling)
+Iteration: 1400 / 2000 [ 70%]  (Sampling)
+Iteration: 1200 / 2000 [ 60%]  (Sampling)
+Iteration: 1400 / 2000 [ 70%]  (Sampling)
+Iteration: 2000 / 2000 [100%]  (Sampling)
+
+ Elapsed Time: 6618.87 seconds (Warm-up)
+               5143.46 seconds (Sampling)
+               11762.3 seconds (Total)
+
+Iteration: 1200 / 2000 [ 60%]  (Sampling)
+Iteration: 1200 / 2000 [ 60%]  (Sampling)
+Iteration: 1200 / 2000 [ 60%]  (Sampling)
+Iteration: 1400 / 2000 [ 70%]  (Sampling)
+Iteration: 1600 / 2000 [ 80%]  (Sampling)
+Iteration: 1400 / 2000 [ 70%]  (Sampling)
+Iteration: 1600 / 2000 [ 80%]  (Sampling)
+Iteration: 1400 / 2000 [ 70%]  (Sampling)
+Iteration: 1400 / 2000 [ 70%]  (Sampling)
+Iteration: 1600 / 2000 [ 80%]  (Sampling)
+Iteration: 1800 / 2000 [ 90%]  (Sampling)
+Iteration: 1400 / 2000 [ 70%]  (Sampling)
+Iteration: 1800 / 2000 [ 90%]  (Sampling)
+Iteration: 1600 / 2000 [ 80%]  (Sampling)
+Iteration: 2000 / 2000 [100%]  (Sampling)
+
+ Elapsed Time: 8007.45 seconds (Warm-up)
+               7975.85 seconds (Sampling)
+               15983.3 seconds (Total)
+
+Iteration: 1600 / 2000 [ 80%]  (Sampling)
+Iteration: 1600 / 2000 [ 80%]  (Sampling)
+Iteration: 1800 / 2000 [ 90%]  (Sampling)
+Iteration: 2000 / 2000 [100%]  (Sampling)
+
+ Elapsed Time: 7762.79 seconds (Warm-up)
+               9357.36 seconds (Sampling)
+               17120.1 seconds (Total)
+
+Iteration: 1800 / 2000 [ 90%]  (Sampling)
+Iteration: 1800 / 2000 [ 90%]  (Sampling)
+Iteration: 1800 / 2000 [ 90%]  (Sampling)
+Iteration: 1600 / 2000 [ 80%]  (Sampling)
+Iteration: 2000 / 2000 [100%]  (Sampling)
+
+ Elapsed Time: 8233.64 seconds (Warm-up)
+               10048.9 seconds (Sampling)
+               18282.5 seconds (Total)
+
+Iteration: 2000 / 2000 [100%]  (Sampling)
+
+ Elapsed Time: 9249.68 seconds (Warm-up)
+               9813.29 seconds (Sampling)
+               19063 seconds (Total)
+
+Iteration: 2000 / 2000 [100%]  (Sampling)
+
+ Elapsed Time: 9999.24 seconds (Warm-up)
+               9744.46 seconds (Sampling)
+               19743.7 seconds (Total)
+
+Iteration: 2000 / 2000 [100%]  (Sampling)
+
+ Elapsed Time: 9677.79 seconds (Warm-up)
+               10240.7 seconds (Sampling)
+               19918.5 seconds (Total)
+
+Iteration: 1800 / 2000 [ 90%]  (Sampling)
+Iteration: 2000 / 2000 [100%]  (Sampling)
+
+ Elapsed Time: 8807.24 seconds (Warm-up)
+               14339.6 seconds (Sampling)
+               23146.8 seconds (Total)
+
+> 
+> save(fit,file=paste0("data/derived/fits/fit_Bayes_",models[i],".RData"))
+> 
+> proc.time()
+      user     system    elapsed 
+121890.027     36.493  23283.767 
