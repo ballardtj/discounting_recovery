@@ -1,0 +1,12 @@
+#!/bin/bash
+#PBS -N discounting_recovery
+
+#
+
+#PBS -A UQ-SBS-Psy
+
+#PBS -l select=1:ncpus=8:mpiprocs=8:intel=true:mem=40GB,walltime=100:00:00
+
+#PBS -J 3-4
+
+R CMD BATCH --no-save --no-restore --$PBS_ARRAY_INDEX /QRISdata/Q0992/analysis/Bayes/1_fit_manos_data.R /QRISdata/Q0992/analysis/Bayes/1_fit_manos_data_$PBS_ARRAY_INDEX.Rout
