@@ -7,6 +7,6 @@
 
 #PBS -l select=1:ncpus=4:mpiprocs=4:intel=true:mem=20GB,walltime=20:00:00
 
-#PBS -J 501-599
+#PBS -J 1-1100
 
 R CMD BATCH --no-save --no-restore --$PBS_ARRAY_INDEX $HOME/discounting_recovery/analysis/3_parameter_recovery.R $HOME/discounting_recovery/analysis/3_parameter_recovery_$PBS_ARRAY_INDEX.Rout

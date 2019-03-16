@@ -118,8 +118,8 @@ The following object is masked from ‘package:tidyr’:
 
 SAMPLING FOR MODEL 'tradeoff' NOW (CHAIN 1).
 
-Gradient evaluation took 0.037138 seconds
-1000 transitions using 10 leapfrog steps per transition would take 371.38 seconds.
+Gradient evaluation took 0.032091 seconds
+1000 transitions using 10 leapfrog steps per transition would take 320.91 seconds.
 Adjust your expectations accordingly!
 
 
@@ -127,8 +127,8 @@ Iteration:    1 / 2000 [  0%]  (Warmup)
 
 SAMPLING FOR MODEL 'tradeoff' NOW (CHAIN 2).
 
-Gradient evaluation took 0.037102 seconds
-1000 transitions using 10 leapfrog steps per transition would take 371.02 seconds.
+Gradient evaluation took 0.033797 seconds
+1000 transitions using 10 leapfrog steps per transition would take 337.97 seconds.
 Adjust your expectations accordingly!
 
 
@@ -136,53 +136,53 @@ Iteration:    1 / 2000 [  0%]  (Warmup)
 
 SAMPLING FOR MODEL 'tradeoff' NOW (CHAIN 3).
 
-Gradient evaluation took 0.039877 seconds
-1000 transitions using 10 leapfrog steps per transition would take 398.77 seconds.
-Adjust your expectations accordingly!
-
-
-
-SAMPLING FOR MODEL 'tradeoff' NOW (CHAIN 4).
-
-Gradient evaluation took 0.040991 seconds
-1000 transitions using 10 leapfrog steps per transition would take 409.91 seconds.
+Gradient evaluation took 0.03624 seconds
+1000 transitions using 10 leapfrog steps per transition would take 362.4 seconds.
 Adjust your expectations accordingly!
 
 
 Iteration:    1 / 2000 [  0%]  (Warmup)
+
+SAMPLING FOR MODEL 'tradeoff' NOW (CHAIN 4).
+
+Gradient evaluation took 0.034202 seconds
+1000 transitions using 10 leapfrog steps per transition would take 342.02 seconds.
+Adjust your expectations accordingly!
+
+
 Iteration:    1 / 2000 [  0%]  (Warmup)
 
 SAMPLING FOR MODEL 'tradeoff' NOW (CHAIN 5).
 
-Gradient evaluation took 0.040134 seconds
-1000 transitions using 10 leapfrog steps per transition would take 401.34 seconds.
+Gradient evaluation took 0.035958 seconds
+1000 transitions using 10 leapfrog steps per transition would take 359.58 seconds.
 Adjust your expectations accordingly!
 
 
-
-SAMPLING FOR MODEL 'tradeoff' NOW (CHAIN 6).
 Iteration:    1 / 2000 [  0%]  (Warmup)
 
-Gradient evaluation took 0.041243 seconds
-1000 transitions using 10 leapfrog steps per transition would take 412.43 seconds.
+SAMPLING FOR MODEL 'tradeoff' NOW (CHAIN 6).
+
+Gradient evaluation took 0.036923 seconds
+1000 transitions using 10 leapfrog steps per transition would take 369.23 seconds.
 Adjust your expectations accordingly!
 
 
 
 SAMPLING FOR MODEL 'tradeoff' NOW (CHAIN 7).
+Iteration:    1 / 2000 [  0%]  (Warmup)
 
-Gradient evaluation took 0.041704 seconds
-1000 transitions using 10 leapfrog steps per transition would take 417.04 seconds.
+Gradient evaluation took 0.037733 seconds
+1000 transitions using 10 leapfrog steps per transition would take 377.33 seconds.
 Adjust your expectations accordingly!
 
 
-Iteration:    1 / 2000 [  0%]  (Warmup)
 Iteration:    1 / 2000 [  0%]  (Warmup)
 
 SAMPLING FOR MODEL 'tradeoff' NOW (CHAIN 8).
 
-Gradient evaluation took 0.041894 seconds
-1000 transitions using 10 leapfrog steps per transition would take 418.94 seconds.
+Gradient evaluation took 0.038864 seconds
+1000 transitions using 10 leapfrog steps per transition would take 388.64 seconds.
 Adjust your expectations accordingly!
 
 
@@ -205,15 +205,15 @@ Iteration:  600 / 2000 [ 30%]  (Warmup)
 Iteration:  600 / 2000 [ 30%]  (Warmup)
 Iteration:  400 / 2000 [ 20%]  (Warmup)
 Iteration:  400 / 2000 [ 20%]  (Warmup)
-Iteration:  800 / 2000 [ 40%]  (Warmup)
 Iteration:  400 / 2000 [ 20%]  (Warmup)
+Iteration:  800 / 2000 [ 40%]  (Warmup)
+Iteration:  600 / 2000 [ 30%]  (Warmup)
+Iteration:  800 / 2000 [ 40%]  (Warmup)
+Iteration:  800 / 2000 [ 40%]  (Warmup)
+Iteration:  600 / 2000 [ 30%]  (Warmup)
 Iteration:  600 / 2000 [ 30%]  (Warmup)
 Iteration:  800 / 2000 [ 40%]  (Warmup)
 Iteration:  800 / 2000 [ 40%]  (Warmup)
-Iteration:  600 / 2000 [ 30%]  (Warmup)
-Iteration:  600 / 2000 [ 30%]  (Warmup)
-Iteration:  800 / 2000 [ 40%]  (Warmup)
-Iteration:  800 / 2000 [ 40%]  (Warmup)
 Iteration: 1000 / 2000 [ 50%]  (Warmup)
 Iteration: 1001 / 2000 [ 50%]  (Sampling)
 Iteration:  600 / 2000 [ 30%]  (Warmup)
@@ -221,42 +221,42 @@ Iteration: 1000 / 2000 [ 50%]  (Warmup)
 Iteration: 1001 / 2000 [ 50%]  (Sampling)
 Iteration: 1000 / 2000 [ 50%]  (Warmup)
 Iteration: 1001 / 2000 [ 50%]  (Sampling)
-Iteration: 1200 / 2000 [ 60%]  (Sampling)
-Iteration:  800 / 2000 [ 40%]  (Warmup)
 Iteration: 1000 / 2000 [ 50%]  (Warmup)
 Iteration: 1001 / 2000 [ 50%]  (Sampling)
+Iteration: 1200 / 2000 [ 60%]  (Sampling)
+Iteration:  800 / 2000 [ 40%]  (Warmup)
+Iteration: 1200 / 2000 [ 60%]  (Sampling)
 Iteration:  800 / 2000 [ 40%]  (Warmup)
 Iteration:  600 / 2000 [ 30%]  (Warmup)
 Iteration: 1400 / 2000 [ 70%]  (Sampling)
-Iteration: 1200 / 2000 [ 60%]  (Sampling)
 Iteration: 1000 / 2000 [ 50%]  (Warmup)
 Iteration: 1001 / 2000 [ 50%]  (Sampling)
-Iteration: 1600 / 2000 [ 80%]  (Sampling)
 Iteration: 1400 / 2000 [ 70%]  (Sampling)
-Iteration: 1000 / 2000 [ 50%]  (Warmup)
+Iteration: 1600 / 2000 [ 80%]  (Sampling)
+Iteration: 1600 / 2000 [ 80%]  (Sampling)
 Iteration:  800 / 2000 [ 40%]  (Warmup)
+Iteration: 1000 / 2000 [ 50%]  (Warmup)
 Iteration: 1001 / 2000 [ 50%]  (Sampling)
 Iteration: 1000 / 2000 [ 50%]  (Warmup)
 Iteration: 1001 / 2000 [ 50%]  (Sampling)
 Iteration: 1800 / 2000 [ 90%]  (Sampling)
 Iteration: 1200 / 2000 [ 60%]  (Sampling)
-Iteration: 1600 / 2000 [ 80%]  (Sampling)
 Iteration: 1200 / 2000 [ 60%]  (Sampling)
 Iteration: 1200 / 2000 [ 60%]  (Sampling)
-Iteration: 2000 / 2000 [100%]  (Sampling)
-
- Elapsed Time: 46220.6 seconds (Warm-up)
-               30352.9 seconds (Sampling)
-               76573.6 seconds (Total)
-
 Iteration: 1800 / 2000 [ 90%]  (Sampling)
-Iteration: 1200 / 2000 [ 60%]  (Sampling)
 Iteration: 2000 / 2000 [100%]  (Sampling)
 
- Elapsed Time: 53185.1 seconds (Warm-up)
-               31497.1 seconds (Sampling)
-               84682.2 seconds (Total)
+ Elapsed Time: 45428.9 seconds (Warm-up)
+               29432 seconds (Sampling)
+               74860.9 seconds (Total)
 
+Iteration: 2000 / 2000 [100%]  (Sampling)
+
+ Elapsed Time: 48146 seconds (Warm-up)
+               29119.1 seconds (Sampling)
+               77265.1 seconds (Total)
+
+Iteration: 1200 / 2000 [ 60%]  (Sampling)
 Iteration: 1400 / 2000 [ 70%]  (Sampling)
 Iteration: 1000 / 2000 [ 50%]  (Warmup)
 Iteration: 1001 / 2000 [ 50%]  (Sampling)
@@ -266,58 +266,58 @@ Iteration: 1400 / 2000 [ 70%]  (Sampling)
 Iteration: 1400 / 2000 [ 70%]  (Sampling)
 Iteration: 1600 / 2000 [ 80%]  (Sampling)
 Iteration: 1600 / 2000 [ 80%]  (Sampling)
+Iteration: 1800 / 2000 [ 90%]  (Sampling)
 Iteration: 1200 / 2000 [ 60%]  (Sampling)
-Iteration: 1800 / 2000 [ 90%]  (Sampling)
-Iteration: 1600 / 2000 [ 80%]  (Sampling)
-Iteration: 1800 / 2000 [ 90%]  (Sampling)
 Iteration: 1400 / 2000 [ 70%]  (Sampling)
 Iteration: 1600 / 2000 [ 80%]  (Sampling)
+Iteration: 1800 / 2000 [ 90%]  (Sampling)
+Iteration: 1600 / 2000 [ 80%]  (Sampling)
 Iteration: 2000 / 2000 [100%]  (Sampling)
 
- Elapsed Time: 61135.7 seconds (Warm-up)
-               59747.1 seconds (Sampling)
-               120883 seconds (Total)
+ Elapsed Time: 58813 seconds (Warm-up)
+               57626.6 seconds (Sampling)
+               116440 seconds (Total)
 
 Iteration: 2000 / 2000 [100%]  (Sampling)
 
- Elapsed Time: 69038.7 seconds (Warm-up)
-               57327 seconds (Sampling)
-               126366 seconds (Total)
+ Elapsed Time: 66327.1 seconds (Warm-up)
+               57183.1 seconds (Sampling)
+               123510 seconds (Total)
 
 Iteration: 1400 / 2000 [ 70%]  (Sampling)
 Iteration: 1800 / 2000 [ 90%]  (Sampling)
 Iteration: 1600 / 2000 [ 80%]  (Sampling)
 Iteration: 1800 / 2000 [ 90%]  (Sampling)
-Iteration: 2000 / 2000 [100%]  (Sampling)
-
- Elapsed Time: 50655.7 seconds (Warm-up)
-               101667 seconds (Sampling)
-               152323 seconds (Total)
-
 Iteration: 1600 / 2000 [ 80%]  (Sampling)
+Iteration: 2000 / 2000 [100%]  (Sampling)
+
+ Elapsed Time: 49401.8 seconds (Warm-up)
+               102969 seconds (Sampling)
+               152371 seconds (Total)
+
 Iteration: 1800 / 2000 [ 90%]  (Sampling)
 Iteration: 2000 / 2000 [100%]  (Sampling)
 
- Elapsed Time: 47642.3 seconds (Warm-up)
-               112274 seconds (Sampling)
-               159917 seconds (Total)
+ Elapsed Time: 46758.2 seconds (Warm-up)
+               110152 seconds (Sampling)
+               156910 seconds (Total)
 
 Iteration: 1800 / 2000 [ 90%]  (Sampling)
 Iteration: 2000 / 2000 [100%]  (Sampling)
 
- Elapsed Time: 67874.7 seconds (Warm-up)
-               113780 seconds (Sampling)
-               181655 seconds (Total)
+ Elapsed Time: 66229.8 seconds (Warm-up)
+               108813 seconds (Sampling)
+               175043 seconds (Total)
 
 Iteration: 2000 / 2000 [100%]  (Sampling)
 
- Elapsed Time: 86869.4 seconds (Warm-up)
-               110307 seconds (Sampling)
-               197176 seconds (Total)
+ Elapsed Time: 84715.7 seconds (Warm-up)
+               108139 seconds (Sampling)
+               192855 seconds (Total)
 
 > 
 > save(fit,file=paste0("data/derived/fits/fit_Bayes_",models[i],".RData"))
 > 
 > proc.time()
       user     system    elapsed 
-902366.050    169.324 197352.188 
+876383.727    145.814 192929.597 

@@ -19,3 +19,4 @@ likelihood=function(pars,dat){
   
   return(p_a)
 }
+

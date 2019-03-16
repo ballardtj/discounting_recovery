@@ -11,8 +11,8 @@ data {
  
 parameters {
   
-  vector<lower=0>[Nsubj] alpha;
-  vector<lower=0>[Nsubj] beta;
+  vector<lower=0,upper=1>[Nsubj] alpha;
+  vector<lower=0,upper=1>[Nsubj] beta;
   vector<lower=0>[Nsubj] lambda;
   vector<lower=0>[Nsubj] sigma;
   
@@ -32,8 +32,6 @@ model {
    }
 
   //priors
-  alpha ~ normal(0,5);
-  beta ~ normal(0,5);
   lambda ~ normal(0,5);
   sigma ~ normal(0,5);
   

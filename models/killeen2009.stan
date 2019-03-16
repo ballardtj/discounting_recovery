@@ -11,13 +11,13 @@ data {
  
 parameters {
   
-  real<lower=0> alpha_mean;
-  real<lower=0> alpha_sd;
-  vector<lower=0>[Nsubj] alpha_raw;
+  real<lower=0> alpha_a;
+  real<lower=0> alpha_b;
+  vector<lower=0,upper=1>[Nsubj] alpha;
   
-  real<lower=0> beta_mean;
-  real<lower=0> beta_sd;
-  vector<lower=0>[Nsubj] beta_raw;
+  real<lower=0> beta_a;
+  real<lower=0> beta_b;
+  vector<lower=0,upper=1>[Nsubj] beta;
   
   real<lower=0> lambda_mean;
   real<lower=0> lambda_sd;
@@ -33,25 +33,23 @@ parameters {
 model {
   //model
    vector[Ntotal] p_a_logit;
-   vector[Ntotal] alpha = alpha_raw[subj]*alpha_sd + alpha_mean;
-   vector[Ntotal] beta = beta_raw[subj]*beta_sd + beta_mean;
    vector[Ntotal] lambda = lambda_raw[subj]*lambda_sd + lambda_mean;
    vector[Ntotal] sigma = sigma_raw[subj]*sigma_sd + sigma_mean;
    real u_a;
    real u_b;
 
    for(i in 1:Ntotal){
-     u_a = pow(m_a[i],alpha[i]) - lambda[i]*pow(d_a[i],beta[i]); //utility of option a
-     u_b = pow(m_b[i],alpha[i]) - lambda[i]*pow(d_b[i],beta[i]); //utility of option b
-     p_a_logit[i] = (u_a-u_b) * sigma[i]; //probability of selecting option a
+     u_a = pow(m_a[i],alpha[subj[i]]) - lambda[subj[i]]*pow(d_a[i],beta[subj[i]]); //utility of option a
+     u_b = pow(m_b[i],alpha[subj[i]]) - lambda[subj[i]]*pow(d_b[i],beta[subj[i]]); //utility of option b
+     p_a_logit[i] = (u_a-u_b) * sigma[subj[i]]; //probability of selecting option a
    }
 
   //priors
-  alpha_mean ~ normal(0,1);
-  alpha_sd ~ normal(0,1);
+  alpha_a ~ normal(0,1);
+  alpha_b ~ normal(0,1);
   
-  beta_mean ~ normal(0,1);
-  beta_sd ~ normal(0,1);
+  beta_a ~ normal(0,1);
+  beta_b ~ normal(0,1);
   
   lambda_mean ~ normal(0,1);
   lambda_sd ~ normal(0,1);
@@ -59,7 +57,8 @@ model {
   sigma_mean ~ normal(0,1);
   sigma_sd ~ normal(0,1);
 
-  beta_raw ~ normal(0,1);
+  alpha ~ beta(alpha_a,alpha_b);
+  beta ~ beta(beta_a,beta_b);
   lambda_raw ~ normal(0,1);
   sigma_raw ~ normal(0,1);
   
