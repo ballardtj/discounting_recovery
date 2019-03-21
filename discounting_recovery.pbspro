@@ -9,4 +9,4 @@
 
 #PBS -J 1-1100
 
-R CMD BATCH --no-save --no-restore --$PBS_ARRAY_INDEX $HOME/discounting_recovery/analysis/3_parameter_recovery.R $HOME/discounting_recovery/analysis/3_parameter_recovery_$PBS_ARRAY_INDEX.Rout
+R CMD BATCH --no-save --no-restore --$PBS_ARRAY_INDEX /QRISdata/Q0992/analysis/3_parameter_recovery.R /QRISdata/Q0992/analysis/3_parameter_recovery_$PBS_ARRAY_INDEX.Rout
