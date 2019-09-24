@@ -39,9 +39,9 @@ model {
    real u_b;
 
    for(i in 1:Ntotal){
-     u_a = pow(m_a[i],alpha[subj[i]]) - lambda[subj[i]]*pow(d_a[i],beta[subj[i]]); //utility of option a
-     u_b = pow(m_b[i],alpha[subj[i]]) - lambda[subj[i]]*pow(d_b[i],beta[subj[i]]); //utility of option b
-     p_a_logit[i] = (u_a-u_b) * sigma[subj[i]]; //probability of selecting option a
+     u_a = pow(m_a[i],alpha[subj[i]]) - lambda[i]*pow(d_a[i],beta[subj[i]]); //utility of option a
+     u_b = pow(m_b[i],alpha[subj[i]]) - lambda[i]*pow(d_b[i],beta[subj[i]]); //utility of option b
+     p_a_logit[i] = (u_a-u_b) * sigma[i]; //probability of selecting option a
    }
 
   //priors

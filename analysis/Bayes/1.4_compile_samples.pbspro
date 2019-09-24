@@ -1,0 +1,12 @@
+#!/bin/bash
+
+#PBS -A UQ-SBS-Psy
+
+#PBS -l select=1:ncpus=1:intel=true:mem=40GB,walltime=1:00:00
+
+echo 1.4
+echo ${RUN}
+
+module load R/3.6.0+tidyverse+rstan+rtdists
+
+cat /QRISdata/Q0992/analysis/Bayes/1.5_compile_samples.sh | shell -s ${RUN}

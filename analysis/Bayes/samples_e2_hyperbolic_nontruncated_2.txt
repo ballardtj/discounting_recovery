@@ -1,0 +1,61 @@
+method = sample (Default)
+  sample
+    num_samples = 5000
+    num_warmup = 10000
+    save_warmup = 0 (Default)
+    thin = 1 (Default)
+    adapt
+      engaged = 1 (Default)
+      gamma = 0.050000000000000003 (Default)
+      delta = 0.97499999999999998
+      kappa = 0.75 (Default)
+      t0 = 10 (Default)
+      init_buffer = 75 (Default)
+      term_buffer = 50 (Default)
+      window = 25 (Default)
+    algorithm = hmc (Default)
+      hmc
+        engine = nuts (Default)
+          nuts
+            max_depth = 20
+        metric = diag_e (Default)
+        metric_file =  (Default)
+        stepsize = 1 (Default)
+        stepsize_jitter = 0 (Default)
+id = 2
+data
+  file = /QRISdata/Q0992/data/clean/data_list_e2_rdump.R
+init = 2 (Default)
+random
+  seed = 12345
+output
+  file = /QRISdata/Q0992/analysis/Bayes/samples_e2_hyperbolic_nontruncated_2.csv
+  diagnostic_file =  (Default)
+  refresh = 100 (Default)
+
+
+Gradient evaluation took 0.01 seconds
+1000 transitions using 10 leapfrog steps per transition would take 100 seconds.
+Adjust your expectations accordingly!
+
+
+Iteration:     1 / 15000 [  0%]  (Warmup)
+Iteration:   100 / 15000 [  0%]  (Warmup)
+Iteration:   200 / 15000 [  1%]  (Warmup)
+Iteration:   300 / 15000 [  2%]  (Warmup)
+Iteration:   400 / 15000 [  2%]  (Warmup)
+Iteration:   500 / 15000 [  3%]  (Warmup)
+Iteration:   600 / 15000 [  4%]  (Warmup)
+Iteration:   700 / 15000 [  4%]  (Warmup)
+Iteration:   800 / 15000 [  5%]  (Warmup)
+Iteration:   900 / 15000 [  6%]  (Warmup)
+Iteration:  1000 / 15000 [  6%]  (Warmup)
+Iteration:  1100 / 15000 [  7%]  (Warmup)
+Iteration:  1200 / 15000 [  8%]  (Warmup)
+Iteration:  1300 / 15000 [  8%]  (Warmup)
+Iteration:  1400 / 15000 [  9%]  (Warmup)
+Iteration:  1500 / 15000 [ 10%]  (Warmup)
+Iteration:  1600 / 15000 [ 10%]  (Warmup)
+Iteration:  1700 / 15000 [ 11%]  (Warmup)
+Iteration:  1800 / 15000 [ 12%]  (Warmup)
+Iteration:  1900 / 15000 [ 12%]  (Warmup)

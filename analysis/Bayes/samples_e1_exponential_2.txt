@@ -1,0 +1,108 @@
+method = sample (Default)
+  sample
+    num_samples = 5000
+    num_warmup = 1000 (Default)
+    save_warmup = 0 (Default)
+    thin = 1 (Default)
+    adapt
+      engaged = 1 (Default)
+      gamma = 0.050000000000000003 (Default)
+      delta = 0.98999999999999999
+      kappa = 0.75 (Default)
+      t0 = 10 (Default)
+      init_buffer = 75 (Default)
+      term_buffer = 50 (Default)
+      window = 25 (Default)
+    algorithm = hmc (Default)
+      hmc
+        engine = nuts (Default)
+          nuts
+            max_depth = 20
+        metric = diag_e (Default)
+        metric_file =  (Default)
+        stepsize = 1 (Default)
+        stepsize_jitter = 0 (Default)
+id = 2
+data
+  file = /QRISdata/Q0992/data/clean/data_list_e1_rdump.R
+init = 2 (Default)
+random
+  seed = 12345
+output
+  file = /QRISdata/Q0992/analysis/Bayes/samples_e1_exponential_2.csv
+  diagnostic_file =  (Default)
+  refresh = 100 (Default)
+
+
+Gradient evaluation took 0.02 seconds
+1000 transitions using 10 leapfrog steps per transition would take 200 seconds.
+Adjust your expectations accordingly!
+
+
+Iteration:    1 / 6000 [  0%]  (Warmup)
+Iteration:  100 / 6000 [  1%]  (Warmup)
+Iteration:  200 / 6000 [  3%]  (Warmup)
+Iteration:  300 / 6000 [  5%]  (Warmup)
+Iteration:  400 / 6000 [  6%]  (Warmup)
+Iteration:  500 / 6000 [  8%]  (Warmup)
+Iteration:  600 / 6000 [ 10%]  (Warmup)
+Iteration:  700 / 6000 [ 11%]  (Warmup)
+Iteration:  800 / 6000 [ 13%]  (Warmup)
+Iteration:  900 / 6000 [ 15%]  (Warmup)
+Iteration: 1000 / 6000 [ 16%]  (Warmup)
+Iteration: 1001 / 6000 [ 16%]  (Sampling)
+Iteration: 1100 / 6000 [ 18%]  (Sampling)
+Iteration: 1200 / 6000 [ 20%]  (Sampling)
+Iteration: 1300 / 6000 [ 21%]  (Sampling)
+Iteration: 1400 / 6000 [ 23%]  (Sampling)
+Iteration: 1500 / 6000 [ 25%]  (Sampling)
+Iteration: 1600 / 6000 [ 26%]  (Sampling)
+Iteration: 1700 / 6000 [ 28%]  (Sampling)
+Iteration: 1800 / 6000 [ 30%]  (Sampling)
+Iteration: 1900 / 6000 [ 31%]  (Sampling)
+Iteration: 2000 / 6000 [ 33%]  (Sampling)
+Iteration: 2100 / 6000 [ 35%]  (Sampling)
+Iteration: 2200 / 6000 [ 36%]  (Sampling)
+Iteration: 2300 / 6000 [ 38%]  (Sampling)
+Iteration: 2400 / 6000 [ 40%]  (Sampling)
+Iteration: 2500 / 6000 [ 41%]  (Sampling)
+Iteration: 2600 / 6000 [ 43%]  (Sampling)
+Iteration: 2700 / 6000 [ 45%]  (Sampling)
+Iteration: 2800 / 6000 [ 46%]  (Sampling)
+Iteration: 2900 / 6000 [ 48%]  (Sampling)
+Iteration: 3000 / 6000 [ 50%]  (Sampling)
+Iteration: 3100 / 6000 [ 51%]  (Sampling)
+Iteration: 3200 / 6000 [ 53%]  (Sampling)
+Iteration: 3300 / 6000 [ 55%]  (Sampling)
+Iteration: 3400 / 6000 [ 56%]  (Sampling)
+Iteration: 3500 / 6000 [ 58%]  (Sampling)
+Iteration: 3600 / 6000 [ 60%]  (Sampling)
+Iteration: 3700 / 6000 [ 61%]  (Sampling)
+Iteration: 3800 / 6000 [ 63%]  (Sampling)
+Iteration: 3900 / 6000 [ 65%]  (Sampling)
+Iteration: 4000 / 6000 [ 66%]  (Sampling)
+Iteration: 4100 / 6000 [ 68%]  (Sampling)
+Iteration: 4200 / 6000 [ 70%]  (Sampling)
+Iteration: 4300 / 6000 [ 71%]  (Sampling)
+Iteration: 4400 / 6000 [ 73%]  (Sampling)
+Iteration: 4500 / 6000 [ 75%]  (Sampling)
+Iteration: 4600 / 6000 [ 76%]  (Sampling)
+Iteration: 4700 / 6000 [ 78%]  (Sampling)
+Iteration: 4800 / 6000 [ 80%]  (Sampling)
+Iteration: 4900 / 6000 [ 81%]  (Sampling)
+Iteration: 5000 / 6000 [ 83%]  (Sampling)
+Iteration: 5100 / 6000 [ 85%]  (Sampling)
+Iteration: 5200 / 6000 [ 86%]  (Sampling)
+Iteration: 5300 / 6000 [ 88%]  (Sampling)
+Iteration: 5400 / 6000 [ 90%]  (Sampling)
+Iteration: 5500 / 6000 [ 91%]  (Sampling)
+Iteration: 5600 / 6000 [ 93%]  (Sampling)
+Iteration: 5700 / 6000 [ 95%]  (Sampling)
+Iteration: 5800 / 6000 [ 96%]  (Sampling)
+Iteration: 5900 / 6000 [ 98%]  (Sampling)
+Iteration: 6000 / 6000 [100%]  (Sampling)
+
+ Elapsed Time: 1155.65 seconds (Warm-up)
+               5292.28 seconds (Sampling)
+               6447.93 seconds (Total)
+

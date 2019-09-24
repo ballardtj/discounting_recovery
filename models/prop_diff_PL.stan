@@ -47,5 +47,5 @@ model {
   delta ~ normal(0,5);
 
   //likelihood
-  y~bernoulli_logit(p_a_logit);
+  y~bernoulli(p_a);
 }

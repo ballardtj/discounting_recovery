@@ -7,6 +7,6 @@
 
 #PBS -l select=1:ncpus=4:mpiprocs=4:intel=true:mem=20GB,walltime=20:00:00
 
-#PBS -J 1-1100
+#PBS -J 1-900
 
-R CMD BATCH --no-save --no-restore --$PBS_ARRAY_INDEX /QRISdata/Q0992/analysis/3_parameter_recovery.R /QRISdata/Q0992/analysis/3_parameter_recovery_$PBS_ARRAY_INDEX.Rout
+R CMD BATCH --no-save --no-restore --$PBS_ARRAY_INDEX /QRISdata/Q0992/analysis/3_parameter_recovery.R /QRISdata/Q0992/analysis/13_parameter_recovery_$PBS_ARRAY_INDEX.Rout

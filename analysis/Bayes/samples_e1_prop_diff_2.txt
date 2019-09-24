@@ -1,0 +1,222 @@
+method = sample (Default)
+  sample
+    num_samples = 5000
+    num_warmup = 10000
+    save_warmup = 0 (Default)
+    thin = 1 (Default)
+    adapt
+      engaged = 1 (Default)
+      gamma = 0.050000000000000003 (Default)
+      delta = 0.94999999999999996
+      kappa = 0.75 (Default)
+      t0 = 10 (Default)
+      init_buffer = 75 (Default)
+      term_buffer = 50 (Default)
+      window = 25 (Default)
+    algorithm = hmc (Default)
+      hmc
+        engine = nuts (Default)
+          nuts
+            max_depth = 20
+        metric = diag_e (Default)
+        metric_file =  (Default)
+        stepsize = 1 (Default)
+        stepsize_jitter = 0 (Default)
+id = 2
+data
+  file = /QRISdata/Q0992/data/clean/data_list_e1_rdump.R
+init = 2 (Default)
+random
+  seed = 12345
+output
+  file = /QRISdata/Q0992/analysis/Bayes/samples_e1_prop_diff_2.csv
+  diagnostic_file =  (Default)
+  refresh = 100 (Default)
+
+Rejecting initial value:
+  Log probability evaluates to log(0), i.e. negative infinity.
+  Stan can't start sampling from this initial value.
+Rejecting initial value:
+  Log probability evaluates to log(0), i.e. negative infinity.
+  Stan can't start sampling from this initial value.
+Rejecting initial value:
+  Log probability evaluates to log(0), i.e. negative infinity.
+  Stan can't start sampling from this initial value.
+Rejecting initial value:
+  Log probability evaluates to log(0), i.e. negative infinity.
+  Stan can't start sampling from this initial value.
+Rejecting initial value:
+  Log probability evaluates to log(0), i.e. negative infinity.
+  Stan can't start sampling from this initial value.
+Rejecting initial value:
+  Log probability evaluates to log(0), i.e. negative infinity.
+  Stan can't start sampling from this initial value.
+Rejecting initial value:
+  Log probability evaluates to log(0), i.e. negative infinity.
+  Stan can't start sampling from this initial value.
+Rejecting initial value:
+  Log probability evaluates to log(0), i.e. negative infinity.
+  Stan can't start sampling from this initial value.
+
+Gradient evaluation took 0.02 seconds
+1000 transitions using 10 leapfrog steps per transition would take 200 seconds.
+Adjust your expectations accordingly!
+
+
+Iteration:     1 / 15000 [  0%]  (Warmup)
+Iteration:   100 / 15000 [  0%]  (Warmup)
+Iteration:   200 / 15000 [  1%]  (Warmup)
+Iteration:   300 / 15000 [  2%]  (Warmup)
+Iteration:   400 / 15000 [  2%]  (Warmup)
+Iteration:   500 / 15000 [  3%]  (Warmup)
+Iteration:   600 / 15000 [  4%]  (Warmup)
+Iteration:   700 / 15000 [  4%]  (Warmup)
+Iteration:   800 / 15000 [  5%]  (Warmup)
+Iteration:   900 / 15000 [  6%]  (Warmup)
+Iteration:  1000 / 15000 [  6%]  (Warmup)
+Iteration:  1100 / 15000 [  7%]  (Warmup)
+Iteration:  1200 / 15000 [  8%]  (Warmup)
+Iteration:  1300 / 15000 [  8%]  (Warmup)
+Iteration:  1400 / 15000 [  9%]  (Warmup)
+Iteration:  1500 / 15000 [ 10%]  (Warmup)
+Iteration:  1600 / 15000 [ 10%]  (Warmup)
+Iteration:  1700 / 15000 [ 11%]  (Warmup)
+Iteration:  1800 / 15000 [ 12%]  (Warmup)
+Iteration:  1900 / 15000 [ 12%]  (Warmup)
+Iteration:  2000 / 15000 [ 13%]  (Warmup)
+Iteration:  2100 / 15000 [ 14%]  (Warmup)
+Iteration:  2200 / 15000 [ 14%]  (Warmup)
+Iteration:  2300 / 15000 [ 15%]  (Warmup)
+Iteration:  2400 / 15000 [ 16%]  (Warmup)
+Iteration:  2500 / 15000 [ 16%]  (Warmup)
+Iteration:  2600 / 15000 [ 17%]  (Warmup)
+Iteration:  2700 / 15000 [ 18%]  (Warmup)
+Iteration:  2800 / 15000 [ 18%]  (Warmup)
+Iteration:  2900 / 15000 [ 19%]  (Warmup)
+Iteration:  3000 / 15000 [ 20%]  (Warmup)
+Iteration:  3100 / 15000 [ 20%]  (Warmup)
+Iteration:  3200 / 15000 [ 21%]  (Warmup)
+Iteration:  3300 / 15000 [ 22%]  (Warmup)
+Iteration:  3400 / 15000 [ 22%]  (Warmup)
+Iteration:  3500 / 15000 [ 23%]  (Warmup)
+Iteration:  3600 / 15000 [ 24%]  (Warmup)
+Iteration:  3700 / 15000 [ 24%]  (Warmup)
+Iteration:  3800 / 15000 [ 25%]  (Warmup)
+Iteration:  3900 / 15000 [ 26%]  (Warmup)
+Iteration:  4000 / 15000 [ 26%]  (Warmup)
+Iteration:  4100 / 15000 [ 27%]  (Warmup)
+Iteration:  4200 / 15000 [ 28%]  (Warmup)
+Iteration:  4300 / 15000 [ 28%]  (Warmup)
+Iteration:  4400 / 15000 [ 29%]  (Warmup)
+Iteration:  4500 / 15000 [ 30%]  (Warmup)
+Iteration:  4600 / 15000 [ 30%]  (Warmup)
+Iteration:  4700 / 15000 [ 31%]  (Warmup)
+Iteration:  4800 / 15000 [ 32%]  (Warmup)
+Iteration:  4900 / 15000 [ 32%]  (Warmup)
+Iteration:  5000 / 15000 [ 33%]  (Warmup)
+Iteration:  5100 / 15000 [ 34%]  (Warmup)
+Iteration:  5200 / 15000 [ 34%]  (Warmup)
+Iteration:  5300 / 15000 [ 35%]  (Warmup)
+Iteration:  5400 / 15000 [ 36%]  (Warmup)
+Iteration:  5500 / 15000 [ 36%]  (Warmup)
+Iteration:  5600 / 15000 [ 37%]  (Warmup)
+Iteration:  5700 / 15000 [ 38%]  (Warmup)
+Iteration:  5800 / 15000 [ 38%]  (Warmup)
+Iteration:  5900 / 15000 [ 39%]  (Warmup)
+Iteration:  6000 / 15000 [ 40%]  (Warmup)
+Iteration:  6100 / 15000 [ 40%]  (Warmup)
+Iteration:  6200 / 15000 [ 41%]  (Warmup)
+Iteration:  6300 / 15000 [ 42%]  (Warmup)
+Iteration:  6400 / 15000 [ 42%]  (Warmup)
+Iteration:  6500 / 15000 [ 43%]  (Warmup)
+Iteration:  6600 / 15000 [ 44%]  (Warmup)
+Iteration:  6700 / 15000 [ 44%]  (Warmup)
+Iteration:  6800 / 15000 [ 45%]  (Warmup)
+Iteration:  6900 / 15000 [ 46%]  (Warmup)
+Iteration:  7000 / 15000 [ 46%]  (Warmup)
+Iteration:  7100 / 15000 [ 47%]  (Warmup)
+Iteration:  7200 / 15000 [ 48%]  (Warmup)
+Iteration:  7300 / 15000 [ 48%]  (Warmup)
+Iteration:  7400 / 15000 [ 49%]  (Warmup)
+Iteration:  7500 / 15000 [ 50%]  (Warmup)
+Iteration:  7600 / 15000 [ 50%]  (Warmup)
+Iteration:  7700 / 15000 [ 51%]  (Warmup)
+Iteration:  7800 / 15000 [ 52%]  (Warmup)
+Iteration:  7900 / 15000 [ 52%]  (Warmup)
+Iteration:  8000 / 15000 [ 53%]  (Warmup)
+Iteration:  8100 / 15000 [ 54%]  (Warmup)
+Iteration:  8200 / 15000 [ 54%]  (Warmup)
+Iteration:  8300 / 15000 [ 55%]  (Warmup)
+Iteration:  8400 / 15000 [ 56%]  (Warmup)
+Iteration:  8500 / 15000 [ 56%]  (Warmup)
+Iteration:  8600 / 15000 [ 57%]  (Warmup)
+Iteration:  8700 / 15000 [ 58%]  (Warmup)
+Iteration:  8800 / 15000 [ 58%]  (Warmup)
+Iteration:  8900 / 15000 [ 59%]  (Warmup)
+Iteration:  9000 / 15000 [ 60%]  (Warmup)
+Iteration:  9100 / 15000 [ 60%]  (Warmup)
+Iteration:  9200 / 15000 [ 61%]  (Warmup)
+Iteration:  9300 / 15000 [ 62%]  (Warmup)
+Iteration:  9400 / 15000 [ 62%]  (Warmup)
+Iteration:  9500 / 15000 [ 63%]  (Warmup)
+Iteration:  9600 / 15000 [ 64%]  (Warmup)
+Iteration:  9700 / 15000 [ 64%]  (Warmup)
+Iteration:  9800 / 15000 [ 65%]  (Warmup)
+Iteration:  9900 / 15000 [ 66%]  (Warmup)
+Iteration: 10000 / 15000 [ 66%]  (Warmup)
+Iteration: 10001 / 15000 [ 66%]  (Sampling)
+Iteration: 10100 / 15000 [ 67%]  (Sampling)
+Iteration: 10200 / 15000 [ 68%]  (Sampling)
+Iteration: 10300 / 15000 [ 68%]  (Sampling)
+Iteration: 10400 / 15000 [ 69%]  (Sampling)
+Iteration: 10500 / 15000 [ 70%]  (Sampling)
+Iteration: 10600 / 15000 [ 70%]  (Sampling)
+Iteration: 10700 / 15000 [ 71%]  (Sampling)
+Iteration: 10800 / 15000 [ 72%]  (Sampling)
+Iteration: 10900 / 15000 [ 72%]  (Sampling)
+Iteration: 11000 / 15000 [ 73%]  (Sampling)
+Iteration: 11100 / 15000 [ 74%]  (Sampling)
+Iteration: 11200 / 15000 [ 74%]  (Sampling)
+Iteration: 11300 / 15000 [ 75%]  (Sampling)
+Iteration: 11400 / 15000 [ 76%]  (Sampling)
+Iteration: 11500 / 15000 [ 76%]  (Sampling)
+Iteration: 11600 / 15000 [ 77%]  (Sampling)
+Iteration: 11700 / 15000 [ 78%]  (Sampling)
+Iteration: 11800 / 15000 [ 78%]  (Sampling)
+Iteration: 11900 / 15000 [ 79%]  (Sampling)
+Iteration: 12000 / 15000 [ 80%]  (Sampling)
+Iteration: 12100 / 15000 [ 80%]  (Sampling)
+Iteration: 12200 / 15000 [ 81%]  (Sampling)
+Iteration: 12300 / 15000 [ 82%]  (Sampling)
+Iteration: 12400 / 15000 [ 82%]  (Sampling)
+Iteration: 12500 / 15000 [ 83%]  (Sampling)
+Iteration: 12600 / 15000 [ 84%]  (Sampling)
+Iteration: 12700 / 15000 [ 84%]  (Sampling)
+Iteration: 12800 / 15000 [ 85%]  (Sampling)
+Iteration: 12900 / 15000 [ 86%]  (Sampling)
+Iteration: 13000 / 15000 [ 86%]  (Sampling)
+Iteration: 13100 / 15000 [ 87%]  (Sampling)
+Iteration: 13200 / 15000 [ 88%]  (Sampling)
+Iteration: 13300 / 15000 [ 88%]  (Sampling)
+Iteration: 13400 / 15000 [ 89%]  (Sampling)
+Iteration: 13500 / 15000 [ 90%]  (Sampling)
+Iteration: 13600 / 15000 [ 90%]  (Sampling)
+Iteration: 13700 / 15000 [ 91%]  (Sampling)
+Iteration: 13800 / 15000 [ 92%]  (Sampling)
+Iteration: 13900 / 15000 [ 92%]  (Sampling)
+Iteration: 14000 / 15000 [ 93%]  (Sampling)
+Iteration: 14100 / 15000 [ 94%]  (Sampling)
+Iteration: 14200 / 15000 [ 94%]  (Sampling)
+Iteration: 14300 / 15000 [ 95%]  (Sampling)
+Iteration: 14400 / 15000 [ 96%]  (Sampling)
+Iteration: 14500 / 15000 [ 96%]  (Sampling)
+Iteration: 14600 / 15000 [ 97%]  (Sampling)
+Iteration: 14700 / 15000 [ 98%]  (Sampling)
+Iteration: 14800 / 15000 [ 98%]  (Sampling)
+Iteration: 14900 / 15000 [ 99%]  (Sampling)
+Iteration: 15000 / 15000 [100%]  (Sampling)
+
+ Elapsed Time: 7550.77 seconds (Warm-up)
+               3719.26 seconds (Sampling)
+               11270 seconds (Total)
+

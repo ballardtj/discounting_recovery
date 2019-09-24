@@ -4,3 +4,4 @@ data/*
 data/derived/*
 data/derived/fits/*
 data/derived/recovery/*
+analysis/Bayes/*.csv

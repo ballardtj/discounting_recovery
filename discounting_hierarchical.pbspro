@@ -5,8 +5,8 @@
 
 #PBS -A UQ-SBS-Psy
 
-#PBS -l select=1:ncpus=8:mpiprocs=8:intel=true:mem=40GB,walltime=100:00:00
+#PBS -l select=1:ncpus=8:mpiprocs=8:intel=true:mem=40GB,walltime=160:00:00
 
-## #PBS -J 1-11
+#PBS -J 10-11
 
-R CMD BATCH --no-save --no-restore --11 /QRISdata/Q0992/analysis/Bayes/1_fit_manos_data.R /QRISdata/Q0992/analysis/Bayes/1_fit_manos_data_11.Rout
+R CMD BATCH --no-save --no-restore --$PBS_ARRAY_INDEX /QRISdata/Q0992/analysis/Bayes/10_fit_junyi_data.R /QRISdata/Q0992/analysis/Bayes/10_fit_junyi_data_$PBS_ARRAY_INDEX.Rout
