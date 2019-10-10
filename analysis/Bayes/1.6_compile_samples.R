@@ -13,13 +13,13 @@ source("/QRISdata/Q0992/models/model_details.R")
 if(run < 12){
   exp = 1
   model = names(models)[run]
+  if(run != 4 & run != 6){model = paste0(model,"_gamma")}
 }
 
 if(run > 11){
   exp = 2
   model = names(models)[run-11]
-  if(run == 12){model = "hyperbolic_nontruncated"}	
-  if(run == 13){model = "exponential_nontruncated"}
+  if(run != 15 & run != 16){model = paste0(model,"_gamma")}
 }
 
 

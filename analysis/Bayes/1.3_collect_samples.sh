@@ -5,9 +5,9 @@
 echo $1
 echo $2
 
-MODEL_ARRAY=(hyperbolic_nontruncated exponential_nontruncated hyperbolic_gm 
-  prop_diff tradeoff ITCH const_sens mazur1987 loewenstein1992
-  mcclure2007 killeen2009)
+MODEL_ARRAY=(hyperbolic_gamma exponential_gamma hyperbolic_gm_gamma 
+  prop_diff tradeoff_gamma ITCH const_sens_gamma mazur1987_gamma loewenstein1992_gamma
+  mcclure2007_gamma killeen2009_gamma)
 
 if [ "$2" -lt 12 ]
 then
@@ -29,5 +29,5 @@ THREADS=-1
 
 export STAN_NUM_THREADS=$THREADS
 
-/QRISdata/Q0992/models/"${MODEL_ARRAY[MODEL_NUM]}"_mpi sample algorithm=hmc engine=nuts max_depth=20 num_samples=5000 num_warmup=10000 thin=1 adapt delta=.975 data file=/QRISdata/Q0992/data/clean/data_list_e"${EXP}"_rdump.R random seed=12345 id=$1 output file=/QRISdata/Q0992/analysis/Bayes/samples_e"${EXP}"_"${MODEL_ARRAY[MODEL_NUM]}"_$1.csv > /QRISdata/Q0992/analysis/Bayes/samples_e"${EXP}"_"${MODEL_ARRAY[MODEL_NUM]}"_$1.txt
+/QRISdata/Q0992/models/"${MODEL_ARRAY[MODEL_NUM]}"_mpi sample algorithm=hmc engine=nuts max_depth=20 num_samples=2000 num_warmup=2000 thin=1 adapt delta=.9 data file=/QRISdata/Q0992/data/clean/data_list_e"${EXP}"_rdump.R random seed=12345 id=$1 output file=/QRISdata/Q0992/analysis/Bayes/samples_e"${EXP}"_"${MODEL_ARRAY[MODEL_NUM]}"_$1.csv > /QRISdata/Q0992/analysis/Bayes/samples_e"${EXP}"_"${MODEL_ARRAY[MODEL_NUM]}"_$1.txt
 

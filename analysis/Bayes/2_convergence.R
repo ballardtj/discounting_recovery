@@ -23,16 +23,18 @@ stan2coda <- function(fit) {
   mcmc.list(lapply(1:ncol(fit), function(x) mcmc(as.array(fit)[,x,])))
 }
 
-for( exp in 2){
+for( exp in 1){
 for (i in 1:length(models)){
 
+  if(i != 4 & i != 6){names(models)[i] = paste0(names(models)[i],"_gamma")}
+  
   print(models[[i]]$name)
   
   load(file=paste0("data/derived/fits/fit_exp",exp,"_", names(models)[i],".RData"))
   
   smrystan = summary(fit)
                                                                                          
-  print(kable(smrystan[[1]]),format="markdown")
+  print(kable(round(smrystan[[1]],3)),format="markdown")
 
   write.csv(smrystan[[1]], file=paste0("figures/summary_exp",exp,"_",names(models)[i],".csv"))
   
@@ -54,4 +56,6 @@ for (i in 1:length(models)){
   
 }
 }
+
+#For experiment 1, all models except double exponential converge with 10000 burnin, 5000 samples, and delta of 0.8
 

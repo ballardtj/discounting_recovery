@@ -1,0 +1,9 @@
+#!/bin/bash
+
+#PBS -A UQ-SBS-Psy
+
+#PBS -l select=1:ncpus=24:intel=true:mem=120GB,walltime=24:00:00
+
+#PBS -J 1-4
+
+sh /QRISdata/Q0992/analysis/Bayes/1.3_collect_samples.sh $PBS_ARRAY_INDEX ${RUN}

@@ -10,9 +10,12 @@ functions {
           int Nvalid = int_data[1];
           int Nplaces = int_data[2]; //total number of elements in array (including 
          
-          //uncenter parameters
-          real k = phi[1] + phi[2]*theta[1];
-          real sigma = phi[3] + phi[4]*theta[2];
+          //uncenter parameters (only those that are normally distributed)
+          real alpha = theta[1];
+          real beta = theta[2];
+          real lambda = theta[3];
+          real sigma = phi[3] + phi[4]*theta[4];
+          
           
           //unpack data
           
@@ -32,8 +35,8 @@ functions {
             d_a = real_data[2*Nplaces+i];
             d_b = real_data[3*Nplaces+i];
             
-            u_a = m_a / (1+ k * d_a); //utility of option a
-            u_b = m_b / (1+ k * d_b); //utility of option b
+            u_a = pow(m_a,alpha) - lambda*pow(d_a,beta); //utility of option a
+            u_b = pow(m_b,alpha) - lambda*pow(d_b,beta); //utility of option b
             p_a_logit[i] = (u_a-u_b) * sigma; //probability of selecting option a
             
             y[i] = int_data[2+i];
@@ -54,31 +57,44 @@ data {
 
 parameters {
   
-  real k_mean;
-  real<lower=0> k_sd;
-  vector[Nsubj] k_raw;
+  real<lower=0,upper=1> alpha_mean;
+  real<lower=0> alpha_prec;
+  vector<lower=0,upper=1>[Nsubj] alpha;
+  
+  real<lower=0,upper=1> beta_mean;
+  real<lower=0> beta_prec;
+  vector<lower=0,upper=1>[Nsubj] beta;
+  
+  real<lower=0> lambda_shape;
+  real<lower=0> lambda_scale;
+  vector<lower=0>[Nsubj] lambda;
 
   real<lower=0> sigma_mean;
   real<lower=0> sigma_sd;
   vector<lower=0>[Nsubj] sigma_raw;
-
+  
 }
+
+
+
 
 transformed parameters {
     
     vector[4] phi;
-    vector[2] theta[Nsubj];
+    vector[4] theta[Nsubj];
 
     //insert hyperpriors into phi vector
-    phi[1] = k_mean;
-    phi[2] = k_sd;
+    phi[1] = lambda_shape;
+    phi[2] = lambda_scale;
     phi[3] = sigma_mean;
     phi[4] = sigma_sd;
     
     //insert priors into theta array of vectors
     for(subj in 1:Nsubj){
-      theta[subj,1] = k_raw[subj];
-      theta[subj,2] = sigma_raw[subj];
+      theta[subj,1] = alpha[subj];
+      theta[subj,2] = beta[subj];
+      theta[subj,3] = lambda[subj];
+      theta[subj,4] = sigma_raw[subj];
     }
 }
 
@@ -86,13 +102,21 @@ transformed parameters {
 model {
  
   //priors
-  k_mean ~ normal(0,1);
-  k_sd ~ normal(0,1);
+  //alpha_mean ~ uniform(0,1);
+  alpha_prec ~ gamma(1,20);
+  
+  //beta_u ~ uniform(0,1);
+  beta_prec ~ gamma(1,20);
+  
+  lambda_shape ~ normal(0,1);
+  lambda_scale ~ normal(0,1);
   
   sigma_mean ~ normal(0,1);
   sigma_sd ~ normal(0,1);
 
-  k_raw ~ normal(0,1);
+  alpha ~ beta(alpha_mean*alpha_prec , (1-alpha_mean)*alpha_prec);
+  beta ~  beta(beta_mean*beta_prec , (1-beta_mean)*beta_prec);
+  lambda ~ gamma(lambda_shape,inv(lambda_scale));
   sigma_raw ~ normal(0,1);
   
   //likelihood

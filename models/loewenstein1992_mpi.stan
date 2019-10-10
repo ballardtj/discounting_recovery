@@ -58,11 +58,11 @@ parameters {
   
   real<lower=0> alpha_mean;
   real<lower=0> alpha_sd;
-  vector<lower=0>[Nsubj] alpha_raw;
+  vector<lower=0>[Nsubj] alpha;
 
   real<lower=0> beta_mean;
   real<lower=0> beta_sd;
-  vector<lower=0>[Nsubj] beta_raw;
+  vector<lower=0>[Nsubj] beta;
 
   real<lower=0> sigma_mean;
   real<lower=0> sigma_sd;
@@ -79,10 +79,10 @@ transformed parameters {
     vector[3] theta[Nsubj];
 
     //insert hyperpriors into phi vector
-    phi[1] = alpha_mean;
-    phi[2] = alpha_sd;
-    phi[3] = beta_mean;
-    phi[4] = beta_sd;
+    phi[1] = alpha_shape;
+    phi[2] = alpha_scale;
+    phi[3] = beta_shape;
+    phi[4] = beta_scale;
     phi[5] = sigma_mean;
     phi[6] = sigma_sd;
   
@@ -101,8 +101,8 @@ model {
   alpha_mean ~ normal(0,1);
   alpha_sd ~ normal(0,1);
   
-  beta_mean ~ normal(0,1);
-  beta_sd ~ normal(0,1);
+  beta_shape ~ normal(0,1);
+  beta_scale ~ normal(0,1);
   
   sigma_mean ~ normal(0,1);
   sigma_sd ~ normal(0,1);
