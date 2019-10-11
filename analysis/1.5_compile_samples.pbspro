@@ -9,4 +9,4 @@ echo ${RUN}
 
 module load R/3.6.0+tidyverse+rstan+rtdists
 
-cat /QRISdata/Q0992/analysis/Bayes/1.5_compile_samples.sh | shell -s ${RUN}
+cat /30days/uqtballa/Q0992/analysis/1.6_compile_samples.sh | shell -s ${RUN}

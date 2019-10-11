@@ -1,0 +1,49 @@
+Loading required package: StanHeaders
+Loading required package: ggplot2
+rstan (Version 2.19.2, GitRev: 2e1f913d3ca3)
+For execution on a local, multicore CPU with excess RAM we recommend calling
+options(mc.cores = parallel::detectCores()).
+To avoid recompilation of unchanged Stan programs, we recommend calling
+rstan_options(auto_write = TRUE)
+[1] "--1" "--1"
+[1] "Run: 1; Chain: 1"
+
+SAMPLING FOR MODEL 'hyperbolic_gamma_mpi' NOW (CHAIN 1).
+Chain 1: 
+Chain 1: Gradient evaluation took 0.010237 seconds
+Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 102.37 seconds.
+Chain 1: Adjust your expectations accordingly!
+Chain 1: 
+Chain 1: 
+Chain 1: Iteration:   1 / 400 [  0%]  (Warmup)
+Chain 1: Iteration:  40 / 400 [ 10%]  (Warmup)
+Chain 1: Iteration:  80 / 400 [ 20%]  (Warmup)
+Chain 1: Iteration: 120 / 400 [ 30%]  (Warmup)
+Chain 1: Iteration: 160 / 400 [ 40%]  (Warmup)
+Chain 1: Iteration: 200 / 400 [ 50%]  (Warmup)
+Chain 1: Iteration: 201 / 400 [ 50%]  (Sampling)
+Chain 1: Iteration: 240 / 400 [ 60%]  (Sampling)
+Chain 1: Iteration: 280 / 400 [ 70%]  (Sampling)
+Chain 1: Iteration: 320 / 400 [ 80%]  (Sampling)
+Chain 1: Iteration: 360 / 400 [ 90%]  (Sampling)
+Chain 1: Iteration: 400 / 400 [100%]  (Sampling)
+Chain 1: 
+Chain 1:  Elapsed Time: 79.0672 seconds (Warm-up)
+Chain 1:                53.8654 seconds (Sampling)
+Chain 1:                132.933 seconds (Total)
+Chain 1: 
+Warning messages:
+1: The largest R-hat is 1.11, indicating chains have not mixed.
+Running the chains for more iterations may help. See
+http://mc-stan.org/misc/warnings.html#r-hat 
+2: Bulk Effective Samples Size (ESS) is too low, indicating posterior means and medians may be unreliable.
+Running the chains for more iterations may help. See
+http://mc-stan.org/misc/warnings.html#bulk-ess 
+3: Tail Effective Samples Size (ESS) is too low, indicating posterior variances and tail quantiles may be unreliable.
+Running the chains for more iterations may help. See
+http://mc-stan.org/misc/warnings.html#tail-ess 
+Time difference of 1.343415 mins
+
+ *** caught segfault ***
+address 0x111b988d0, cause 'memory not mapped'
+An irrecoverable exception occurred. R is aborting now ...

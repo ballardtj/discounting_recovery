@@ -79,6 +79,13 @@ for(exp in 1:2){
   stan_rdump(c('Nsubj','Max_obs_per_subj','real_data','int_data'),
              file=paste0('data/clean/data_list_e',exp,'_rdump.R'))
   
+  stan_list = list(Nsubj = Nsubj,
+                   Max_obs_per_subj = Max_obs_per_subj,
+                   real_data = real_data,
+                   int_data = int_data)
+  
+  save(stan_list, file=paste0('data/clean/data_list_e',exp,'.RData'))
+  
 }
 
 #DEBUG MODELS 

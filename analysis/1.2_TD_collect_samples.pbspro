@@ -1,0 +1,11 @@
+#!/bin/bash
+
+#PBS -A UQ-SBS-Psy
+
+#PBS -l select=1:ncpus=12:intel=true:mem=60GB,walltime=10:00:00
+
+#PBS -J 1-4
+
+module load R/3.6.0+tidyverse+rstan+rtdists
+
+cat /30days/uqtballa/Q0992/analysis/1.3_collect_samples.sh | shell -s ${RUN} $PBS_ARRAY_INDEX
