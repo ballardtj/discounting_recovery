@@ -16,7 +16,7 @@ functions {
           real theta = 1+theta2[3]; //add 1 so that theta has lower bound of 1 instead of 0.
           real kappa = theta2[4];
           real alpha = theta2[5];
-          real eps = phi[11] + phi[12]*theta2[6];
+          real eps = theta2[6];
           
           //unpack data
           
@@ -69,28 +69,28 @@ data {
 parameters {
   
   real<lower=0> gamma_shape; //gamma distributed
-  real<lower=0> gamma_scale;
+  real<lower=0> gamma_rate;
    vector<lower=0>[Nsubj] gamma;
 
   real<lower=0> tau_shape; //gamma distributed
-  real<lower=0> tau_scale;
+  real<lower=0> tau_rate;
    vector<lower=0>[Nsubj] tau;
   
   real<lower=0> theta_shape; //gamma distributed
-  real<lower=0> theta_scale;
+  real<lower=0> theta_rate;
    vector<lower=0>[Nsubj] theta_raw;
   
   real<lower=0> kappa_shape; //gamma distributed
-  real<lower=0> kappa_scale;
+  real<lower=0> kappa_rate;
    vector<lower=0>[Nsubj] kappa;
   
   real<lower=0> alpha_shape; //gamma distributed
-  real<lower=0> alpha_scale;
+  real<lower=0> alpha_rate;
    vector<lower=0>[Nsubj] alpha;
   
-  real<lower=0> eps_mean;
-  real<lower=0> eps_sd;
-  vector<lower=0>[Nsubj] eps_raw;
+  real<lower=0> eps_shape;
+  real<lower=0> eps_rate;
+  vector<lower=0>[Nsubj] eps;
 
 }
 
@@ -99,22 +99,11 @@ parameters {
 
 transformed parameters {
     
-    vector[12] phi;
+    vector[1] phi;
     vector[6] theta2[Nsubj];
 
     //insert hyperpriors into phi vector
-    phi[1] = gamma_shape;
-    phi[2] = gamma_scale;
-    phi[3] = tau_shape;
-    phi[4] = tau_scale;
-    phi[5] = theta_shape;
-    phi[6] = theta_scale;
-    phi[7] = kappa_shape;
-    phi[8] = kappa_scale;
-    phi[9] = alpha_shape;
-    phi[10] = alpha_scale;
-    phi[11] = eps_mean;
-    phi[12] = eps_sd;
+    phi[1] = 1;
   
     //insert priors into theta array of vectors
     for(subj in 1:Nsubj){
@@ -123,7 +112,7 @@ transformed parameters {
       theta2[subj,3] = theta_raw[subj];
       theta2[subj,4] = kappa[subj];
       theta2[subj,5] = alpha[subj];
-      theta2[subj,6] = eps_raw[subj];
+      theta2[subj,6] = eps[subj];
     }
 }
 
@@ -132,29 +121,29 @@ model {
  
   //priors
   gamma_shape ~ normal(0,1);
-  gamma_scale ~ normal(0,1);
+  gamma_rate ~ normal(0,1);
   
   tau_shape ~ normal(0,1);
-  tau_scale ~ normal(0,1);
+  tau_rate ~ normal(0,1);
   
   theta_shape ~ normal(1,1);
-  theta_scale ~ normal(0,1);
+  theta_rate ~ normal(0,1);
   
   kappa_shape ~ normal(0,1);
-  kappa_scale ~ normal(0,1);
+  kappa_rate ~ normal(0,1);
   
   alpha_shape ~ normal(0,1);
-  alpha_scale ~ normal(0,1);
+  alpha_rate ~ normal(0,1);
   
-  eps_mean ~ normal(0,1);
-  eps_sd ~ normal(0,1);
+  eps_shape ~ normal(0,1);
+  eps_rate ~ normal(0,1);
   
-  gamma ~ normal(gamma_shape,inv(gamma_scale));
-  tau ~ normal(tau_shape,inv(tau_scale));
-  theta_raw ~ normal(theta_shape,inv(theta_scale));
-  kappa ~ normal(kappa_shape,inv(kappa_scale));
-  alpha ~ normal(alpha_shape,inv(alpha_scale));
-  eps_raw ~ normal(0,1);
+  gamma ~ normal(gamma_shape,inv(gamma_rate));
+  tau ~ normal(tau_shape,inv(tau_rate));
+  theta_raw ~ normal(theta_shape,inv(theta_rate));
+  kappa ~ normal(kappa_shape,inv(kappa_rate));
+  alpha ~ normal(alpha_shape,inv(alpha_rate));
+  eps ~ normal(eps_shape,inv(eps_rate));
 
   
   

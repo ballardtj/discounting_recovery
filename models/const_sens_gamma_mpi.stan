@@ -13,7 +13,7 @@ functions {
           //uncenter parameters
           real alpha = theta[1];
           real beta = theta[2];
-          real sigma = phi[5] + phi[6]*theta[3];
+          real sigma = theta[3];
           
           //unpack data
           
@@ -56,38 +56,33 @@ data {
 parameters {
   
   real<lower=0> alpha_shape;
-  real<lower=0> alpha_scale;
+  real<lower=0> alpha_rate;
   vector<lower=0>[Nsubj] alpha;
 
   real<lower=0> beta_shape;
-  real<lower=0> beta_scale;
+  real<lower=0> beta_rate;
   vector<lower=0>[Nsubj] beta;
 
-  real<lower=0> sigma_mean;
-  real<lower=0> sigma_sd;
-  vector<lower=0>[Nsubj] sigma_raw;
+  real<lower=0> sigma_shape;
+  real<lower=0> sigma_rate;
+  vector<lower=0>[Nsubj] sigma;
   
 }
 
 
 transformed parameters {
     
-    vector[6] phi;
+    vector[1] phi;
     vector[3] theta[Nsubj];
 
-    //insert hyperpriors into phi vector
-    phi[1] = alpha_scale;
-    phi[2] = alpha_shape;
-    phi[3] = beta_scale;
-    phi[4] = beta_shape;
-    phi[5] = sigma_mean;
-    phi[6] = sigma_sd;
+    //insert dummy hyperprior into phi vector
+    phi[1] = 1;
     
     //insert priors into theta array of vectors
     for(subj in 1:Nsubj){
       theta[subj,1] = alpha[subj];
       theta[subj,2] = beta[subj];
-      theta[subj,3] = sigma_raw[subj];
+      theta[subj,3] = sigma[subj];
     }
 }
 
@@ -96,17 +91,17 @@ model {
  
   //priors
   alpha_shape ~ normal(0,1);
-  alpha_scale ~ normal(0,1);
+  alpha_rate ~ normal(0,1);
   
   beta_shape ~ normal(0,1);
-  beta_scale ~ normal(0,1);
+  beta_rate ~ normal(0,1);
   
-  sigma_mean ~ normal(0,1);
-  sigma_sd ~ normal(0,1);
+  sigma_shape ~ normal(0,1);
+  sigma_rate ~ normal(0,1);
 
-  alpha ~ gamma(alpha_shape,inv(alpha_scale));
-  beta ~ gamma(beta_shape,inv(beta_scale));
-  sigma_raw ~ normal(0,1);
+  alpha ~ gamma(alpha_shape,inv(alpha_rate));
+  beta ~ gamma(beta_shape,inv(beta_rate));
+  sigma ~ gamma(sigma_shape,inv(sigma_rate));
   
   //likelihood
   target += sum(map_rect(likelihood,phi,theta,real_data,int_data));

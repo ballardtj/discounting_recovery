@@ -12,8 +12,8 @@ functions {
          
           //uncenter parameters (only those that are normally distributed)
           real alpha = theta[1];
-          real beta = theta[2];
-          real sigma = phi[5] + phi[6]*theta[3];
+          real beta_on_alpha = theta[2];
+          real sigma = theta[3];
           
           
           //unpack data
@@ -34,8 +34,8 @@ functions {
             d_a = real_data[2*Nplaces+i];
             d_b = real_data[3*Nplaces+i];
             
-            u_a = m_a * pow(1+alpha * d_a, -beta / alpha ) ; //utility of option a
-            u_b = m_b * pow(1+alpha * d_b, -beta / alpha ) ; //utility of option b
+            u_a = m_a * pow(1+alpha * d_a, -beta_on_alpha ) ; //utility of option a
+            u_b = m_b * pow(1+alpha * d_b, -beta_on_alpha ) ; //utility of option b
             p_a_logit[i] = (u_a-u_b) * sigma; //probability of selecting option a
             
             y[i] = int_data[2+i];
@@ -57,16 +57,16 @@ data {
 parameters {
   
   real<lower=0> alpha_shape;
-  real<lower=0> alpha_scale;
+  real<lower=0> alpha_rate;
   vector<lower=0>[Nsubj] alpha;
 
-  real<lower=0> beta_shape;
-  real<lower=0> beta_scale;
-  vector<lower=0>[Nsubj] beta;
+  real<lower=0> beta_on_alpha_shape;
+  real<lower=0> beta_on_alpha_rate;
+  vector<lower=0>[Nsubj] beta_on_alpha;
 
-  real<lower=0> sigma_mean;
-  real<lower=0> sigma_sd;
-  vector<lower=0>[Nsubj] sigma_raw;
+  real<lower=0> sigma_shape;
+  real<lower=0> sigma_rate;
+  vector<lower=0>[Nsubj] sigma;
   
 }
 
@@ -75,22 +75,17 @@ parameters {
 
 transformed parameters {
     
-    vector[6] phi;
+    vector[1] phi;
     vector[3] theta[Nsubj];
 
     //insert hyperpriors into phi vector
-    phi[1] = alpha_shape;
-    phi[2] = alpha_scale;
-    phi[3] = beta_shape;
-    phi[4] = beta_scale;
-    phi[5] = sigma_mean;
-    phi[6] = sigma_sd;
+    phi[1] = 1;
   
     //insert priors into theta array of vectors
     for(subj in 1:Nsubj){
       theta[subj,1] = alpha[subj];
-      theta[subj,2] = beta[subj];
-      theta[subj,3] = sigma_raw[subj];
+      theta[subj,2] = beta_on_alpha[subj];
+      theta[subj,3] = sigma[subj];
     }
 }
 
@@ -99,17 +94,17 @@ model {
  
 //priors
   alpha_shape ~ normal(0,1);
-  alpha_scale ~ normal(0,1);
+  alpha_rate ~ normal(0,1);
   
-  beta_shape ~ normal(0,1);
-  beta_scale ~ normal(0,1);
+  beta_on_alpha_shape ~ normal(0,1);
+  beta_on_alpha_rate ~ normal(0,1);
   
-  sigma_mean ~ normal(0,1);
-  sigma_sd ~ normal(0,1);
+  sigma_shape ~ normal(0,1);
+  sigma_rate ~ normal(0,1);
 
-  alpha ~ gamma(alpha_shape,inv(alpha_scale));
-  beta ~ gamma(beta_shape,inv(beta_scale));
-  sigma_raw ~ normal(0,1);
+  alpha ~ gamma(alpha_shape,inv(alpha_rate));
+  beta_on_alpha ~ gamma(beta_on_alpha_shape,inv(beta_on_alpha_rate));
+  sigma ~ gamma(sigma_shape,inv(sigma_rate));
   
   
   //likelihood
