@@ -8,7 +8,6 @@
 # * Thinning: 1
 # * Total samples: 8000
 
-
 library(rstan)
 library(coda)
 library(knitr)
