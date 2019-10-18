@@ -101,7 +101,7 @@ model {
 
   k ~ gamma(k_shape,inv(k_rate));
   s ~ gamma(s_shape,inv(s_rate));
-  sigma ~ gamma(sigma_shape,inv(sigma_rate));
+  sigma_raw ~ gamma(sigma_shape,inv(sigma_rate));
   
   //likelihood
   target += sum(map_rect(likelihood,phi,theta,real_data,int_data));
