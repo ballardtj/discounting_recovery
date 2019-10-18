@@ -88,6 +88,33 @@ for(exp in 1:2){
   
 }
 
+#########################################################
+# Check bounds on reasonable parameters for k and sigma #
+#########################################################
+
+# dat=readRDS(file="data/raw/delay_data_lba_2019.rds") %>%
+#   mutate(subject = as.numeric(as.factor(subject)))
+# 
+# #format data for model fitting
+# dat$m_a = dat$amount
+# dat$d_a = dat$delay
+# dat$m_b = 100
+# dat$d_b = 0    #note: b is smaller, sooner option
+# dat$choose_a = dat$Choice
+# 
+# k = 0.1
+# sigma = 0.01
+# 
+# filter(dat,subject==1) %>%
+#   mutate(u_a = m_a*exp(-k*d_a),
+#          u_b = m_b*exp(-k*d_b),
+#          p_a = 1/(1+exp(-sigma*(u_a-u_b)))) %>%
+#   ggplot() +
+#   geom_line(aes(x=d_a,y=p_a,group=m_a,colour=m_a))
+
+
+
+
 #DEBUG MODELS 
 data_list = list(Nsubj = Nsubj,
                  Max_obs_per_subj = Max_obs_per_subj,
