@@ -13,7 +13,7 @@ source("models/model_details.R")
 #set analysis parameters
 set.seed(12345)
 nsamples = 100  #number of different parameter values tested
-nreps = 100     #number of times recovery is run for each parameter value
+nreps = 100    #number of times recovery is run for each parameter value
 iter_samples = sample(1:8000,size=nsamples,replace=TRUE) #vector of sampled iterations
 
 #loop through experiments
@@ -75,23 +75,95 @@ for(exp in 1:2){
         sim_dat = filter(dat,subject==subject_samples[sample])
       }
       
-      
-      #store sampled parameter values 
-      for(parm in 1:length(parm_names)){
-        #for each sample re-centre parameters (will need to be updated if different models are used)
-        if( (names(models)[model] == "mcclure2007" & parm_names[parm] == "omega") | 
-            (names(models)[model] == "killeen2009" & parm_names[parm] == "alpha") | 
-            names(models)[model] == "killeen2009" & parm_names[parm] == "beta")  {
-          #omega (in the McClure 2007 model) is needs to be transformed. So the value can be read directly from the posts matrix
-          parms[sample,parm] = posts[parm_names[parm]][[1]][iter_samples[sample],subject_samples[sample]]
-        } else {
-          #all other parameters need to be transformed from their raw values to the uncentered version
-          parms[sample,parm] = posts[paste0(parm_names[parm],'_raw')][[1]][iter_samples[sample],subject_samples[sample]]*
-            posts[paste0(parm_names[parm],'_sd')][[1]][iter_samples[sample]] +
-            posts[paste0(parm_names[parm],'_mean')][[1]][iter_samples[sample]]
-        }
+      #transform (if necessary) and store sampled parameter
+      if(names(models)[model] == "hyperbolic"){
+        #no transforms necessary
+        parms[sample,1] = posts$k[iter_samples[sample],subject_samples[sample]]
+        parms[sample,2] = posts$sigma[iter_samples[sample],subject_samples[sample]]
       }
       
+      if(names(models)[model] == "exponential"){
+        #no transforms necessary
+        parms[sample,1] = posts$k[iter_samples[sample],subject_samples[sample]]
+        parms[sample,2] = posts$sigma[iter_samples[sample],subject_samples[sample]]
+      }
+      
+      if(names(models)[model] == "hyperbolic_gm"){
+        #no transforms necessary
+        parms[sample,1] = posts$k[iter_samples[sample],subject_samples[sample]]
+        parms[sample,2] = posts$s[iter_samples[sample],subject_samples[sample]]
+        parms[sample,3] = posts$sigma[iter_samples[sample],subject_samples[sample]]
+      }
+      
+      if(names(models)[model] == "prop_diff"){
+        #delta needs to be unstandardised
+        parms[sample,1] = posts$delta_raw[iter_samples[sample],subject_samples[sample]]*
+          posts$delta_sd[iter_samples[sample]] + posts$delta_mean[iter_samples[sample]]
+        parms[sample,2] = posts$sigma[iter_samples[sample],subject_samples[sample]]
+      }
+      
+      if(names(models)[model] == "tradeoff"){
+        #1 is added to theta
+        parms[sample,1] = posts$gamma[iter_samples[sample],subject_samples[sample]]
+        parms[sample,2] = posts$tau[iter_samples[sample],subject_samples[sample]]
+        parms[sample,3] = 1+posts$theta_raw[iter_samples[sample],subject_samples[sample]]
+        parms[sample,4] = posts$kappa[iter_samples[sample],subject_samples[sample]]
+        parms[sample,5] = posts$alpha[iter_samples[sample],subject_samples[sample]]
+        parms[sample,6] = posts$eps[iter_samples[sample],subject_samples[sample]]
+      }
+      
+      if(names(models)[model] == "ITCH"){
+        #all parameters need to be unstandardised
+        parms[sample,1] = posts$B1_raw[iter_samples[sample],subject_samples[sample]]*
+          posts$B1_sd[iter_samples[sample]] + posts$B1_mean[iter_samples[sample]]
+        parms[sample,2] = posts$BxA_raw[iter_samples[sample],subject_samples[sample]]*
+          posts$BxA_sd[iter_samples[sample]] + posts$BxA_mean[iter_samples[sample]]
+        parms[sample,3] = posts$BxR_raw[iter_samples[sample],subject_samples[sample]]*
+          posts$BxR_sd[iter_samples[sample]] + posts$BxR_mean[iter_samples[sample]]
+        parms[sample,4] = posts$BtA_raw[iter_samples[sample],subject_samples[sample]]*
+          posts$BtA_sd[iter_samples[sample]] + posts$BtA_mean[iter_samples[sample]]
+        parms[sample,5] = posts$BtR_raw[iter_samples[sample],subject_samples[sample]]*
+          posts$BtR_sd[iter_samples[sample]] + posts$BtR_mean[iter_samples[sample]]
+      }
+      
+      if(names(models)[model] == "const_sens"){
+        #no transforms necessary
+        parms[sample,1] = posts$alpha[iter_samples[sample],subject_samples[sample]]
+        parms[sample,2] = posts$beta[iter_samples[sample],subject_samples[sample]]
+        parms[sample,3] = posts$sigma[iter_samples[sample],subject_samples[sample]]
+      }
+      
+      if(names(models)[model] == "mazur1987"){
+        #no transforms necessary
+        parms[sample,1] = posts$k[iter_samples[sample],subject_samples[sample]]
+        parms[sample,2] = posts$s[iter_samples[sample],subject_samples[sample]]
+        parms[sample,3] = posts$sigma[iter_samples[sample],subject_samples[sample]]
+      }
+      
+      if(names(models)[model] == "loewenstein1992"){
+        #beta_on_alpha needs to be multipled by alpha to calculate beta
+        parms[sample,1] = posts$alpha[iter_samples[sample],subject_samples[sample]]
+        parms[sample,2] = posts$beta_on_alpha[iter_samples[sample],subject_samples[sample]]*
+          posts$alpha[iter_samples[sample],subject_samples[sample]]
+        parms[sample,3] = posts$sigma[iter_samples[sample],subject_samples[sample]]
+      }
+      
+      if(names(models)[model] == "mcclure2007"){
+        #no transform necessary
+        parms[sample,1] = posts$omega[iter_samples[sample],subject_samples[sample]]
+        parms[sample,2] = posts$beta[iter_samples[sample],subject_samples[sample]]
+        parms[sample,3] = posts$delta[iter_samples[sample],subject_samples[sample]]
+        parms[sample,4] = posts$sigma[iter_samples[sample],subject_samples[sample]]
+      }
+      
+      if(names(models)[model] == "killeen2009"){
+        #no transform necessary
+        parms[sample,1] = posts$alpha[iter_samples[sample],subject_samples[sample]]
+        parms[sample,2] = posts$beta[iter_samples[sample],subject_samples[sample]]
+        parms[sample,3] = posts$lambda[iter_samples[sample],subject_samples[sample]]
+        parms[sample,4] = posts$sigma[iter_samples[sample],subject_samples[sample]]
+      }
+        
       #get choice probabilities under sampled parameter values
       sim_dat$prob_a = likelihood(parms[sample,],sim_dat)
       
@@ -133,13 +205,20 @@ for(exp in 1:2){
       } #close replication loop
       
       #save relevant variables into rdump file
-      stan_rdump(c('Nsubj','Max_obs_per_subj','real_data','int_data'),
-                 file=paste0('data/derived/simulated/data_list_e',exp,'_',names(models)[model],'_',sample,'_rdump.R'))
+      #stan_rdump(c('Nsubj','Max_obs_per_subj','real_data','int_data'),
+      #           file=paste0('data/derived/simulated2/data_list_e',exp,'_',names(models)[model],'_',sample,'_rdump.R'))
+      
+      stan_list = list(Nsubj = Nsubj,
+                       Max_obs_per_subj = Max_obs_per_subj,
+                       real_data = real_data,
+                       int_data = int_data)
+      
+      save(stan_list, file=paste0('data/derived/simulated/data_list_exp',exp,'_',names(models)[model],'_',sample,'.RData'))
       
     } #close sample loop
     
     #save generating parameters
-    save(parms,file=paste0("data/derived/simulated/generating_parms_e",exp,"_",names(models)[model],".RData"))
+    save(parms,file=paste0("data/derived/simulated/generating_parms_exp",exp,"_",names(models)[model],".RData"))
     
     
     

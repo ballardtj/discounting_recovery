@@ -78,9 +78,9 @@ transformed parameters {
 model {
  
    //priors
-  k ~ normal(0,5);
-  s ~ normal(0,5);
-  sigma ~ normal(0,5);
+  k ~ gamma(1,0.5);
+  s ~ normal(1,0.5);
+  sigma ~ normal(1,0.5);
   
   //likelihood
   target += sum(map_rect(likelihood,phi,theta,real_data,int_data));

@@ -89,7 +89,7 @@ transformed parameters {
 model {
  
   //priors
-  sigma ~ normal(0,5);
+  sigma ~ gamma(1,0.5);
   delta ~ normal(0,5);
   
   

@@ -8,6 +8,7 @@
 # * Thinning: 1
 # * Total samples: 8000
 
+
 library(rstan)
 library(coda)
 library(knitr)
@@ -15,7 +16,7 @@ library(knitr)
 
 library(shinystan)
 # 
-launch_shinystan(fit)
+#launch_shinystan(fit)
 
 
 
@@ -23,13 +24,13 @@ stan2coda <- function(fit) {
   mcmc.list(lapply(1:ncol(fit), function(x) mcmc(as.array(fit)[,x,])))
 }
 
-for( exp in 1:2){
+for( exp in 2){
   
 source("models/model_details.R")
   
-for (i in 1:length(models)){
+for (i in c(1,2,3,4,5,6,7,8,9,10,11)){ #1:length(models)){
 
-  if(i != 4 & i != 6){names(models)[i] = paste0(names(models)[i],"_gamma")}
+  #if(i != 4 & i != 6){names(models)[i] = paste0(names(models)[i],"_gamma")}
   
   print(models[[i]]$name)
   
@@ -37,7 +38,11 @@ for (i in 1:length(models)){
   
   smrystan = summary(fit)
                                                                                          
-  print(kable(round(smrystan[[1]],3)),format="markdown")
+  print(kable(round(smrystan[[1]]["lp__"],3)),format="markdown")
+  
+  #rstan::traceplot(fit,pars=c("k_shape","k_rate","sigma_shape","sigma_rate","lp__"))
+  
+  #rstan::traceplot(fit,pars=c("k[7]","k[18]","sigma[7]","sigma[18]","lp__"))
 
   write.csv(smrystan[[1]], file=paste0("figures/summary_exp",exp,"_",names(models)[i],".csv"))
   
@@ -62,3 +67,21 @@ for (i in 1:length(models)){
 
 #For experiment 1, all models except double exponential converge with 10000 burnin, 5000 samples, and delta of 0.8
 
+set.seed(123)
+rgam = rgamma(n=10000,1,1)
+
+m = 2
+s = 3
+
+v = s^2
+shape = m^2 / v
+rate = m / v
+set.seed(12)
+rgam = rgamma(10000,shape=shape,rate=rate)
+
+
+
+
+
+
+hist(rgamma(1000,shape=shape,rate=rate))

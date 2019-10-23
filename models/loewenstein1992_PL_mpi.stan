@@ -12,7 +12,7 @@ functions {
          
           //uncenter parameters (only those that are normally distributed)
           real alpha = theta[1];
-          real beta = theta[2];
+          real beta_on_alpha = theta[2];
           real sigma = theta[3];
           
           //unpack data
@@ -32,8 +32,8 @@ functions {
             d_a = real_data[2*Nplaces+i];
             d_b = real_data[3*Nplaces+i];
             
-            u_a = m_a * pow(1+alpha * d_a, -beta / alpha ) ; //utility of option a
-            u_b = m_b * pow(1+alpha * d_b, -beta / alpha ) ; //utility of option b
+            u_a = m_a * pow(1+alpha * d_a, -beta_on_alpha) ; //utility of option a
+            u_b = m_b * pow(1+alpha * d_b, -beta_on_alpha) ; //utility of option b
             p_a_logit[i] = (u_a-u_b) * sigma; //probability of selecting option a
             
             y[i] = int_data[2+i];
@@ -55,7 +55,7 @@ data {
 parameters {
   
   vector<lower=0>[Nsubj] alpha;
-  vector<lower=0>[Nsubj] beta;
+  vector<lower=0>[Nsubj] beta_on_alpha;
   vector<lower=0>[Nsubj] sigma;
   
 }
@@ -72,7 +72,7 @@ transformed parameters {
     //insert priors into theta array of vectors
     for(subj in 1:Nsubj){
       theta[subj,1] = alpha[subj];
-      theta[subj,2] = beta[subj];
+      theta[subj,2] = beta_on_alpha[subj];
       theta[subj,3] = sigma[subj];
     }
 }
@@ -81,9 +81,9 @@ transformed parameters {
 model {
  
 //priors
-alpha ~ normal(0,5);
-beta ~ normal(0,5);
-sigma ~ normal(0,5);
+alpha ~ gamma(1,0.5);
+beta_on_alpha ~ gamma(1,0.5);
+sigma ~ gamma(1,0.5);
   
   
   

@@ -13,8 +13,8 @@ functions {
           //uncenter parameters (only those that are normally distributed)
           real alpha = theta[1];
           real beta = theta[2];
-          real lambda = phi[1] + phi[2]*theta[3];
-          real sigma = phi[3] + phi[4]*theta[4];
+          real lambda = theta[3];
+          real sigma = theta[4];
           
           
           //unpack data
@@ -57,21 +57,21 @@ data {
 
 parameters {
   
-  real<lower=0> alpha_a;
-  real<lower=0> alpha_b;
+  real<lower=0,upper=1> alpha_mean;
+  real<lower=0> alpha_prec;
   vector<lower=0,upper=1>[Nsubj] alpha;
   
-  real<lower=0> beta_a;
-  real<lower=0> beta_b;
+  real<lower=0,upper=1> beta_mean;
+  real<lower=0> beta_prec;
   vector<lower=0,upper=1>[Nsubj] beta;
   
-  real<lower=0> lambda_mean;
-  real<lower=0> lambda_sd;
-  vector<lower=0>[Nsubj] lambda_raw;
+  real<lower=0> lambda_shape;
+  real<lower=0> lambda_scale;
+  vector<lower=0>[Nsubj] lambda;
 
-  real<lower=0> sigma_mean;
-  real<lower=0> sigma_sd;
-  vector<lower=0>[Nsubj] sigma_raw;
+  real<lower=0> sigma_shape;
+  real<lower=0> sigma_scale;
+  vector<lower=0>[Nsubj] sigma;
   
 }
 
@@ -84,17 +84,14 @@ transformed parameters {
     vector[4] theta[Nsubj];
 
     //insert hyperpriors into phi vector
-    phi[1] = lambda_mean;
-    phi[2] = lambda_sd;
-    phi[3] = sigma_mean;
-    phi[4] = sigma_sd;
-  
+    phi[1] = 1;
+    
     //insert priors into theta array of vectors
     for(subj in 1:Nsubj){
       theta[subj,1] = alpha[subj];
       theta[subj,2] = beta[subj];
-      theta[subj,3] = lambda_raw[subj];
-      theta[subj,4] = sigma_raw[subj];
+      theta[subj,3] = lambda[subj];
+      theta[subj,4] = sigma[subj];
     }
 }
 
@@ -102,22 +99,22 @@ transformed parameters {
 model {
  
   //priors
-  alpha_a ~ normal(0,1);
-  alpha_b ~ normal(0,1);
+  //alpha_mean ~ uniform(0,1);
+  alpha_prec ~ gamma(1,20);
   
-  beta_a ~ normal(0,1);
-  beta_b ~ normal(0,1);
+  //beta_u ~ uniform(0,1);
+  beta_prec ~ gamma(1,20);
   
-  lambda_mean ~ normal(0,1);
-  lambda_sd ~ normal(0,1);
+  lambda_shape ~ normal(0,1);
+  lambda_scale ~ normal(0,1);
   
-  sigma_mean ~ normal(0,1);
-  sigma_sd ~ normal(0,1);
+  sigma_shape ~ normal(0,1);
+  sigma_scale ~ normal(0,1);
 
-  alpha ~ beta(alpha_a,alpha_b);
-  beta ~ beta(beta_a,beta_b);
-  lambda_raw ~ normal(0,1);
-  sigma_raw ~ normal(0,1);
+  alpha ~ beta(alpha_mean*alpha_prec , (1-alpha_mean)*alpha_prec);
+  beta ~  beta(beta_mean*beta_prec , (1-beta_mean)*beta_prec);
+  lambda ~ gamma(lambda_shape,inv(lambda_scale));
+  sigma ~ gamma(sigma_shape,inv(sigma_scale));
   
   //likelihood
   target += sum(map_rect(likelihood,phi,theta,real_data,int_data));

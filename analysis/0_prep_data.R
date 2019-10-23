@@ -88,50 +88,94 @@ for(exp in 1:2){
   
 }
 
-#########################################################
-# Check bounds on reasonable parameters for k and sigma #
-#########################################################
-
-# dat=readRDS(file="data/raw/delay_data_lba_2019.rds") %>%
-#   mutate(subject = as.numeric(as.factor(subject)))
-# 
-# #format data for model fitting
-# dat$m_a = dat$amount
-# dat$d_a = dat$delay
-# dat$m_b = 100
-# dat$d_b = 0    #note: b is smaller, sooner option
-# dat$choose_a = dat$Choice
-# 
-# k = 0.1
-# sigma = 0.01
-# 
-# filter(dat,subject==1) %>%
-#   mutate(u_a = m_a*exp(-k*d_a),
-#          u_b = m_b*exp(-k*d_b),
-#          p_a = 1/(1+exp(-sigma*(u_a-u_b)))) %>%
-#   ggplot() +
-#   geom_line(aes(x=d_a,y=p_a,group=m_a,colour=m_a))
-
-
-
-
 #DEBUG MODELS 
 data_list = list(Nsubj = Nsubj,
                  Max_obs_per_subj = Max_obs_per_subj,
                  real_data = real_data,
                  int_data = int_data)
 
+source("models/model_details.R")
+for (i in 9:length(models)){
+  fit=stan(file=paste0("models/",names(models)[i],"_PL_mpi.stan"),
+           data=data_list,
+           iter=1,
+           cores=1,
+           chains=1,
+           #init=init_exp_e2,
+           control=list(max_treedepth=20,adapt_delta=0.99),
+           seed=12345)
+}
+
+
+
+
+
+Nsubj
+
+#function for generating initial values
+init_exp_e2 <- function() {
+  # cat("chain_id =", chain_id, "\n")
+  list(k_shape = runif(1,0,5), k_rate = runif(1,0,5), 
+       sigma_shape = runif(1,0,5), sigma_rate = runif(1,0,5),
+       k = runif(37,0,5), sigma = runif(37,0,5))
+} 
+
 tic = Sys.time()
-Sys.setenv(STAN_NUM_THREADS=7)
-fit_leow=stan(file=paste0("models/loewenstein1992_gamma_mpi.stan"),
+
+#Sys.setenv(STAN_NUM_THREADS=7)
+fit=stan(file=paste0("models/exponential_gamma_mpi.stan"),
               data=data_list,
-              iter=4000,
+              iter=1,
               cores=1,
-              chains=4,
-              control=list(max_treedepth=10,adapt_delta=0.90),
+              chains=1,
+              #init=init_exp_e2,
+              control=list(max_treedepth=20,adapt_delta=0.999),
               seed=12345)
+
 toc = Sys.time()-tic
 print(toc)
+
+#traceplot(fit,inc_warmup=TRUE,pars=c("sigma_shape","sigma_rate"))
+
+save(fit,file="data/derived/fits/fit_exp2_exponential_gamma.RData")
+smry=summary(fit)
+round(smry[[1]],3)[100:length(names(fit)),   ]
+
+traceplot(fit,pars=c("k_shape","k_rate","sigma_shape","sigma_rate","lp__"),inc_warmup=T)
+
+traceplot(fit,pars=c("k[7]","k[18]","sigma[7]","sigma[18]","lp__"))
+
+shape=abs(rnorm(10000,mean=0,sd=0.5))
+scale=abs(rnorm(10000,mean=0,sd=1))
+k=rgamma(10000,shape=shape,rate=1/scale)
+hist(k)
+mean(k)
+sd(k)
+
+
+#load("data/derived/fits/fit_exp2_exponential_gamma.RData")
+
+tic = Sys.time()
+fit=stan(file=paste0("models/const_sens_gamma_mpi.stan"),
+           data=data_list,
+           iter=4000,
+           cores=1,
+           chains=4,
+           control=list(max_treedepth=20,adapt_delta=0.999),
+           seed=12345)
+toc = Sys.time()-tic
+print(toc)
+save("data/derived/fits/fit_exp2_const_sens_gamma.RData")
+
+
+
+
+
+
+
+
+
+
 
 fit_leow=stan(file=paste0("models/loewenstein1992_gamma_reparm_mpi.stan"),
               data=data_list,

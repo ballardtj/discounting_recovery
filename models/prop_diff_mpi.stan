@@ -12,7 +12,7 @@ functions {
          
           //uncenter parameters (only those that are normally distributed)
           real delta = phi[1] + phi[2]*theta[1];
-          real sigma = phi[3] + phi[4]*theta[2];
+          real sigma = theta[2];
       
           //unpack data
           int y[Nvalid];
@@ -69,9 +69,9 @@ parameters {
   real<lower=0> delta_sd;
   vector[Nsubj] delta_raw;
 
-  real<lower=0> sigma_mean;
-  real<lower=0> sigma_sd;
-  vector<lower=0>[Nsubj] sigma_raw;
+  real<lower=0> sigma_shape;
+  real<lower=0> sigma_scale;
+  vector<lower=0>[Nsubj] sigma;
 
 }
 
@@ -86,13 +86,11 @@ transformed parameters {
     //insert hyperpriors into phi vector
     phi[1] = delta_mean;
     phi[2] = delta_sd;
-    phi[3] = sigma_mean;
-    phi[4] = sigma_sd;
-  
+
     //insert priors into theta array of vectors
     for(subj in 1:Nsubj){
       theta[subj,1] = delta_raw[subj];
-      theta[subj,2] = sigma_raw[subj];
+      theta[subj,2] = sigma[subj];
     }
 }
 
@@ -103,11 +101,11 @@ model {
   delta_mean ~ normal(0,1);
   delta_sd ~ normal(0,1);
   
-  sigma_mean ~ normal(0,1);
-  sigma_sd ~ normal(0,1);
+  sigma_shape ~ normal(0,1);
+  sigma_scale ~ normal(0,1);
   
-  sigma_raw ~ normal(0,1);
   delta_raw ~ normal(0,1);
+  sigma ~ gamma(sigma_shape,inv(sigma_scale));
   
   
   //likelihood

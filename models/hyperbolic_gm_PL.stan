@@ -31,9 +31,9 @@ model {
    }
 
   //priors
-  k ~ normal(0,5);
-  s ~ normal(0,5);
-  sigma ~ normal(0,5);
+  k ~ gamma(0,0.5);
+  s ~ gamma(0,0.5);
+  sigma ~ gamma(0,0.5);
   
   //likelihood
   y~bernoulli_logit(p_a_logit);

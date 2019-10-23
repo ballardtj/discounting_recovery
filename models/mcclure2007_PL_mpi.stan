@@ -86,9 +86,9 @@ model {
  
   //priors
   //omega ~ uniform(0,1);
-  beta ~ normal(0,5);
-  delta ~ normal(0,5);
-  sigma ~ normal(0,5);
+  beta ~ gamma(1,0.5);
+  delta ~ gamma(1,0.5);
+  sigma ~ gamma(1,0.5);
   
   
   //likelihood

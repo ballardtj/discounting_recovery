@@ -55,16 +55,16 @@ data {
 
 parameters {
   
-  real<lower=0> alpha_shape;
-  real<lower=0> alpha_rate;
+  real<lower=0> alpha_mean;
+  real<lower=0> alpha_sd;
   vector<lower=0>[Nsubj] alpha;
 
-  real<lower=0> beta_shape;
-  real<lower=0> beta_rate;
+  real<lower=0> beta_mean;
+  real<lower=0> beta_sd;
   vector<lower=0>[Nsubj] beta;
 
-  real<lower=0> sigma_shape;
-  real<lower=0> sigma_rate;
+  real<lower=0> sigma_mean;
+  real<lower=0> sigma_sd;
   vector<lower=0>[Nsubj] sigma;
   
 }
@@ -88,20 +88,30 @@ transformed parameters {
 
 
 model {
+  
+  real alpha_var = square(alpha_sd);
+  real alpha_shape = square(alpha_mean) / alpha_var;
+  real alpha_rate = alpha_mean / alpha_var;
+  real beta_var = square(beta_sd);
+  real beta_shape = square(beta_mean) / beta_var;
+  real beta_rate = beta_mean / beta_var;
+  real sigma_var = square(sigma_sd);
+  real sigma_shape = square(sigma_mean) / sigma_var;
+  real sigma_rate = sigma_mean / sigma_var;
  
   //priors
-  alpha_shape ~ normal(0,1);
-  alpha_rate ~ normal(0,1);
+  alpha_mean ~ normal(0,0.5);
+  alpha_sd ~ normal(0,0.5);
   
-  beta_shape ~ normal(0,1);
-  beta_rate ~ normal(0,1);
+  beta_mean ~ normal(0,0.5);
+  beta_sd ~ normal(0,0.5);
   
-  sigma_shape ~ normal(0,1);
-  sigma_rate ~ normal(0,1);
+  sigma_mean ~ normal(0,0.5);
+  sigma_sd ~ normal(0,0.5);
 
-  alpha ~ gamma(alpha_shape,inv(alpha_rate));
-  beta ~ gamma(beta_shape,inv(beta_rate));
-  sigma ~ gamma(sigma_shape,inv(sigma_rate));
+  alpha ~ gamma(alpha_shape,alpha_rate);
+  beta ~ gamma(beta_shape,beta_rate);
+  sigma ~ gamma(sigma_shape,sigma_rate);
   
   //likelihood
   target += sum(map_rect(likelihood,phi,theta,real_data,int_data));

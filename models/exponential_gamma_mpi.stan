@@ -60,7 +60,7 @@ parameters {
 
   real<lower=0> sigma_shape;
   real<lower=0> sigma_rate;
-  vector<lower=0>[Nsubj] sigma;
+  vector<lower=0,upper=5>[Nsubj] sigma;
 
 }
 
@@ -83,14 +83,14 @@ transformed parameters {
 model {
  
    //priors
-  k_shape ~ normal(0,1);
-  k_rate ~ normal(0,1);
+  k_shape ~ normal(0,0.5);
+  k_rate ~ normal(0,0.5);
   
-  sigma_shape ~ normal(0,1);
-  sigma_rate ~ normal(0,1);
+  sigma_shape ~ normal(0,0.5);
+  sigma_rate ~ normal(0,0.5);
 
-  k ~ gamma(k_shape,inv(k_scale));
-  sigma ~ gamma(sigma_shape,inv(sigma_scale));
+  k ~ gamma(k_shape,inv(k_rate));
+  sigma ~ gamma(sigma_shape,inv(sigma_rate));
   
   //likelihood
   target += sum(map_rect(likelihood,phi,theta,real_data,int_data));

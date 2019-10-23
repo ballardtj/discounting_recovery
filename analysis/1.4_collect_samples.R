@@ -19,13 +19,11 @@ source(paste0(dir,"/models/model_details.R"))
 if(run < 12){
   exp = 1
   model = names(models)[run]
-  if(run != 4 & run != 6){model = paste0(model,"_gamma")}
 }
 
 if(run > 11){
   exp = 2
   model = names(models)[run-11]
-  if(run != 15 & run != 16){model = paste0(model,"_gamma")}
 }
 
 #load data list
@@ -36,12 +34,15 @@ tic = Sys.time()
 
 Sys.setenv(STAN_NUM_THREADS=11)
 
+delta = 0.99
+if(run==21) {delta = 0.85} #Mcclure2007 wouldn't finish for E2 with delta = 0.9
+
 fit=stan(file=paste0(dir,"/models/",model,"_mpi.stan"),
               data=stan_list,
               iter=4000,
               cores=1,
               chains=1,
-              control=list(max_treedepth=20,adapt_delta=0.90),
+              control=list(max_treedepth=20,adapt_delta=delta),
               seed=12345,
               chain_id = chain)
 

@@ -13,7 +13,7 @@ functions {
           //uncenter parameters (only those that are normally distributed)
           real gamma = theta2[1];
           real tau = theta2[2];
-          real theta = theta2[3];
+          real theta = 1+theta2[3];
           real kappa = theta2[4];
           real alpha = theta2[5];
           real eps = theta2[6];
@@ -98,12 +98,12 @@ transformed parameters {
 model {
  
  //priors
-  gamma ~ normal(0,5);
-  tau ~ normal(0,5);
-  theta ~ normal(1,5);
-  kappa ~ normal(0,5);
-  alpha ~ normal(0,5);
-  eps ~ normal(0,5);
+  gamma ~ gamma(1,0.5);
+  tau ~ gamma(1,0.5);
+  theta ~ gamma(1,0.5);
+  kappa ~ gamma(1,0.5);
+  alpha ~ gamma(1,0.5);
+  eps ~ gamma(1,0.5);
 
   //likelihood
   target += sum(map_rect(likelihood,phi,theta2,real_data,int_data));

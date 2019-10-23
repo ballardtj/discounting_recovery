@@ -11,9 +11,9 @@ functions {
           int Nplaces = int_data[2]; //total number of elements in array (including 
          
           //uncenter parameters
-          real k = phi[1] + phi[2]*theta[1];
-          real s = phi[3] + phi[4]*theta[2];
-          real sigma = phi[5] + phi[6]*theta[3];
+          real k = theta[1];
+          real s = theta[2];
+          real sigma = theta[3];
           
           //unpack data
           
@@ -55,39 +55,34 @@ data {
 
 parameters {
   
-    real<lower=0> k_mean;
-  real<lower=0> k_sd;
-  vector<lower=0>[Nsubj] k_raw;
+  real<lower=0> k_shape;
+  real<lower=0> k_scale;
+  vector<lower=0>[Nsubj] k;
 
-  real<lower=0> s_mean;
-  real<lower=0> s_sd;
-  vector<lower=0>[Nsubj] s_raw;
+  real<lower=0> s_shape;
+  real<lower=0> s_scale;
+  vector<lower=0>[Nsubj] s;
 
-  real<lower=0> sigma_mean;
-  real<lower=0> sigma_sd;
-  vector<lower=0>[Nsubj] sigma_raw;
+  real<lower=0> sigma_shape;
+  real<lower=0> sigma_scale;
+  vector<lower=0>[Nsubj] sigma;
   
 }
 
 
 transformed parameters {
     
-    vector[6] phi;
+    vector[1] phi;
     vector[3] theta[Nsubj];
 
-    //insert hyperpriors into phi vector
-    phi[1] = k_mean;
-    phi[2] = k_sd;
-    phi[3] = s_mean;
-    phi[4] = s_sd;
-    phi[5] = sigma_mean;
-    phi[6] = sigma_sd;
+    //insert dummy hyperprior into phi vector
+    phi[1] = 1;
     
     //insert priors into theta array of vectors
     for(subj in 1:Nsubj){
-      theta[subj,1] = k_raw[subj];
-      theta[subj,2] = s_raw[subj];
-      theta[subj,3] = sigma_raw[subj];
+      theta[subj,1] = k[subj];
+      theta[subj,2] = s[subj];
+      theta[subj,3] = sigma[subj];
     }
 }
 
@@ -95,18 +90,18 @@ transformed parameters {
 model {
  
   //priors
-   k_mean ~ normal(0,1);
-  k_sd ~ normal(0,1);
+  k_shape ~ normal(0,1);
+  k_scale ~ normal(0,1);
   
-  s_mean ~ normal(0,1);
-  s_sd ~ normal(0,1);
+  s_shape ~ normal(0,1);
+  s_scale ~ normal(0,1);
   
-  sigma_mean ~ normal(0,1);
-  sigma_sd ~ normal(0,1);
+  sigma_shape ~ normal(0,1);
+  sigma_scale ~ normal(0,1);
 
-  k_raw ~ normal(0,1);
-  s_raw ~ normal(0,1);
-  sigma_raw ~ normal(0,1);
+  k ~ gamma(k_shape,inv(k_scale));
+  s ~ gamma(s_shape,inv(s_scale));
+  sigma ~ gamma(sigma_shape,inv(sigma_scale));
   
   //likelihood
   target += sum(map_rect(likelihood,phi,theta,real_data,int_data));
