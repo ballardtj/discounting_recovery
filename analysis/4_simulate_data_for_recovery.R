@@ -45,14 +45,14 @@ for(exp in 1:2){
   subject_samples = sample(1:length(unique(dat$subject)),size=nsamples,replace=TRUE)
   
   #loop through models
-  for(model in 1:length(models)){
+  for(model in 6){#1:length(models)){
     print(model)
     
     #load likelihood
     source(paste0("models/",names(models)[model],".R"))
     
     #load fit object
-    load(file=paste0("data/derived/fits/fit_exp",exp,"_",names(models)[model],".RData"))
+    load(file=paste0("data/derived/fits99/fit_exp",exp,"_",names(models)[model],".RData"))
     
     #extract parameters
     posts=rstan::extract(fit)

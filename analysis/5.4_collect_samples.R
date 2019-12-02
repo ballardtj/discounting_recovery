@@ -38,6 +38,7 @@ Sys.setenv(STAN_NUM_THREADS=11)
 #set target acceptance rate
 delta = 0.99
 if( design$exp[run] == 2 & design$model[run] == 10  ) {delta = 0.85} #Mcclure2007 wouldn't finish for E2 with delta = 0.9
+if( design$exp[run] == 1 & design$model[run] == 11  ) {delta = 0.85} #Killeen2009 wouldn't finish for E1 with delta = 0.9
 
 #set r seed
 

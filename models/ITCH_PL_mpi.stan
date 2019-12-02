@@ -47,7 +47,7 @@ functions {
             tA = d_a - d_b;
             tR = (d_a - d_b) / mean_t;
             
-            p_a_logit[i] = B1 + BxA*xA + BxR*xR + BtA*tA + BxR*xR;
+            p_a_logit[i] = B1 + BxA*xA + BxR*xR + BtA*tA + BtR*tR;
             
             y[i] = int_data[2+i];
           }
